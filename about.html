@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>ABOUT US - Patnala Furniture</title>
+  <link rel="stylesheet" href="css/about.css">
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="images/fav.png">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+
+</head>
+
+<body>
+
+  <!-- =========================
+      NAVBAR
+  ==========================-->
+
+  <header class="navbar">
+
+    <div class="nav-container">
+
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Patnala Furniture">
+        </a>
+      </div>
+
+      <!-- NAV LINKS -->
+      <nav class="nav-links" id="navLinks">
+
+        <a href="cot.html">COT</a>
+
+        <a href="sofa-sets.html">SOFA SETS</a>
+
+        <a href="diwan-cot.html">DIWAN COT</a>
+
+        <a href="chair.html">CHAIR</a>
+
+        <a href="accessories.html">ACCESSORIES</a>
+
+        <a href="marriage-kit.html">MARRIAGE KIT</a>
+
+        <a href="contact.html">CONTACT US</a>
+
+      </nav>
+
+      <!-- ICONS -->
+      <div class="nav-icons">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <i class="fa-regular fa-user"></i>
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+      JAVASCRIPT
+  ==========================-->
+
+  <script>
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero-section">
+
+  <div class="hero-content">
+
+    <h1 
+  class="hero-heading"
+  data-aos="fade-right"
+  data-aos-duration="1200">
+
+  Crafted by Legacy, <br>
+
+  <span>Defined by Teak</span>
+
+</h1>
+
+    
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     AOS
+========================= -->
+
+<link rel="stylesheet"
+href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    once:true
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     ABOUT SECTION
+========================= -->
+
+<section class="about-section">
+
+  <!-- LEFT CONTENT -->
+
+  <div class="about-left"
+
+    data-aos="fade-right"
+    data-aos-duration="1200">
+
+    <h2 class="section-title">
+
+      The Art of <span>Fine Furniture</span>
+
+    </h2>
+
+   <p>
+More than just objects, our furniture represents a commitment to
+<a>authentic craftsmanship and sustainable beauty</a>.
+Every table, chair, and cabinet is meticulously crafted from premium,
+ethically sourced solid wood—designed to become a cherished heirloom.
+</p>
+<p>
+We blend classic joinery techniques with sleek, modern designs to create pieces that are as durable as they are beautiful. Browse our collections and connect with our team via WhatsApp for personalized details and inquiry.
+
+</p>
+
+    </p>
+
+  </div>
+
+
+
+  <!-- RIGHT VIDEO -->
+
+  <div class="video-wrap"
+
+    data-aos="fade-left"
+    data-aos-duration="1200">
+
+    <div class="video-box">
+
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/qqakBpYqX2I?si=1_l4x87EujKqcrzf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+
+    <!-- CLICKABLE LAYER -->
+
+    <a class="video-click-layer"
+
+    href="https://youtu.be/qqakBpYqX2I?si=FhR0tgXdJ3It1Sva"
+
+    target="_blank"></a>
+
+  </div>
+
+</section>
+
+
+
+

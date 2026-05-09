@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>All Products</title>
+
+<link rel="stylesheet"
+href="css/allproducts.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+
+<!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <!-- SMALL IMAGE -->
+
+        <img
+          src="images/fav.png"
+          alt="logo"
+          class="logo-img" />
+
+        <div>
+
+          <h2>PATNALA</h2>
+
+          <span>FURNITURE</span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="menu">
+
+        <!-- DASHBOARD -->
+
+        <li class="active">
+
+          <a href="dashboard.html">
+
+            <i class="fas fa-house"></i>
+
+            <span>Dashboard</span>
+
+          </a>
+
+        </li>
+
+        <!-- ORDERS -->
+
+        <li>
+
+          <a href="orders.html">
+
+            <i class="fas fa-calendar-check"></i>
+
+            <span>Orders</span>
+
+          
+
+          </a>
+
+        </li>
+
+        <!-- PRODUCTS -->
+
+        <li class="dropdown-menu">
+
+          <div class="dropdown-btn"
+            onclick="toggleProducts()">
+
+            <div class="left-side">
+
+              <i class="fas fa-cube"></i>
+
+              <span>Products</span>
+
+            </div>
+
+            <i class="fas fa-chevron-down arrow"
+              id="productArrow"></i>
+
+          </div>
+
+          <!-- SUB MENU -->
+
+          <ul class="submenu"
+            id="productSubmenu">
+
+            <li>
+
+              <a href="allproducts.html">
+
+                <i class="fas fa-box-open"></i>
+
+                <span>All Products</span>
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a href="addproduct.html">
+
+                <i class="fas fa-plus"></i>
+
+                <span>Add Product</span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!-- CATEGORIES -->
+
+        <li>
+
+          <a href="categories.html">
+
+            <i class="fas fa-table-cells-large"></i>
+
+            <span>Categories</span>
+
+          </a>
+
+        </li>
+
+        <!-- CUSTOMERS -->
+
+        <li>
+
+          <a href="customers.html">
+
+            <i class="fas fa-users"></i>
+
+            <span>Customers</span>
+
+          </a>
+
+        </li>
+
+        <!-- COUPONS -->
+
+        <li>
+
+          <a href="coupons.html">
+
+            <i class="fas fa-tag"></i>
+
+            <span>Coupons</span>
+
+          </a>
+
+        </li>
+
+        <!-- REVIEWS -->
+
+        <li>
+
+          <a href="reviews.html">
+
+            <i class="far fa-star"></i>
+
+            <span>Reviews</span>
+
+          </a>
+
+        </li>
+
+        <!-- CMS -->
+
+        <li>
+
+          <a href="cms.html">
+
+            <i class="far fa-file-lines"></i>
+
+            <span>CMS Management</span>
+
+          </a>
+
+        </li>
+
+        <!-- BANNERS -->
+
+        <li>
+
+          <a href="banners.html">
+
+            <i class="far fa-image"></i>
+
+            <span>Banners</span>
+
+          </a>
+
+        </li>
+
+        <!-- REPORTS -->
+
+        <li>
+
+          <a href="reports.html">
+
+            <i class="fas fa-chart-simple"></i>
+
+            <span>Reports</span>
+
+          </a>
+
+        </li>
+
+        <!-- MARKETING -->
+
+        <li>
+
+          <a href="marketing.html">
+
+            <i class="fas fa-bullhorn"></i>
+
+            <span>Marketing</span>
+
+          </a>
+
+        </li>
+
+        <!-- SETTINGS -->
+
+        <li>
+
+          <a href="settings.html">
+
+            <i class="fas fa-gear"></i>
+
+            <span>Settings</span>
+
+          </a>
+
+        </li>
+
+        <!-- USERS -->
+
+        <li>
+
+          <a href="users.html">
+
+            <i class="far fa-user"></i>
+
+            <span>Users & Roles</span>
+
+          </a>
+
+        </li>
+
+      </ul>
+
+      <!-- HELP BOX -->
+
+      <div class="help-box">
+
+        <div class="help-icon">
+
+          <i class="fas fa-headphones"></i>
+
+        </div>
+
+        <div>
+
+          <h4>Need Help?</h4>
+
+          <p>Contact Support</p>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+<!-- TOP BAR -->
+
+<div class="top-bar">
+
+<div>
+
+<h1>Products</h1>
+
+<p>
+Manage and view all your products.
+</p>
+
+</div>
+
+<a href="addproduct.html"
+class="add-btn">
+
++ Add Product
+
+</a>
+
+</div>
+
+
+
+<!-- STATS -->
+
+<div class="stats-grid">
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon purple">
+
+<i class="fas fa-cube"></i>
+
+</div>
+
+<div>
+
+<h4>Total Products</h4>
+
+<h2 id="totalProducts">
+0
+</h2>
+
+</div>
+
+</div>
+
+<p>All time</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon green">
+
+<i class="fas fa-circle-check"></i>
+
+</div>
+
+<div>
+
+<h4>Active Products</h4>
+
+<h2 id="activeProducts">
+0
+</h2>
+
+</div>
+
+</div>
+
+<p class="green-text">
+Active inventory
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon red">
+
+<i class="fas fa-box-open"></i>
+
+</div>
+
+<div>
+
+<h4>Out of Stock</h4>
+
+<h2 id="outProducts">
+0
+</h2>
+
+</div>
+
+</div>
+
+<p class="red-text">
+Need attention
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon blue">
+
+<i class="fas fa-tag"></i>
+
+</div>
+
+<div>
+
+<h4>Low Stock</h4>
+
+<h2 id="lowProducts">
+0
+</h2>
+
+</div>
+
+</div>
+
+<p class="blue-text">
+Low inventory
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- FILTER BAR -->
+
+<div class="filter-bar">
+
+
+<div class="search-box">
+
+<i class="fas fa-search"></i>
+
+<input
+type="text"
+placeholder="Search by product name, SKU..."
+id="searchInput"
+>
+
+</div>
+
+<select id="categoryFilter">
+
+<option value="">
+Select Category
+</option>
+
+<option value="Cot">
+Cot
+</option>
+
+<option value="Sofa Sets">
+Sofa Sets
+</option>
+
+<option value="Diwan Cot">
+Diwan Cot
+</option>
+
+<option value="Chair">
+Chair
+</option>
+
+<option value="Accessories">
+Accessories
+</option>
+
+<option value="Marriage Kit">
+Marriage Kit
+</option>
+
+</select>
+
+
+<select id="statusFilter">
+
+<option value="">
+Select Status
+</option>
+
+<option value="Active">
+Active
+</option>
+
+<option value="Inactive">
+Inactive
+</option>
+
+</select>
+
+
+
+<select id="stockFilter">
+
+<option value="">
+Select Stock Status
+</option>
+
+<option value="In Stock">
+In Stock
+</option>
+
+<option value="Out Of Stock">
+Out Of Stock
+</option>
+
+<option value="Low Stock">
+Low Stock
+</option>
+
+</select>
+
+
+
+<div class="filter-actions">
+
+<button class="filter-btn">
+
+<i class="fas fa-filter"></i>
+
+More Filters
+
+</button>
+
+
+<button class="export-btn">
+
+<i class="fas fa-download"></i>
+
+Export
+
+</button>
+
+
+<button class="import-btn">
+
+<i class="fas fa-upload"></i>
+
+Import
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- TABLE -->
+
+<div class="table-card">
+
+<table class="product-table">
+
+<thead>
+
+<tr>
+
+<th>Product</th>
+
+<th>SKU</th>
+
+<th>Category</th>
+
+<th>Price</th>
+
+<th>Stock</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="productTableBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+</main>
+
+</div>
+
+
+<script>
+
+const API =
+"https://furniturebackend-j767.onrender.com/api/products";
+
+let allProducts = [];
+
+
+// LOAD PRODUCTS
+
+async function loadProducts(){
+
+try{
+
+const response =
+await fetch(API);
+
+allProducts =
+await response.json();
+
+updateStats(allProducts);
+
+
+
+renderProducts(allProducts);
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+
+// UPDATE STATS
+
+function updateStats(products){
+
+document.getElementById(
+"totalProducts"
+).innerText =
+products.length;
+
+document.getElementById(
+"activeProducts"
+).innerText =
+products.filter(
+p => p.status === "Active"
+).length;
+
+document.getElementById(
+"outProducts"
+).innerText =
+products.filter(
+p => p.stockQuantity <= 0
+).length;
+
+document.getElementById(
+"lowProducts"
+).innerText =
+products.filter(
+p =>
+p.stockQuantity > 0 &&
+p.stockQuantity < 5
+).length;
+
+}
+
+
+
+// RENDER PRODUCTS
+
+function renderProducts(products){
+
+const table =
+document.getElementById(
+"productTableBody"
+);
+
+table.innerHTML = "";
+
+if(products.length === 0){
+
+table.innerHTML = `
+<tr>
+<td colspan="8"
+style="text-align:center;padding:20px;">
+No Products Found
+</td>
+</tr>
+`;
+
+return;
+
+}
+
+products.forEach(product => {
+
+let stockStatus = "In Stock";
+
+if(product.stockQuantity <= 0){
+
+stockStatus = "Out Of Stock";
+
+}
+else if(product.stockQuantity < 5){
+
+stockStatus = "Low Stock";
+
+}
+
+table.innerHTML += `
+
+<tr>
+
+<td>
+
+<div class="product-info">
+
+<img
+src="${
+product.images?.[0]
+|| 'images/noimage.png'
+}"
+class="product-img"
+>
+
+<div>
+
+<h4>
+${product.name}
+</h4>
+
+<p>
+${product.brand || "No Brand"}
+</p>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td>
+${product.sku || "-"}
+</td>
+
+
+<td>
+${product.category || "-"}
+</td>
+
+
+<td>
+₹${product.sellingPrice || 0}
+</td>
+
+
+<td>
+${product.stockQuantity || 0}
+</td>
+
+
+<td>
+
+<span class="status">
+
+${product.status || "Active"}
+
+</span>
+
+</td>
+
+
+<td>
+
+${new Date(
+product.createdAt
+).toLocaleDateString()}
+
+</td>
+
+
+<td>
+
+<div class="actions">
+
+<button
+onclick="editProduct('${product._id}')">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button
+onclick="deleteProduct('${product._id}')">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+
+// LOAD CATEGORY FILTER
+
+// function loadCategories(products){
+
+// const categoryFilter =
+// document.getElementById(
+// "categoryFilter"
+// );
+
+// const categories =
+// [
+// ...new Set(
+// products.map(
+// p => p.category
+// )
+// )
+// ];
+
+// categoryFilter.innerHTML =
+// `
+// <option value="">
+// Select Category
+// </option>
+// `;
+
+// categories.forEach(category => {
+
+// if(category){
+
+// categoryFilter.innerHTML += `
+// <option value="${category}">
+// ${category}
+// </option>
+// `;
+
+// }
+
+// });
+
+// }
+
+
+
+// FILTER PRODUCTS
+
+function filterProducts(){
+
+const search =
+document.getElementById(
+"searchInput"
+).value.toLowerCase();
+
+const category =
+document.getElementById(
+"categoryFilter"
+).value;
+
+const status =
+document.getElementById(
+"statusFilter"
+).value;
+
+const stock =
+document.getElementById(
+"stockFilter"
+).value;
+
+let filtered =
+allProducts.filter(product => {
+
+const matchSearch =
+
+product.name
+?.toLowerCase()
+.includes(search)
+
+||
+
+product.sku
+?.toLowerCase()
+.includes(search);
+
+const matchCategory =
+
+!category ||
+
+product.category === category;
+
+const matchStatus =
+
+!status ||
+
+product.status === status;
+
+let matchStock = true;
+
+if(stock === "In Stock"){
+
+matchStock =
+product.stockQuantity >= 5;
+
+}
+
+if(stock === "Low Stock"){
+
+matchStock =
+product.stockQuantity > 0 &&
+product.stockQuantity < 5;
+
+}
+
+if(stock === "Out Of Stock"){
+
+matchStock =
+product.stockQuantity <= 0;
+
+}
+
+return (
+
+matchSearch &&
+matchCategory &&
+matchStatus &&
+matchStock
+
+);
+
+});
+
+renderProducts(filtered);
+
+}
+
+
+
+// EDIT PRODUCT
+
+function editProduct(id){
+
+window.location.href =
+`addproduct.html?id=${id}`;
+
+}
+
+
+
+// DELETE PRODUCT
+
+async function deleteProduct(id){
+
+const confirmDelete =
+confirm(
+"Delete Product?"
+);
+
+if(confirmDelete){
+
+await fetch(
+`${API}/${id}`,
+{
+method:"DELETE"
+}
+);
+
+loadProducts();
+
+}
+
+}
+
+
+
+// EVENTS
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"keyup",
+filterProducts
+);
+
+document
+.getElementById("categoryFilter")
+.addEventListener(
+"change",
+filterProducts
+);
+
+document
+.getElementById("statusFilter")
+.addEventListener(
+"change",
+filterProducts
+);
+
+document
+.getElementById("stockFilter")
+.addEventListener(
+"change",
+filterProducts
+);
+
+
+
+// INITIAL LOAD
+
+loadProducts();
+
+
+
+
+
+// PRODUCTS DROPDOWN
+
+function toggleProducts(){
+
+const submenu =
+document.getElementById(
+"productSubmenu"
+);
+
+const arrow =
+document.getElementById(
+"productArrow"
+);
+
+submenu.classList.toggle("show");
+
+arrow.classList.toggle("rotate");
+
+}
+
+</script>
+
+</body>
+</html>

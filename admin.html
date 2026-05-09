@@ -1,0 +1,145 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title> Admin Login - Patnala Furniture</title>
+<link rel="icon" type="image/png" href="images/fav.png">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/admin.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <div class="glass-card">
+
+      <!-- LOGO -->
+      <div class="logo">
+        <h1>PATNALA</h1>
+        <span>FURNITURE ADMIN</span>
+      </div>
+
+      <!-- ICON -->
+      <div class="icon-box">
+        <i class="fas fa-shield-halved"></i>
+      </div>
+
+      <!-- TITLE -->
+      <h2>Welcome Back</h2>
+
+      <p class="subtitle">
+        Login to manage your showroom dashboard
+      </p>
+
+      <!-- USERNAME -->
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+
+        <input
+          type="text"
+          id="username"
+          placeholder="Enter Username"
+          autocomplete="off"
+        />
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          onkeypress="handleEnter(event)"
+        />
+      </div>
+
+      <!-- BUTTON -->
+      <button onclick="login()">
+        LOGIN NOW
+        <i class="fas fa-arrow-right"></i>
+      </button>
+
+    </div>
+
+  </div>
+<script>
+
+const API = "https://furniturebackend-j767.onrender.com";
+async function login(){
+
+  const username =
+  document.getElementById("username").value.trim();
+
+  const password =
+  document.getElementById("password").value.trim();
+
+  if(!username || !password){
+
+    alert("Please enter username and password");
+
+    return;
+  }
+
+  try{
+
+    const response = await fetch(`${API}/auth/login`,{
+
+      method:"POST",
+
+      headers:{
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+        username,
+        password
+      })
+
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+
+    if(response.ok){
+
+      localStorage.setItem("adminLoggedIn","true");
+
+      localStorage.setItem("token",data.token);
+
+      localStorage.setItem("adminUser",username);
+
+      window.location.href = "dashboard.html";
+
+    }else{
+
+      alert(data.message || "Login Failed");
+
+    }
+
+  }catch(error){
+
+    console.log(error);
+
+    alert("Server Error");
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>

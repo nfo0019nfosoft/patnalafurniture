@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>CONTACT US - Patnala Furniture</title>
+  <link rel="stylesheet" href="css/contact.css">
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="images/fav.png">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+
+</head>
+
+<body>
+
+  <!-- =========================
+      NAVBAR
+  ==========================-->
+
+  <header class="navbar">
+
+    <div class="nav-container">
+
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Patnala Furniture">
+        </a>
+      </div>
+
+      <!-- NAV LINKS -->
+      <nav class="nav-links" id="navLinks">
+
+        <a href="cot.html">COT</a>
+
+        <a href="sofa-sets.html">SOFA SETS</a>
+
+        <a href="diwan-cot.html">DIWAN COT</a>
+
+        <a href="chair.html">CHAIR</a>
+
+        <a href="accessories.html">ACCESSORIES</a>
+
+        <a href="marriage-kit.html">MARRIAGE KIT</a>
+
+        <a href="contact.html">CONTACT US</a>
+
+      </nav>
+
+      <!-- ICONS -->
+      <div class="nav-icons">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <i class="fa-regular fa-user"></i>
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+      JAVASCRIPT
+  ==========================-->
+
+  <script>
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero-section">
+
+  <div class="hero-content">
+
+    <h1 
+  class="hero-heading"
+  data-aos="fade-right"
+  data-aos-duration="1200">
+
+  Ready to Discuss Your<br>
+
+  <span>Teak Vision?</span>
+
+</h1>
+
+    
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     AOS
+========================= -->
+
+<link rel="stylesheet"
+href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    once:true
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="teak-contact-section">
+<div class="teak-contact-container">
+<!-- LEFT FORM -->
+<div class="teak-contact-form" data-aos="slide-right">
+<h2>Send Us a Message</h2>
+<form class="contact-form" id="contact_form">
+<div class="form-group">
+<label>Your Name</label>
+<input type="text" name="name" required placeholder="John Doe">
+</div>
+<div class="form-group">
+<label>Email Address</label>
+<input type="email" name="email" required placeholder="john.doe@example.com">
+</div>
+<div class="form-group">
+<label>Phone Number</label>
+<input type="tel" name="phone" placeholder="+91 98765 43210">
+</div>
+<!-- NEW CATEGORY FIELD -->
+<div class="form-group">
+<label>Select Category</label>
+<select name="category" required>
+<option value="" disabled selected>Choose a category</option>
+<option value="Cot">Cot</option>
+<option value="Sofa Sets">Sofa Sets</option>
+<option value="Diwan Cot">Diwan Cot</option>
+<option value="Chair">Chair</option>
+<option value="Wooden Accessories">Wooden Accessories</option>
+<option value="Marriage Kit">Marriage Kit</option>
+<option value="Custom Design">Custom Design</option>
+<option value="Others">Others</option>
+</select>
+</div>
+<div class="form-group">
+<label>Your Message</label>
+<textarea name="message" rows="5" required placeholder="I am interested in a custom cot design..."></textarea>
+</div>
+<button type="submit" class="teak-btn">Send Inquiry</button>
+</form>
+</div>
+
+
+<!-- RIGHT SIDE INFO -->
+<div class="teak-contact-info" data-aos="slide-left">
+<h2>Reach Out Directly</h2>
+<div class="teak-contact-cards">
+<!-- Phone -->
+<div class="teak-contact-card single">
+<i class="fas fa-phone"></i>
+<p class="label">Phone Number:</p>
+<p><a href="tel:+918555911417">+91 8555911417</a></p>
+</div>
+<!-- Email -->
+<div class="teak-contact-card single">
+<i class="fas fa-envelope"></i>
+<p class="label">Email Address:</p>
+<p><a href="mailto:patnala.furniture@gmail.com">patnala.furniture@gmail.com</a></p>
+</div>
+<!-- Address -->
+<div class="teak-contact-card single">
+<i class="fas fa-map-marker-alt
+"></i>
+<p class="label">Address:</p>
+<p>Patnala Furniture, India</p>
+</div>
+</div>
+<!-- WhatsApp Button -->
+<a href="https://wa.me/918555911417?text=Hi,%20I%20would%20like%20to%20know%20more%20about%20your%20furniture."
+target="_blank"
+class="teak-whatsapp-btn">
+<i class="fab fa-whatsapp"></i> WhatsApp: Chat with us
+</a>
+</div>
+</div>
+</section>

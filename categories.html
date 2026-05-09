@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Categories - Patnala Admin</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/categories.css" />
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+
+<body>
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <!-- SMALL IMAGE -->
+
+        <img
+          src="images/fav.png"
+          alt="logo"
+          class="logo-img" />
+
+        <div>
+
+          <h2>PATNALA</h2>
+
+          <span>FURNITURE</span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="menu">
+
+        <!-- DASHBOARD -->
+
+        <li class="active">
+
+          <a href="dashboard.html">
+
+            <i class="fas fa-house"></i>
+
+            <span>Dashboard</span>
+
+          </a>
+
+        </li>
+
+        <!-- ORDERS -->
+
+        <li>
+
+          <a href="orders.html">
+
+            <i class="fas fa-calendar-check"></i>
+
+            <span>Orders</span>
+
+          
+
+          </a>
+
+        </li>
+
+        <!-- PRODUCTS -->
+
+        <li class="dropdown-menu">
+
+          <div class="dropdown-btn"
+            onclick="toggleProducts()">
+
+            <div class="left-side">
+
+              <i class="fas fa-cube"></i>
+
+              <span>Products</span>
+
+            </div>
+
+            <i class="fas fa-chevron-down arrow"
+              id="productArrow"></i>
+
+          </div>
+
+          <!-- SUB MENU -->
+
+          <ul class="submenu"
+            id="productSubmenu">
+
+            <li>
+
+              <a href="allproducts.html">
+
+                <i class="fas fa-box-open"></i>
+
+                <span>All Products</span>
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a href="addproduct.html">
+
+                <i class="fas fa-plus"></i>
+
+                <span>Add Product</span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!-- CATEGORIES -->
+
+        <li>
+
+          <a href="categories.html">
+
+            <i class="fas fa-table-cells-large"></i>
+
+            <span>Categories</span>
+
+          </a>
+
+        </li>
+
+        <!-- CUSTOMERS -->
+
+        <li>
+
+          <a href="customers.html">
+
+            <i class="fas fa-users"></i>
+
+            <span>Customers</span>
+
+          </a>
+
+        </li>
+
+        <!-- COUPONS -->
+
+        <li>
+
+          <a href="coupons.html">
+
+            <i class="fas fa-tag"></i>
+
+            <span>Coupons</span>
+
+          </a>
+
+        </li>
+
+        <!-- REVIEWS -->
+
+        <li>
+
+          <a href="reviews.html">
+
+            <i class="far fa-star"></i>
+
+            <span>Reviews</span>
+
+          </a>
+
+        </li>
+
+        <!-- CMS -->
+
+        <li>
+
+          <a href="cms.html">
+
+            <i class="far fa-file-lines"></i>
+
+            <span>CMS Management</span>
+
+          </a>
+
+        </li>
+
+        <!-- BANNERS -->
+
+        <li>
+
+          <a href="banners.html">
+
+            <i class="far fa-image"></i>
+
+            <span>Banners</span>
+
+          </a>
+
+        </li>
+
+        <!-- REPORTS -->
+
+        <li>
+
+          <a href="reports.html">
+
+            <i class="fas fa-chart-simple"></i>
+
+            <span>Reports</span>
+
+          </a>
+
+        </li>
+
+        <!-- MARKETING -->
+
+        <li>
+
+          <a href="marketing.html">
+
+            <i class="fas fa-bullhorn"></i>
+
+            <span>Marketing</span>
+
+          </a>
+
+        </li>
+
+        <!-- SETTINGS -->
+
+        <li>
+
+          <a href="settings.html">
+
+            <i class="fas fa-gear"></i>
+
+            <span>Settings</span>
+
+          </a>
+
+        </li>
+
+        <!-- USERS -->
+
+        <li>
+
+          <a href="users.html">
+
+            <i class="far fa-user"></i>
+
+            <span>Users & Roles</span>
+
+          </a>
+
+        </li>
+
+      </ul>
+
+      <!-- HELP BOX -->
+
+      <div class="help-box">
+
+        <div class="help-icon">
+
+          <i class="fas fa-headphones"></i>
+
+        </div>
+
+        <div>
+
+          <h4>Need Help?</h4>
+
+          <p>Contact Support</p>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+            <!-- TOP -->
+
+            <div class="top-section">
+
+                <div>
+
+                    <h1>Categories</h1>
+
+                    <p>
+                        Organize your store products into categories.
+                    </p>
+
+                </div>
+
+                <!-- BUTTON -->
+
+                <button onclick="openModal()" class="add-btn">
+
+                    <i class="fas fa-plus"></i>
+
+                    Add Category
+
+                </button>
+
+            </div>
+
+            <!-- CARDS -->
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon blue">
+
+                        <i class="fas fa-table-cells-large"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2 id="totalCategories">0</h2>
+
+                        <p>Total Categories</p>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon green">
+
+                        <i class="fas fa-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2 id="activeCategories">0</h2>
+
+                        <p>Active Categories</p>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon orange">
+
+                        <i class="fas fa-box"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2 id="totalProducts">0</h2>
+
+                        <p>Total Products</p>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon red">
+
+                        <i class="fas fa-ban"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2 id="inactiveCategories">0</h2>
+
+                        <p>Inactive Categories</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TABLE SECTION -->
+
+            <div class="table-section">
+
+                <!-- TABLE TOP -->
+<!-- TABLE TOP -->
+
+<div class="table-top">
+
+    <!-- LEFT -->
+
+    <div class="table-filters">
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+           
+
+            <input
+            type="text"
+            placeholder="Search categories..."
+            id="searchInput"
+            />
+
+        </div>
+
+        <!-- PARENT FILTER -->
+
+        <select id="parentFilter">
+
+            <option value="">
+                Select Parent Category
+            </option>
+
+            <option value="Cot">
+                Cot
+            </option>
+
+            <option value="Sofa Sets">
+                Sofa Sets
+            </option>
+
+            <option value="Diwan Cot">
+                Diwan Cot
+            </option>
+
+            <option value="Chair">
+                Chair
+            </option>
+
+            <option value="Accessories">
+                Accessories
+            </option>
+
+            <option value="Marriage Kit">
+                Marriage Kit
+            </option>
+
+        </select>
+
+        <!-- STATUS FILTER -->
+
+        <select id="statusFilter">
+
+            <option value="">
+                Select Status
+            </option>
+
+            <option value="Active">
+                Active
+            </option>
+
+            <option value="Inactive">
+                Inactive
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="table-actions">
+
+        <button class="action-btn">
+
+            <i class="fas fa-download"></i>
+
+            Export
+
+        </button>
+
+        <button class="action-btn">
+
+            <i class="fas fa-sort"></i>
+
+            Reorder
+
+        </button>
+
+    </div>
+
+</div>
+                <!-- TABLE -->
+
+                <!-- TABLE -->
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Category</th>
+
+                            <th>Parent Category</th>
+
+                            <th>Products</th>
+
+                            <th>Sort Order</th>
+
+                            <th>Status</th>
+
+                            <th>Updated At</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <!-- DYNAMIC DATA -->
+
+                    <tbody id="categoryTable">
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- =========================
+       ADD CATEGORY MODAL
+  ========================= -->
+    <!-- =========================
+     ADD CATEGORY MODAL
+========================= -->
+
+    <div class="modal" id="categoryModal">
+
+        <div class="modal-box large-modal">
+
+            <!-- TOP -->
+
+            <div class="modal-top">
+
+                <div>
+
+                   <h2 id="modalTitle">Add Category</h2>
+
+                    <p>
+                        Add new category for products
+                    </p>
+
+                </div>
+
+                <button class="close-btn" onclick="closeModal()">
+
+                    <i class="fas fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+            <!-- FORM GRID -->
+
+            <div class="modal-grid">
+
+                <!-- LEFT -->
+
+                <div class="left-form">
+
+                    <!-- CATEGORY NAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Category Name
+                        </label>
+
+                        <input type="text" id="categoryName" placeholder="Enter category name" />
+
+                    </div>
+
+                    <!-- SLUG -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Category Slug
+                        </label>
+
+                        <input type="text" id="categorySlug" placeholder="living-room" />
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea id="categoryDescription" placeholder="Enter category description"></textarea>
+
+                    </div>
+
+                    <!-- IMAGE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Category Image
+                        </label>
+
+                        <input type="file" id="categoryImage" />
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+
+                <div class="right-form">
+
+                    <!-- PARENT -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Parent Category
+                        </label>
+
+                        <select id="parentCategory">
+
+                            <option value="">
+                                Select Parent
+                            </option>
+
+
+                            <option>
+                                Cot
+                            </option>
+
+                            <option>
+                                Sofa Sets
+                            </option>
+
+                            <option>
+                                Diwan Cot
+                            </option>
+
+                            <option>
+                                Chair
+                            </option>
+
+                            <option>
+                                Accessories
+                            </option>
+
+                            <option>
+                                Marriage Kit
+                            </option>
+
+                        </select>
+
+                        </select>
+
+                    </div>
+
+                    <!-- STATUS -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select id="categoryStatus">
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="Inactive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- SORT ORDER -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Sort Order
+                        </label>
+
+                        <input type="number" id="sortOrder" placeholder="1" />
+
+                    </div>
+
+                    <!-- FEATURED -->
+
+                    <div class="switch-group">
+
+                        <div>
+
+                            <h4>
+                                Featured Category
+                            </h4>
+
+                            <p>
+                                Show category on homepage
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input type="checkbox" id="featuredCategory">
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <div class="modal-actions">
+
+                <button class="cancel-btn" onclick="closeModal()">
+
+                    Cancel
+
+                </button>
+<button class="save-btn" onclick="addCategory()">
+
+    <i class="fas fa-plus"></i>
+
+    <span id="saveBtnText">Save Category</span>
+
+</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+ <script>
+
+const API =
+"https://furniturebackend-j767.onrender.com/api/categories";
+
+let editId = null;
+
+
+// =========================
+// PRODUCTS DROPDOWN
+// =========================
+
+function toggleProducts(){
+
+  const submenu =
+  document.getElementById(
+  "productSubmenu"
+  );
+
+  const arrow =
+  document.getElementById(
+  "productArrow"
+  );
+
+  submenu.classList.toggle(
+  "show"
+  );
+
+  arrow.classList.toggle(
+  "rotate"
+  );
+
+}
+
+
+// =========================
+// OPEN MODAL
+// =========================
+
+function openModal(){
+
+  document
+  .getElementById(
+  "categoryModal"
+  )
+  .classList.add("show");
+
+}
+
+
+// =========================
+// CLOSE MODAL
+// =========================
+
+function closeModal(){
+
+  document
+  .getElementById(
+  "categoryModal"
+  )
+  .classList.remove("show");
+
+}
+
+
+// =========================
+// IMAGE TO BASE64
+// =========================
+
+function convertBase64(file){
+
+  return new Promise((resolve,reject)=>{
+
+    const reader =
+    new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = ()=>{
+
+      resolve(reader.result);
+
+    };
+
+    reader.onerror = (error)=>{
+
+      reject(error);
+
+    };
+
+  });
+
+}
+
+
+// =========================
+// ADD OR UPDATE CATEGORY
+// =========================
+
+async function addCategory(){
+
+  const name =
+  document.getElementById(
+  "categoryName"
+  ).value;
+
+  const parentCategory =
+  document.getElementById(
+  "parentCategory"
+  ).value;
+
+  const status =
+  document.getElementById(
+  "categoryStatus"
+  ).value;
+
+  const sortOrder =
+  document.getElementById(
+  "sortOrder"
+  ).value;
+
+  const imageInput =
+  document.getElementById(
+  "categoryImage"
+  );
+
+  let image = "";
+
+  // NEW IMAGE
+  if(imageInput.files[0]){
+
+    image =
+    await convertBase64(
+      imageInput.files[0]
+    );
+
+  }
+
+  // OLD IMAGE WHEN EDIT
+  else if(editId){
+
+    const response =
+    await fetch(API);
+
+    const categories =
+    await response.json();
+
+    const existing =
+    categories.find(
+      item => item._id === editId
+    );
+
+    image =
+    existing?.image || "";
+
+  }
+
+  if(!name){
+
+    alert(
+    "Enter category name"
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await fetch(
+
+      editId
+      ? `${API}/${editId}`
+      : API,
+
+      {
+
+        method:
+        editId
+        ? "PUT"
+        : "POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+          name,
+
+          parentCategory,
+
+          image,
+
+          sortOrder,
+
+          status
+
+        })
+
+      }
+
+    );
+
+    alert(
+
+      editId
+      ? "Category Updated"
+      : "Category Added"
+
+    );
+
+    // RESET
+
+    editId = null;
+
+    document.getElementById(
+    "modalTitle"
+    ).innerText =
+    "Add Category";
+
+    document.getElementById(
+    "saveBtnText"
+    ).innerText =
+    "Save Category";
+
+    document.getElementById(
+    "categoryName"
+    ).value = "";
+
+    document.getElementById(
+    "parentCategory"
+    ).value = "";
+
+    document.getElementById(
+    "categoryStatus"
+    ).value = "Active";
+
+    document.getElementById(
+    "sortOrder"
+    ).value = "";
+
+    document.getElementById(
+    "categoryImage"
+    ).value = "";
+
+    closeModal();
+
+    loadCategories();
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+    alert("Error");
+
+  }
+
+}
+
+
+// =========================
+// LOAD CATEGORIES
+// =========================
+
+async function loadCategories(){
+
+  const response =
+  await fetch(API);
+
+  const categories =
+  await response.json();
+
+  const table =
+  document.getElementById(
+  "categoryTable"
+  );
+
+  table.innerHTML = "";
+
+  let active = 0;
+
+  let inactive = 0;
+
+  let products = 0;
+
+  categories.forEach((cat)=>{
+
+    if(cat.status === "Active"){
+
+      active++;
+
+    }else{
+
+      inactive++;
+
+    }
+
+    products +=
+    cat.products || 0;
+
+    table.innerHTML += `
+
+    <tr>
+
+      <td>
+
+        <div class="category-info">
+
+          <img
+          src="${cat.image}"
+          class="category-img" />
+
+          <div>
+
+            <h4>${cat.name}</h4>
+
+            <p>${cat.parentCategory}</p>
+
+          </div>
+
+        </div>
+
+      </td>
+
+      <td>
+        ${cat.parentCategory}
+      </td>
+
+      <td>
+        ${cat.products || 0}
+      </td>
+
+      <td>
+        ${cat.sortOrder || 1}
+      </td>
+
+      <td>
+
+        <span class="status
+        ${cat.status === "Active"
+        ? "active-status"
+        : "inactive-status"}">
+
+        ${cat.status}
+
+        </span>
+
+      </td>
+
+      <td>
+
+        ${new Date(
+        cat.updatedAt
+        ).toLocaleDateString()}
+
+      </td>
+
+      <td>
+
+        <div class="actions">
+
+          <button
+          class="edit-btn"
+          onclick='editCategory(${JSON.stringify(cat)})'>
+
+            <i class="fas fa-pen"></i>
+
+          </button>
+
+          <button
+          class="delete-btn"
+          onclick="deleteCategory('${cat._id}')">
+
+            <i class="fas fa-trash"></i>
+
+          </button>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+    `;
+
+  });
+
+  // COUNTS
+
+  document.getElementById(
+  "totalCategories"
+  ).innerText =
+  categories.length;
+
+  document.getElementById(
+  "activeCategories"
+  ).innerText =
+  active;
+
+  document.getElementById(
+  "inactiveCategories"
+  ).innerText =
+  inactive;
+
+  document.getElementById(
+  "totalProducts"
+  ).innerText =
+  products;
+
+}
+
+
+// =========================
+// DELETE CATEGORY
+// =========================
+
+async function deleteCategory(id){
+
+  const confirmDelete =
+  confirm(
+  "Delete this category?"
+  );
+
+  if(!confirmDelete) return;
+
+  try{
+
+    await fetch(
+
+      `${API}/${id}`,
+
+      {
+        method:"DELETE"
+      }
+
+    );
+
+    alert(
+    "Category Deleted"
+    );
+
+    loadCategories();
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
+
+}
+
+
+// =========================
+// EDIT CATEGORY
+// =========================
+
+function editCategory(cat){
+
+  editId = cat._id;
+
+  openModal();
+
+  document.getElementById(
+  "modalTitle"
+  ).innerText =
+  "Edit Category";
+
+  document.getElementById(
+  "saveBtnText"
+  ).innerText =
+  "Update Category";
+
+  document.getElementById(
+  "categoryName"
+  ).value =
+  cat.name;
+
+  document.getElementById(
+  "parentCategory"
+  ).value =
+  cat.parentCategory;
+
+  document.getElementById(
+  "categoryStatus"
+  ).value =
+  cat.status;
+
+  document.getElementById(
+  "sortOrder"
+  ).value =
+  cat.sortOrder;
+
+}
+
+
+// =========================
+// INITIAL LOAD
+// =========================
+
+loadCategories();
+
+
+
+
+
+
+
+
+
+
+
+// =========================
+// FILTER CATEGORIES
+// =========================
+
+function filterCategories(){
+
+const search =
+document.getElementById(
+"searchInput"
+).value.toLowerCase();
+
+const parent =
+document.getElementById(
+"parentFilter"
+).value;
+
+const status =
+document.getElementById(
+"statusFilter"
+).value;
+
+const rows =
+document.querySelectorAll(
+"#categoryTable tr"
+);
+
+let visibleCount = 0;
+let active = 0;
+let inactive = 0;
+
+rows.forEach(row => {
+
+const name =
+row.children[0]
+.innerText.toLowerCase();
+
+const parentText =
+row.children[1]
+.innerText;
+
+const statusText =
+row.children[4]
+.innerText.trim();
+
+const matchSearch =
+name.includes(search);
+
+const matchParent =
+!parent ||
+parentText === parent;
+
+const matchStatus =
+!status ||
+statusText === status;
+
+if(
+matchSearch &&
+matchParent &&
+matchStatus
+){
+
+row.style.display = "";
+
+visibleCount++;
+
+if(statusText === "Active"){
+active++;
+}else{
+inactive++;
+}
+
+}
+else{
+
+row.style.display = "none";
+
+}
+
+});
+
+document.getElementById(
+"totalCategories"
+).innerText =
+visibleCount;
+
+document.getElementById(
+"activeCategories"
+).innerText =
+active;
+
+document.getElementById(
+"inactiveCategories"
+).innerText =
+inactive;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"keyup",
+filterCategories
+);
+
+document
+.getElementById("parentFilter")
+.addEventListener(
+"change",
+filterCategories
+);
+
+document
+.getElementById("statusFilter")
+.addEventListener(
+"change",
+filterCategories
+);
+
+</script>
+
+</body>
+
+</html>

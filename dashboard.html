@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+
+  <title>Patnala Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/dashboard.css" />
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+
+<body>
+
+  <!-- DASHBOARD -->
+
+  <div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <!-- SMALL IMAGE -->
+
+        <img
+          src="images/fav.png"
+          alt="logo"
+          class="logo-img" />
+
+        <div>
+
+          <h2>PATNALA</h2>
+
+          <span>FURNITURE</span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="menu">
+
+        <!-- DASHBOARD -->
+
+        <li class="active">
+
+          <a href="dashboard.html">
+
+            <i class="fas fa-house"></i>
+
+            <span>Dashboard</span>
+
+          </a>
+
+        </li>
+
+        <!-- ORDERS -->
+
+        <li>
+
+          <a href="orders.html">
+
+            <i class="fas fa-calendar-check"></i>
+
+            <span>Orders</span>
+
+          
+
+          </a>
+
+        </li>
+
+        <!-- PRODUCTS -->
+
+        <li class="dropdown-menu">
+
+          <div class="dropdown-btn"
+            onclick="toggleProducts()">
+
+            <div class="left-side">
+
+              <i class="fas fa-cube"></i>
+
+              <span>Products</span>
+
+            </div>
+
+            <i class="fas fa-chevron-down arrow"
+              id="productArrow"></i>
+
+          </div>
+
+          <!-- SUB MENU -->
+
+          <ul class="submenu"
+            id="productSubmenu">
+
+            <li>
+
+              <a href="allproducts.html">
+
+                <i class="fas fa-box-open"></i>
+
+                <span>All Products</span>
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a href="addproduct.html">
+
+                <i class="fas fa-plus"></i>
+
+                <span>Add Product</span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!-- CATEGORIES -->
+
+        <li>
+
+          <a href="categories.html">
+
+            <i class="fas fa-table-cells-large"></i>
+
+            <span>Categories</span>
+
+          </a>
+
+        </li>
+
+        <!-- CUSTOMERS -->
+
+        <li>
+
+          <a href="customers.html">
+
+            <i class="fas fa-users"></i>
+
+            <span>Customers</span>
+
+          </a>
+
+        </li>
+
+        <!-- COUPONS -->
+
+        <li>
+
+          <a href="coupons.html">
+
+            <i class="fas fa-tag"></i>
+
+            <span>Coupons</span>
+
+          </a>
+
+        </li>
+
+        <!-- REVIEWS -->
+
+        <li>
+
+          <a href="reviews.html">
+
+            <i class="far fa-star"></i>
+
+            <span>Reviews</span>
+
+          </a>
+
+        </li>
+
+        <!-- CMS -->
+
+        <li>
+
+          <a href="cms.html">
+
+            <i class="far fa-file-lines"></i>
+
+            <span>CMS Management</span>
+
+          </a>
+
+        </li>
+
+        <!-- BANNERS -->
+
+        <li>
+
+          <a href="banners.html">
+
+            <i class="far fa-image"></i>
+
+            <span>Banners</span>
+
+          </a>
+
+        </li>
+
+        <!-- REPORTS -->
+
+        <li>
+
+          <a href="reports.html">
+
+            <i class="fas fa-chart-simple"></i>
+
+            <span>Reports</span>
+
+          </a>
+
+        </li>
+
+        <!-- MARKETING -->
+
+        <li>
+
+          <a href="marketing.html">
+
+            <i class="fas fa-bullhorn"></i>
+
+            <span>Marketing</span>
+
+          </a>
+
+        </li>
+
+        <!-- SETTINGS -->
+
+        <li>
+
+          <a href="settings.html">
+
+            <i class="fas fa-gear"></i>
+
+            <span>Settings</span>
+
+          </a>
+
+        </li>
+
+        <!-- USERS -->
+
+        <li>
+
+          <a href="users.html">
+
+            <i class="far fa-user"></i>
+
+            <span>Users & Roles</span>
+
+          </a>
+
+        </li>
+
+      </ul>
+
+      <!-- HELP BOX -->
+
+      <div class="help-box">
+
+        <div class="help-icon">
+
+          <i class="fas fa-headphones"></i>
+
+        </div>
+
+        <div>
+
+          <h4>Need Help?</h4>
+
+          <p>Contact Support</p>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+      <!-- WELCOME -->
+
+      <div class="welcome-box">
+
+        <h1>
+
+          Welcome back, Admin 👋
+
+        </h1>
+
+        <p>
+
+          Manage your furniture showroom easily.
+
+        </p>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    function toggleProducts() {
+
+      const submenu =
+        document.getElementById("productSubmenu");
+
+      const arrow =
+        document.getElementById("productArrow");
+
+      submenu.classList.toggle("show");
+
+      arrow.classList.toggle("rotate");
+
+    }
+
+  </script>
+
+</body>
+
+</html>

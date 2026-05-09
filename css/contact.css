@@ -1,0 +1,958 @@
+
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#fff;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    /* =========================
+        NAVBAR
+    ==========================*/
+
+    .navbar{
+      width:100%;
+      background:white;
+      border-bottom:1px solid #e5e5e5;
+      padding:0 4%;
+      position:sticky;
+      top:0;
+      z-index:999;
+    }
+
+    .nav-container{
+      height:105px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    /* =========================
+        LOGO
+    ==========================*/
+
+    .logo{
+      flex-shrink:0;
+        margin-left:-30px;
+    }
+
+    .logo a{
+      display:flex;
+      align-items:center;
+    }
+
+    .logo img{
+      width:220px;
+      object-fit:contain;
+     
+    }
+
+    /* =========================
+        NAV LINKS
+    ==========================*/
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:30px;
+      flex:1;
+    }
+
+    .nav-links a{
+      color:#000;
+      font-size:16px;
+      font-weight:700;
+      position:relative;
+      transition:0.3s;
+      letter-spacing:0.3px;
+      white-space:nowrap;
+    }
+
+    .nav-links a:hover{
+      color:#c99330;
+    }
+
+    .nav-links a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-7px;
+      width:0%;
+      height:2px;
+      background:#864526;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover::after{
+      width:100%;
+    }
+
+    /* =========================
+        ICONS
+    ==========================*/
+
+    .nav-icons{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      flex-shrink:0;
+    }
+
+    .nav-icons i{
+      font-size:22px;
+      color:#111;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .nav-icons i:hover{
+      color:#c99330;
+      transform:translateY(-2px);
+    }
+
+    /* =========================
+        MOBILE MENU BUTTON
+    ==========================*/
+
+    .menu-btn{
+      display:none;
+      font-size:28px;
+      color:#864526;
+      cursor:pointer;
+    }
+
+    /* =========================
+        TABLET
+    ==========================*/
+
+    @media(max-width:1200px){
+
+      .nav-links{
+        gap:25px;
+      }
+
+      .nav-links a{
+        font-size:14px;
+      }
+
+      .logo img{
+        width:190px;
+      }
+
+    }
+/* =========================
+    MOBILE
+==========================*/
+
+@media(max-width:991px){
+
+  .navbar{
+    padding:0 15px;
+    overflow:hidden;
+  }
+
+  .nav-container{
+    height:82px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    position:relative;
+  }
+
+  /* LOGO */
+
+ 
+
+  .logo{
+    padding-left:30px;
+  }
+
+  .logo img{
+    width:140px;
+    max-width:100%;
+    display:block;
+  }
+
+
+
+  /* SEARCH ICON */
+
+  .nav-icons{
+    order:2;
+      padding-right:40px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-left:auto;
+  }
+
+  .nav-icons i{
+    font-size:20px;
+  }
+
+  /* MENU BUTTON */
+
+  .menu-btn{
+    order:3;
+    display:block;
+    font-size:26px;
+    cursor:pointer;
+    margin-left:5px;
+  }
+
+  /* MOBILE MENU */
+
+  .nav-links{
+    position:absolute;
+    top:82px;
+    left:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:22px;
+    padding:28px 22px;
+    display:none;
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
+    z-index:1000;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .nav-links a{
+    font-size:17px;
+  }
+
+}
+
+/* =========================
+    SMALL MOBILE
+==========================*/
+
+@media(max-width:600px){
+
+  .navbar{
+    padding:0 12px;
+  }
+
+  .nav-container{
+    height:75px;
+  }
+
+  .logo img{
+    width:130px;
+  }
+
+  .nav-icons{
+    gap:12px;
+  }
+
+  .nav-icons i{
+    font-size:18px;
+  }
+
+  .menu-btn{
+    font-size:24px;
+  }
+
+  .nav-links{
+    top:75px;
+  }
+
+}
+
+
+
+
+/* =========================
+   ROOT COLORS
+========================= */
+
+:root{
+
+  --primary-color:#874526;
+  --secondary-color:#c99330;
+
+  --white:#ffffff;
+  --light-text:#f5e9dc;
+
+  --transition:0.4s ease;
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero-section{
+
+  width:100%;
+  height:108vh;
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 7%;
+
+  overflow:hidden;
+
+  background:
+  url("../images/hero.png")
+  center center/cover no-repeat;
+
+  background-attachment:fixed;
+}
+
+
+/* =========================
+   DARK OVERLAY
+========================= */
+
+.hero-section::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  background:
+  linear-gradient(
+    90deg,
+    rgba(20,10,5,0.92),
+    rgba(52,28,16,0.82),
+    rgba(134,69,38,0.45)
+  );
+
+  z-index:1;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.hero-content{
+
+  position:relative;
+  z-index:5;
+
+  max-width:850px;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.hero-content h1{
+
+  font-size:3.7rem;
+
+  line-height:1.15;
+
+  color:var(--white);
+
+  font-weight:600;
+
+  margin-top:-150px;
+}
+
+
+/* ORANGE TEXT */
+
+.hero-content h1 span{
+
+  color:var(--secondary-color);
+
+  text-shadow:
+  0 0 15px rgba(201,147,48,0.25);
+}
+
+
+/* =========================
+   PARAGRAPH
+========================= */
+
+.hero-content p{
+
+  width:85%;
+
+  font-size:1.3rem;
+
+  line-height:1.8;
+
+  color:rgba(255,255,255,0.82);
+
+  margin-bottom:40px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.hero-buttons{
+
+  display:flex;
+  align-items:center;
+
+  gap:24px;
+}
+
+
+/* COMMON BUTTON */
+
+.btn-outline,
+.btn-filled{
+
+  padding:18px 38px;
+
+  border-radius:50px;
+
+  font-size:1.1rem;
+  font-weight:600;
+
+  text-decoration:none;
+
+  transition:var(--transition);
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+/* OUTLINE BUTTON */
+
+.btn-outline{
+
+  border:2px solid var(--secondary-color);
+
+  color:var(--white);
+
+  background:transparent;
+}
+
+.btn-outline:hover{
+
+  background:var(--secondary-color);
+
+  color:#111;
+
+  transform:translateY(-4px);
+}
+
+
+/* FILLED BUTTON */
+
+.btn-filled{
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+
+  color:var(--white);
+
+  box-shadow:
+  0 12px 30px rgba(0,0,0,0.25);
+}
+
+.btn-filled:hover{
+
+  transform:translateY(-4px);
+
+  opacity:0.92;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:992px){
+
+  .hero-section{
+
+    height:auto;
+
+    padding:
+    140px 6%
+    90px;
+
+    background-attachment:scroll;
+  }
+
+  .hero-content h1{
+
+    font-size:3.5rem;
+  }
+
+  .hero-content p{
+
+    width:100%;
+  text-align: justify;
+    font-size:1.1rem;
+  }
+
+  .hero-buttons{
+
+    flex-wrap:wrap;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .hero-section{
+
+    text-align:center;
+
+    justify-content:center;
+
+    padding:
+    120px 22px
+    80px;
+  }
+
+  .hero-section::before{
+
+    background:
+    linear-gradient(
+      180deg,
+      rgba(20,10,5,0.92),
+      rgba(52,28,16,0.82),
+      rgba(134,69,38,0.55)
+    );
+  }
+
+  .hero-content{
+
+    max-width:100%;
+  }
+
+  .hero-content h1{
+
+    font-size:2.5rem;
+
+    line-height:1.3;
+  }
+
+  .hero-content p{
+
+    width:100%;
+
+    font-size:1rem;
+
+    line-height:1.8;
+  }
+
+  .hero-buttons{
+
+    justify-content:center;
+
+    gap:16px;
+  }
+
+  .btn-outline,
+  .btn-filled{
+
+    padding:14px 28px;
+
+    font-size:0.95rem;
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media(max-width:500px){
+
+  .hero-content h1{
+
+    font-size:2rem;
+  }
+
+  .hero-buttons{
+
+    flex-direction:column;
+  }
+
+  .btn-outline,
+  .btn-filled{
+
+    width:100%;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   CONTACT SECTION
+========================= */
+
+.teak-contact-section{
+  padding: 80px 40px;
+  background: var(--primary-color);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.teak-contact-container{
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* =========================
+   GLASS CARDS
+========================= */
+
+.teak-contact-form,
+.teak-contact-info{
+  flex: 1;
+
+  background: rgba(255,255,255,0.06);
+
+  border: 1px solid rgba(255,255,255,0.10);
+
+  border-radius: 24px;
+
+  padding: 35px;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.25);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.teak-contact-form h2,
+.teak-contact-info h2{
+  color: var(--secondary-color);
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  margin-bottom: 30px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group{
+  margin-bottom: 18px;
+}
+
+.form-group label{
+  display: block;
+  margin-bottom: 8px;
+
+  color: #fff;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width: 100%;
+
+  padding: 13px 15px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.08);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: #fff;
+
+  outline: none;
+
+  font-size: 1rem;
+
+  transition: 0.3s ease;
+}
+
+/* placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+  color: rgba(255,255,255,0.45);
+}
+
+/* focus */
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color: var(--secondary-color);
+
+  box-shadow:
+  0 0 10px rgba(201,147,48,0.25);
+}
+
+/* select */
+
+.form-group select{
+  appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' width='20' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+}
+
+.form-group select option{
+  background: #3c2418;
+  color: #fff;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.teak-btn,
+.teak-whatsapp-btn{
+  width: 100%;
+  height: 54px;
+
+  border: none;
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: 0.3s ease;
+}
+
+/* form button */
+
+.teak-btn{
+  margin-top: 10px;
+
+  background: var(--secondary-color);
+  color: #fff;
+
+  cursor: pointer;
+}
+
+.teak-btn:hover{
+  background: #d9a646;
+  transform: translateY(-2px);
+}
+
+/* whatsapp button */
+
+.teak-whatsapp-btn{
+  margin-top: 22px;
+
+  background: #25D366;
+  color: #fff;
+}
+
+.teak-whatsapp-btn:hover{
+  transform: translateY(-2px);
+}
+
+/* =========================
+   CONTACT CARDS
+========================= */
+
+.teak-contact-cards{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* equal width cards */
+
+.teak-contact-card{
+  width: 100%;
+
+  background: rgba(255,255,255,0.08);
+
+  border: 1px solid rgba(255,255,255,0.10);
+
+  border-radius: 18px;
+
+  padding: 25px 20px;
+
+  text-align: center;
+
+  transition: 0.3s ease;
+}
+
+.teak-contact-card:hover{
+  transform: translateY(-4px);
+
+  background: rgba(255,255,255,0.12);
+}
+
+/* remove unequal width */
+
+.teak-contact-card.full{
+  grid-column: unset;
+}
+
+/* icons */
+
+.teak-contact-card i{
+  font-size: 3.2rem;
+
+  color: var(--secondary-color);
+
+  margin-bottom: 14px;
+}
+
+/* text */
+
+.teak-contact-card p,
+.teak-contact-card a{
+  color: #fff;
+
+  text-decoration: none;
+
+  line-height: 1.7;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px){
+
+  .teak-contact-container{
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .teak-contact-form,
+  .teak-contact-info{
+    padding: 28px;
+  }
+
+  .teak-contact-form h2,
+  .teak-contact-info h2{
+    text-align: center;
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 768px){
+
+  .teak-contact-section{
+    padding: 60px 20px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select{
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .teak-contact-card i{
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 480px){
+
+  .teak-contact-section{
+    padding: 45px 15px;
+  }
+
+  .teak-contact-form,
+  .teak-contact-info{
+    padding: 22px;
+  }
+
+  .teak-contact-form h2,
+  .teak-contact-info h2{
+    font-size: 1.45rem;
+  }
+
+  .teak-btn,
+  .teak-whatsapp-btn{
+    height: 50px;
+    font-size: 0.95rem;
+  }
+}
