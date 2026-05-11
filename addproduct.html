@@ -610,6 +610,16 @@ const API =
 const CATEGORY_API =
 "https://furniturebackend-j767.onrender.com/api/categories";
 
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const productId =
+params.get("id");
+
+let oldImages = [];
+
 
 // =========================
 // TOGGLE PRODUCTS
@@ -641,41 +651,65 @@ arrow.classList.toggle(
 // =========================
 // LOAD CATEGORIES
 // =========================
-
 async function loadCategories(){
 
 try{
-
-const response =
-await fetch(CATEGORY_API);
-
-const categories =
-await response.json();
 
 const select =
 document.getElementById(
 "productCategory"
 );
 
-categories.forEach(cat=>{
 
-select.innerHTML += `
+// STATIC 6 CATEGORIES
 
-<option value="${cat.name}">
-${cat.name}
+select.innerHTML = `
+
+<option value="">
+Select Category
+</option>
+
+<option value="Cot">
+Cot
+</option>
+
+<option value="Sofa Sets">
+Sofa Sets
+</option>
+
+<option value="Diwan Cot">
+Diwan Cot
+</option>
+
+<option value="Chair">
+Chair
+</option>
+
+<option value="Accessories">
+Accessories
+</option>
+
+<option value="Marriage Kit">
+Marriage Kit
 </option>
 
 `;
 
-});
 
-}catch(error){
+// LOAD EDIT PRODUCT
+
+await loadEditProduct();
+
+}
+catch(error){
 
 console.log(error);
 
 }
 
 }
+
+
 
 
 // =========================
@@ -730,7 +764,7 @@ reader.readAsDataURL(file);
 
 
 // =========================
-// CONVERT IMAGE BASE64
+// CONVERT BASE64
 // =========================
 
 function convertBase64(file){
@@ -757,289 +791,6 @@ reject(error);
 });
 
 }
-
-
-// =========================
-// ADD PRODUCT
-// =========================
-
-async function addProduct(){
-
-try{
-
-// TOKEN
-
-const token =
-localStorage.getItem(
-"token"
-);
-
-
-// IMAGES
-
-const files =
-document.getElementById(
-"productImages"
-).files;
-
-let images = [];
-
-for(let file of files){
-
-const base64 =
-await convertBase64(file);
-
-images.push(base64);
-
-}
-
-
-// PRODUCT DATA
-
-const productData = {
-
-name:
-document.getElementById(
-"productName"
-).value,
-
-sku:
-document.getElementById(
-"productSku"
-).value,
-
-shortDescription:
-document.getElementById(
-"shortDescription"
-).value,
-
-category:
-document.getElementById(
-"productCategory"
-).value,
-
-brand:
-document.getElementById(
-"productBrand"
-).value,
-
-tags:
-document.getElementById(
-"productTags"
-).value,
-
-description:
-quill.root.innerHTML,
-
-sellingPrice:
-document.getElementById(
-"sellingPrice"
-).value,
-
-comparePrice:
-document.getElementById(
-"comparePrice"
-).value,
-
-costPrice:
-document.getElementById(
-"costPrice"
-).value,
-
-taxClass:
-document.getElementById(
-"taxClass"
-).value,
-
-stockQuantity:
-document.getElementById(
-"stockQuantity"
-).value,
-
-lowStock:
-document.getElementById(
-"lowStock"
-).value,
-
-stockStatus:
-document.getElementById(
-"stockStatus"
-).value,
-
-status:
-document.getElementById(
-"productStatus"
-).value,
-
-visibility:
-document.getElementById(
-"visibility"
-).value,
-
-featured:
-document.getElementById(
-"featuredProduct"
-).checked,
-
-weight:
-document.getElementById(
-"weight"
-).value,
-
-length:
-document.getElementById(
-"length"
-).value,
-
-width:
-document.getElementById(
-"width"
-).value,
-
-height:
-document.getElementById(
-"height"
-).value,
-
-images
-
-};
-
-
-// SAVE PRODUCT
-
-const response =
-await fetch(
-
-productId
-? `${API}/${productId}`
-: API,
-
-{
-
-method:
-productId
-? "PUT"
-: "POST",
-
-headers:{
-
-"Content-Type":
-"application/json",
-
-Authorization:
-`Bearer ${token}`
-
-},
-
-body:
-JSON.stringify(productData)
-
-});
-
-
-if(response.ok){
-
-alert(
-productId
-? "Product Updated Successfully"
-: "Product Added Successfully"
-);
-
-window.location.href =
-"allproducts.html";
-
-}else{
-
-alert(
-"Failed To Add Product"
-);
-
-}
-
-
-}catch(error){
-
-console.log(error);
-
-alert(
-"Something Went Wrong"
-);
-
-}
-
-}
-
-
-// =========================
-// LOAD PAGE
-// =========================
-
-loadCategories();
-loadEditProduct();
-
-
-</script>
-
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-<script>
-
-var quill = new Quill('#editor', {
-
-theme: 'snow',
-
-placeholder: 'Enter product long description',
-
-modules: {
-toolbar: [
-['bold', 'italic', 'underline'],
-[{ 'list': 'ordered'}, { 'list': 'bullet' }],
-['link', 'image'],
-[{ 'align': [] }]
-]
-}
-
-});
-
-
-
-
-
-// PRODUCTS DROPDOWN
-
-function toggleProducts(){
-
-const submenu =
-document.getElementById(
-"productSubmenu"
-);
-
-const arrow =
-document.getElementById(
-"productArrow"
-);
-
-submenu.classList.toggle("show");
-
-arrow.classList.toggle("rotate");
-
-}
-
-
-
-const params =
-new URLSearchParams(
-window.location.search
-);
-
-const productId =
-params.get("id");
-
-let oldImages = [];
-
-
-
 
 
 // =========================
@@ -1184,11 +935,266 @@ console.log(error);
 }
 
 }
+
+
+// =========================
+// SAVE PRODUCT
+// =========================
+
+async function addProduct(){
+
+try{
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+const files =
+document.getElementById(
+"productImages"
+).files;
+
+let images = oldImages;
+
+if(files.length > 0){
+
+images = [];
+
+for(let file of files){
+
+const base64 =
+await convertBase64(file);
+
+images.push(base64);
+
+}
+
+}
+
+const productData = {
+
+name:
+document.getElementById(
+"productName"
+).value,
+
+sku:
+document.getElementById(
+"productSku"
+).value,
+
+shortDescription:
+document.getElementById(
+"shortDescription"
+).value,
+
+category:
+document.getElementById(
+"productCategory"
+).value,
+
+brand:
+document.getElementById(
+"productBrand"
+).value,
+
+tags:
+document.getElementById(
+"productTags"
+).value,
+
+description:
+quill.root.innerHTML,
+
+sellingPrice:
+document.getElementById(
+"sellingPrice"
+).value,
+
+comparePrice:
+document.getElementById(
+"comparePrice"
+).value,
+
+costPrice:
+document.getElementById(
+"costPrice"
+).value,
+
+taxClass:
+document.getElementById(
+"taxClass"
+).value,
+
+stockQuantity:
+document.getElementById(
+"stockQuantity"
+).value,
+
+lowStock:
+document.getElementById(
+"lowStock"
+).value,
+
+stockStatus:
+document.getElementById(
+"stockStatus"
+).value,
+
+status:
+document.getElementById(
+"productStatus"
+).value,
+
+visibility:
+document.getElementById(
+"visibility"
+).value,
+
+featured:
+document.getElementById(
+"featuredProduct"
+).checked,
+
+weight:
+document.getElementById(
+"weight"
+).value,
+
+length:
+document.getElementById(
+"length"
+).value,
+
+width:
+document.getElementById(
+"width"
+).value,
+
+height:
+document.getElementById(
+"height"
+).value,
+
+images
+
+};
+
+
+const response =
+await fetch(
+
+productId
+? `${API}/${productId}`
+: API,
+
+{
+
+method:
+productId
+? "PUT"
+: "POST",
+
+headers:{
+
+"Content-Type":
+"application/json",
+
+Authorization:
+`Bearer ${token}`
+
+},
+
+body:
+JSON.stringify(productData)
+
+}
+
+);
+
+
+if(response.ok){
+
+alert(
+
+productId
+? "Product Updated Successfully"
+: "Product Added Successfully"
+
+);
+
+window.location.href =
+"allproducts.html";
+
+}
+else{
+
+alert(
+"Failed To Save Product"
+);
+
+}
+
+}
+catch(error){
+
+console.log(error);
+
+alert(
+"Something Went Wrong"
+);
+
+}
+
+}
+
+
+// =========================
+// LOAD PAGE
+// =========================
+
+loadCategories();
+
 </script>
 
 
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 
+<script>
+
+var quill = new Quill('#editor', {
+
+theme: 'snow',
+
+placeholder:
+'Enter product long description',
+
+modules: {
+
+toolbar: [
+
+['bold', 'italic', 'underline'],
+
+[
+{ 'list': 'ordered'},
+{ 'list': 'bullet' }
+],
+
+['link', 'image'],
+
+[
+{ 'align': [] }
+]
+
+]
+
+}
+
+});
+
+</script>
 
 </body>
 </html>

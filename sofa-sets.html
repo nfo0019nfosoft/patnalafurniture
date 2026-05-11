@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>COT - Patnala Furniture</title>
+  <link rel="stylesheet" href="css/cot.css">
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="images/fav.png">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+
+</head>
+
+<body>
+
+  <!-- =========================
+      NAVBAR
+  ==========================-->
+
+  <header class="navbar">
+
+    <div class="nav-container">
+
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Patnala Furniture">
+        </a>
+      </div>
+
+      <!-- NAV LINKS -->
+      <nav class="nav-links" id="navLinks">
+
+        <a href="cot.html">COT</a>
+
+        <a href="sofa-sets.html">SOFA SETS</a>
+
+        <a href="diwan-cot.html">DIWAN COT</a>
+
+        <a href="chair.html">CHAIR</a>
+
+        <a href="accessories.html">ACCESSORIES</a>
+
+        <a href="marriage-kit.html">MARRIAGE KIT</a>
+
+        <a href="contact.html">CONTACT US</a>
+
+      </nav>
+
+      <!-- ICONS -->
+      <div class="nav-icons">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <i class="fa-regular fa-user"></i>
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+      JAVASCRIPT
+  ==========================-->
+
+  <script>
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero-section">
+
+  <div class="hero-content">
+
+    <h1 
+  class="hero-heading"
+  data-aos="fade-right"
+  data-aos-duration="1200">
+
+    Luxury Teak <br> <span>Wood Sofa Sets</span></h1>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     AOS
+========================= -->
+
+<link rel="stylesheet"
+href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    once:true
+  });
+</script>
+
+
+
+
+
+<section class="cot-products-listing">
+
+<div id="products"></div>
+
+</section>
+
+
+
+
+
+
+
+<script>
+
+const API =
+"https://furniturebackend-j767.onrender.com/api/products/category/Sofa%20Sets";
+
+async function loadProducts(){
+
+try{
+
+const response =
+await fetch(API);
+
+const products =
+await response.json();
+
+const container =
+document.getElementById(
+"products"
+);
+
+container.innerHTML = "";
+
+products.forEach((product,index)=>{
+
+container.innerHTML += `
+
+<div class="product-item
+${index % 2 !== 0 ? "reverse" : ""}">
+
+<div class="product-image-box"
+data-aos="${
+index % 2 !== 0
+? "slide-right"
+: "slide-left"
+}">
+
+<img
+src="${
+product.images?.[0]
+|| "images/noimage.png"
+}"
+alt="${product.name}">
+
+</div>
+
+
+<div class="product-details"
+data-aos="${
+index % 2 !== 0
+? "slide-left"
+: "slide-right"
+}">
+
+<p class="product-category-small">
+
+${product.category || "Luxury Collection"}
+
+</p>
+
+<h3>
+
+${product.name}
+
+</h3>
+
+<p class="description">
+
+${product.shortDescription
+|| "Premium handcrafted furniture product."}
+
+</p>
+
+<p class="price-tag">
+
+Starting from ₹
+${product.sellingPrice || 0}
+
+</p>
+
+<a href="
+https://wa.me/918555911417?text=
+I'm interested in:
+${product.name}
+"
+
+class="whatsapp-btn btn-filled"
+target="_blank">
+
+<i class="fab fa-whatsapp"></i>
+
+Buy Now
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+loadProducts();
+
+</script>
