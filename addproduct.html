@@ -602,6 +602,22 @@ placeholder="Height" />
 </main>
 
 </div>
+
+<script>
+
+const adminUser =
+localStorage.getItem(
+"adminUser"
+);
+
+if(adminUser !== "admin"){
+
+window.location.href =
+"admin.html";
+
+}
+
+</script>
 <script>
 
 const API =

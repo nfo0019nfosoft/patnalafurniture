@@ -19,50 +19,122 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
 background:#f5f5f5;
-padding:40px;
+}
+
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+width:100%;
+background:#fff;
+padding:18px 6%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.logo img{
+width:170px;
+}
+
+.nav-links{
+display:flex;
+align-items:center;
+gap:30px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#111;
+font-weight:600;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#c99330;
+}
+
+.nav-icons{
+display:flex;
+align-items:center;
+gap:22px;
+}
+
+.nav-icons a{
+color:#111;
+font-size:1.2rem;
+transition:0.3s;
+}
+
+.nav-icons a:hover{
+color:#c99330;
+}
+
+
+/* =========================
+CART SECTION
+========================= */
+
+.cart-section{
+padding:60px 6%;
 }
 
 .cart-container{
-max-width:1200px;
+max-width:1400px;
 margin:auto;
 }
 
 .cart-title{
-font-size:2.5rem;
-margin-bottom:30px;
+font-size:2.7rem;
+margin-bottom:35px;
 color:#222;
 }
 
 .cart-grid{
 display:grid;
 grid-template-columns:2fr 1fr;
-gap:30px;
+gap:35px;
 }
+
+
+/* =========================
+CART ITEMS
+========================= */
 
 .cart-items{
 background:#fff;
-padding:25px;
-border-radius:20px;
+padding:30px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
 }
 
 .cart-item{
 display:flex;
-gap:20px;
-align-items:center;
-padding:20px 0;
+gap:25px;
+padding:25px 0;
 border-bottom:1px solid #eee;
 }
 
+.cart-item:last-child{
+border-bottom:none;
+}
+
 .cart-item img{
-width:130px;
-height:130px;
+width:160px;
+height:160px;
 object-fit:cover;
-border-radius:15px;
+border-radius:18px;
 }
 
 .item-details{
@@ -70,99 +142,182 @@ flex:1;
 }
 
 .item-details h3{
-font-size:1.3rem;
+font-size:1.5rem;
 margin-bottom:10px;
+color:#222;
 }
 
 .item-details p{
 color:#777;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
 .price{
-font-size:1.2rem;
+font-size:1.3rem;
 font-weight:700;
 color:#c99330;
+margin-bottom:15px;
 }
+
+
+/* =========================
+QUANTITY
+========================= */
 
 .qty-box{
 display:flex;
 align-items:center;
-gap:10px;
-margin-top:15px;
+gap:12px;
+margin-bottom:18px;
 }
 
 .qty-btn{
-width:35px;
-height:35px;
+width:38px;
+height:38px;
 border:none;
 background:#c99330;
 color:#fff;
-border-radius:8px;
-cursor:pointer;
-}
-
-.remove-btn{
-background:red;
-color:#fff;
-border:none;
-padding:10px 15px;
+font-size:1rem;
 border-radius:10px;
 cursor:pointer;
-margin-top:15px;
+transition:0.3s;
 }
+
+.qty-btn:hover{
+opacity:0.9;
+}
+
+.qty-number{
+font-size:1.1rem;
+font-weight:700;
+}
+
+
+/* =========================
+REMOVE BUTTON
+========================= */
+
+.remove-btn{
+padding:12px 20px;
+border:none;
+background:#d62828;
+color:#fff;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+.remove-btn:hover{
+opacity:0.9;
+}
+
+
+/* =========================
+SUMMARY
+========================= */
 
 .summary{
 background:#fff;
-padding:25px;
-border-radius:20px;
+padding:30px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
 height:fit-content;
+position:sticky;
+top:120px;
 }
 
 .summary h2{
-margin-bottom:20px;
+font-size:2rem;
+margin-bottom:25px;
+color:#222;
 }
 
 .summary-row{
 display:flex;
 justify-content:space-between;
-margin-bottom:15px;
+margin-bottom:18px;
+font-size:1.1rem;
 }
+
+.total{
+font-size:1.4rem;
+font-weight:700;
+color:#222;
+margin-top:20px;
+}
+
+
+/* =========================
+CHECKOUT BUTTON
+========================= */
 
 .checkout-btn{
 width:100%;
-padding:15px;
+padding:16px;
 border:none;
 background:#c99330;
 color:#fff;
 font-size:1rem;
 font-weight:700;
-border-radius:12px;
+border-radius:14px;
 cursor:pointer;
-margin-top:20px;
+margin-top:30px;
+transition:0.3s;
 }
+
+.checkout-btn:hover{
+opacity:0.9;
+transform:translateY(-2px);
+}
+
+
+/* =========================
+EMPTY CART
+========================= */
 
 .empty-cart{
 text-align:center;
-padding:80px;
-font-size:1.3rem;
+padding:90px 20px;
+}
+
+.empty-cart i{
+font-size:5rem;
+color:#c99330;
+margin-bottom:20px;
+}
+
+.empty-cart p{
+font-size:1.4rem;
 color:#777;
 }
 
-@media(max-width:900px){
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:991px){
 
 .cart-grid{
 grid-template-columns:1fr;
 }
 
+.summary{
+position:static;
+}
+
 .cart-item{
 flex-direction:column;
-align-items:flex-start;
 }
 
 .cart-item img{
 width:100%;
-height:250px;
+height:280px;
+}
+
+.nav-links{
+display:none;
 }
 
 }
@@ -173,38 +328,114 @@ height:250px;
 
 <body>
 
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo">
+
+<a href="index.html">
+
+<img src="images/logo.png">
+
+</a>
+
+</div>
+
+<nav class="nav-links">
+
+<a href="cot.html">COT</a>
+
+<a href="sofa-sets.html">SOFA SETS</a>
+
+<a href="diwan-cot.html">DIWAN COT</a>
+
+<a href="chair.html">CHAIR</a>
+
+<a href="accessories.html">ACCESSORIES</a>
+
+<a href="marriage-kit.html">MARRIAGE KIT</a>
+
+</nav>
+
+<div class="nav-icons">
+
+<a href="index.html">
+<i class="fas fa-house"></i>
+</a>
+
+<a href="cart.html">
+<i class="fas fa-cart-shopping"></i>
+</a>
+
+</div>
+
+</header>
+
+
+
+<!-- CART SECTION -->
+
+<section class="cart-section">
+
 <div class="cart-container">
 
 <h1 class="cart-title">
+
 Shopping Cart
+
 </h1>
 
+
 <div class="cart-grid">
+
+
+<!-- CART ITEMS -->
 
 <div class="cart-items"
 id="cartItems">
 
 </div>
 
+
+<!-- SUMMARY -->
+
 <div class="summary">
 
-<h2>Order Summary</h2>
+<h2>
+
+Order Summary
+
+</h2>
 
 <div class="summary-row">
+
 <span>Total Items</span>
+
 <span id="totalItems">
+
 0
+
 </span>
+
 </div>
 
-<div class="summary-row">
+<div class="summary-row total">
+
 <span>Total Price</span>
+
 <span id="totalPrice">
+
 ₹0
+
 </span>
+
 </div>
 
-<button class="checkout-btn">
+<button 
+class="checkout-btn"
+onclick="goToCheckout()">
 
 Proceed To Checkout
 
@@ -216,17 +447,41 @@ Proceed To Checkout
 
 </div>
 
-
-
+</section>
 <script>
 
 const API =
 "https://furniturebackend-j767.onrender.com/api/products";
 
+
+// =========================
+// USER WISE CART
+// =========================
+
+const username =
+localStorage.getItem(
+"username"
+);
+
+if(!username){
+
+window.location.href =
+"login.html";
+
+}
+
+const cartKey =
+`cart_${username}`;
+
 let cart =
 JSON.parse(
-localStorage.getItem("cart")
+localStorage.getItem(cartKey)
 ) || [];
+
+
+// =========================
+// LOAD CART
+// =========================
 
 async function loadCart(){
 
@@ -244,12 +499,22 @@ container.innerHTML = `
 <i class="fas fa-cart-shopping"></i>
 
 <p>
+
 Your cart is empty
+
 </p>
 
 </div>
 
 `;
+
+document.getElementById(
+"totalPrice"
+).innerText = "₹0";
+
+document.getElementById(
+"totalItems"
+).innerText = "0";
 
 return;
 
@@ -292,11 +557,15 @@ product.images?.[0]
 <div class="item-details">
 
 <h3>
+
 ${product.name}
+
 </h3>
 
 <p>
+
 ${product.brand || ""}
+
 </p>
 
 <div class="price">
@@ -315,8 +584,10 @@ onclick="changeQty('${item.id}',-1)">
 
 </button>
 
-<span>
+<span class="qty-number">
+
 ${item.qty}
+
 </span>
 
 <button
@@ -358,6 +629,10 @@ totalItems;
 }
 
 
+// =========================
+// CHANGE QUANTITY
+// =========================
+
 function changeQty(id,value){
 
 cart = cart.map(item=>{
@@ -378,15 +653,45 @@ return item;
 
 });
 
+
+// SAVE USER CART
+
 localStorage.setItem(
-"cart",
+
+cartKey,
+
 JSON.stringify(cart)
+
 );
 
 loadCart();
 
 }
 
+
+// =========================
+// GO TO CHECKOUT
+// =========================
+
+function goToCheckout(){
+
+if(cart.length === 0){
+
+alert("Cart Is Empty");
+
+return;
+
+}
+
+window.location.href =
+"checkout.html";
+
+}
+
+
+// =========================
+// REMOVE ITEM
+// =========================
 
 function removeItem(id){
 
@@ -395,15 +700,25 @@ cart.filter(
 item=>item.id !== id
 );
 
+
+// SAVE USER CART
+
 localStorage.setItem(
-"cart",
+
+cartKey,
+
 JSON.stringify(cart)
+
 );
 
 loadCart();
 
 }
 
+
+// =========================
+// INITIAL LOAD
+// =========================
 
 loadCart();
 

@@ -892,3 +892,16 @@ color:#ffffff !important;
 color:#ffffff !important;
 
 }
+.add-cart-btn{
+
+border:none;
+
+outline:none;
+
+background:var(--secondary-color);
+
+color:#fff;
+
+cursor:pointer;
+
+}

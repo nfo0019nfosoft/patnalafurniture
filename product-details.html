@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Product Details</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f5f5f5;
+}
+
+a{
+text-decoration:none;
+}
+
+
+/* NAVBAR */
+
+.navbar{
+background:#fff;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:2rem;
+font-weight:700;
+color:#874526;
+}
+
+.nav-icons{
+display:flex;
+gap:25px;
+}
+
+.nav-icons a{
+color:#222;
+font-size:1.3rem;
+}
+
+
+/* MAIN */
+
+.product-page{
+max-width:1400px;
+margin:auto;
+padding:70px 6%;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:start;
+}
+
+
+/* IMAGE */
+
+.product-image-box{
+background:#fff;
+padding:25px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.product-image-box img{
+width:100%;
+height:600px;
+object-fit:cover;
+border-radius:20px;
+}
+
+
+/* DETAILS */
+
+.product-details{
+background:#fff;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.product-brand{
+color:#c99330;
+font-size:1rem;
+margin-bottom:15px;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.product-name{
+font-size:3rem;
+margin-bottom:20px;
+color:#222;
+}
+
+.product-price{
+font-size:2rem;
+font-weight:700;
+color:#874526;
+margin-bottom:25px;
+}
+
+.product-description{
+font-size:1.05rem;
+line-height:1.9;
+color:#444;
+margin-bottom:35px;
+}
+
+.product-description *{
+color:#444;
+}
+
+
+/* QUANTITY */
+
+.qty-section{
+display:flex;
+align-items:center;
+gap:20px;
+margin-bottom:35px;
+}
+
+.qty-box{
+display:flex;
+align-items:center;
+gap:15px;
+background:#f3f3f3;
+padding:12px 18px;
+border-radius:12px;
+}
+
+.qty-btn{
+width:35px;
+height:35px;
+border:none;
+background:#c99330;
+color:#fff;
+font-size:1.1rem;
+border-radius:8px;
+cursor:pointer;
+}
+
+.qty-number{
+font-size:1.1rem;
+font-weight:700;
+}
+
+
+/* BUTTONS */
+
+.product-buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.buy-btn,
+.cart-btn{
+
+padding:16px 35px;
+
+border:none;
+
+border-radius:50px;
+
+font-size:1rem;
+
+font-weight:700;
+
+cursor:pointer;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+transition:0.3s;
+}
+
+.buy-btn{
+
+background:#874526;
+color:#fff;
+}
+
+.cart-btn{
+
+background:#c99330;
+color:#fff;
+}
+
+.buy-btn:hover,
+.cart-btn:hover{
+
+transform:translateY(-3px);
+
+opacity:0.92;
+}
+
+
+/* MOBILE */
+
+@media(max-width:992px){
+
+.product-page{
+grid-template-columns:1fr;
+}
+
+.product-image-box img{
+height:400px;
+}
+
+.product-name{
+font-size:2.3rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo">
+
+PATNALA
+
+</div>
+
+<div class="nav-icons">
+
+<a href="index.html">
+<i class="fas fa-house"></i>
+</a>
+
+<a href="cart.html">
+<i class="fas fa-cart-shopping"></i>
+</a>
+
+</div>
+
+</header>
+
+
+
+<!-- PRODUCT PAGE -->
+
+<section class="product-page">
+
+
+<!-- IMAGE -->
+
+<div class="product-image-box">
+
+<img
+id="productImage"
+src=""
+alt="product"
+>
+
+</div>
+
+
+
+<!-- DETAILS -->
+
+<div class="product-details">
+
+<p class="product-brand"
+id="productBrand">
+
+Luxury Collection
+
+</p>
+
+<h1 class="product-name"
+id="productName">
+
+Loading...
+
+</h1>
+
+<div class="product-price"
+id="productPrice">
+
+₹0
+
+</div>
+
+<div class="product-description"
+id="productDescription">
+
+</div>
+
+
+<!-- QUANTITY -->
+
+<div class="qty-section">
+
+<h3>Quantity</h3>
+
+<div class="qty-box">
+
+<button
+class="qty-btn"
+onclick="changeQty(-1)">
+
+-
+
+</button>
+
+<span
+class="qty-number"
+id="qty">
+
+1
+
+</span>
+
+<button
+class="qty-btn"
+onclick="changeQty(1)">
+
++
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="product-buttons">
+
+<button
+class="buy-btn"
+onclick="buyNow()">
+
+<i class="fas fa-bolt"></i>
+
+Buy Now
+
+</button>
+
+<button
+class="cart-btn"
+onclick="addToCart()">
+
+<i class="fas fa-cart-plus"></i>
+
+Add To Cart
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+const API =
+"https://furniturebackend-j767.onrender.com/api/products";
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+params.get("id");
+
+let productData = null;
+
+let quantity = 1;
+
+
+// LOAD PRODUCT
+
+async function loadProduct(){
+
+try{
+
+const response =
+await fetch(
+`${API}/${id}`
+);
+
+const product =
+await response.json();
+
+productData = product;
+
+document.getElementById(
+"productImage"
+).src =
+
+product.images?.[0]
+|| "images/noimage.png";
+
+document.getElementById(
+"productBrand"
+).innerText =
+
+product.brand
+|| "Luxury Collection";
+
+document.getElementById(
+"productName"
+).innerText =
+
+product.name;
+
+document.getElementById(
+"productPrice"
+).innerText =
+
+`₹${product.sellingPrice}`;
+
+document.getElementById(
+"productDescription"
+).innerHTML =
+
+product.description
+|| "No Description";
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+// QUANTITY
+
+function changeQty(value){
+
+quantity += value;
+
+if(quantity < 1){
+
+quantity = 1;
+
+}
+
+document.getElementById(
+"qty"
+).innerText =
+quantity;
+
+}
+
+
+// ADD TO CART
+
+function addToCart(){
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+if(!token){
+
+window.location.href =
+"login.html";
+
+return;
+
+}
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+const existing =
+cart.find(
+item => item.id === id
+);
+
+if(existing){
+
+existing.qty += quantity;
+
+}
+else{
+
+cart.push({
+
+id:id,
+
+qty:quantity
+
+});
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert("Added To Cart");
+
+}
+
+
+// BUY NOW
+
+function buyNow(){
+
+addToCart();
+
+window.location.href =
+"cart.html";
+
+}
+
+
+// INITIAL LOAD
+
+loadProduct();
+
+</script>
+
+</body>
+
+</html>

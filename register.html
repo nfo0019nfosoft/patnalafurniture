@@ -1,0 +1,650 @@
+<!-- =========================
+REGISTER.HTML
+========================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Patnala Furniture - Register</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+linear-gradient(
+135deg,
+#2b1408,
+#874526,
+#c99330
+);
+
+overflow:hidden;
+
+padding:20px;
+
+position:relative;
+}
+
+
+/* BACKGROUND */
+
+body::before,
+body::after{
+
+content:"";
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(90px);
+
+opacity:0.35;
+
+}
+
+body::before{
+
+width:350px;
+height:350px;
+
+background:#ffd27a;
+
+top:-120px;
+left:-120px;
+
+}
+
+body::after{
+
+width:300px;
+height:300px;
+
+background:#ffffff;
+
+bottom:-120px;
+right:-120px;
+
+}
+
+
+/* REGISTER BOX */
+
+.auth-container{
+
+width:100%;
+max-width:500px;
+
+position:relative;
+
+z-index:10;
+}
+
+.auth-box{
+
+background:
+rgba(255,255,255,0.12);
+
+backdrop-filter:blur(18px);
+
+border:1px solid
+rgba(255,255,255,0.15);
+
+padding:45px;
+
+border-radius:35px;
+
+box-shadow:
+0 15px 50px rgba(0,0,0,0.25);
+
+color:#fff;
+
+animation:fadeIn 1s ease;
+}
+
+
+/* ANIMATION */
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+display:flex;
+
+justify-content:center;
+
+margin-bottom:20px;
+}
+
+.logo img{
+
+width:90px;
+}
+
+
+/* TITLE */
+
+.auth-box h1{
+
+font-size:2.5rem;
+
+font-weight:700;
+
+text-align:center;
+
+margin-bottom:10px;
+}
+
+.auth-box p{
+
+text-align:center;
+
+font-size:0.95rem;
+
+color:
+rgba(255,255,255,0.85);
+
+margin-bottom:35px;
+}
+
+
+/* INPUT */
+
+.input-box{
+
+margin-bottom:22px;
+
+position:relative;
+}
+
+.input-box label{
+
+display:block;
+
+margin-bottom:10px;
+
+font-size:0.95rem;
+
+font-weight:500;
+}
+
+.input-box i{
+
+position:absolute;
+
+top:48px;
+left:16px;
+
+color:#ffd27a;
+
+font-size:1rem;
+}
+
+.input-box input{
+
+width:100%;
+
+padding:15px 15px 15px 48px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:
+rgba(255,255,255,0.12);
+
+color:#fff;
+
+font-size:1rem;
+
+border:1px solid
+rgba(255,255,255,0.18);
+
+transition:0.3s;
+}
+
+.input-box input::placeholder{
+
+color:#ddd;
+}
+
+.input-box input:focus{
+
+border-color:#ffd27a;
+
+background:
+rgba(255,255,255,0.18);
+}
+
+
+/* REGISTER BUTTON */
+
+.register-btn{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:14px;
+
+background:
+linear-gradient(
+90deg,
+#874526,
+#c99330
+);
+
+color:#fff;
+
+font-size:1rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+
+margin-top:10px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+}
+
+.register-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,0.2);
+}
+
+
+/* LINKS */
+
+.extra-links{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:18px;
+
+font-size:0.9rem;
+}
+
+.extra-links a{
+
+color:#fff;
+
+text-decoration:none;
+
+transition:0.3s;
+}
+
+.extra-links a:hover{
+
+color:#ffd27a;
+}
+
+
+/* LOGIN */
+
+.bottom-text{
+
+text-align:center;
+
+margin-top:28px;
+
+font-size:0.95rem;
+
+color:#eee;
+}
+
+.bottom-text a{
+
+color:#ffd27a;
+
+font-weight:600;
+
+text-decoration:none;
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+.auth-box{
+
+padding:35px 25px;
+
+border-radius:25px;
+}
+
+.auth-box h1{
+font-size:2rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="auth-container">
+
+
+<div class="auth-box">
+
+
+<div class="logo">
+
+<img src="images/logo.png">
+
+</div>
+
+
+<h1>
+
+Create Account
+
+</h1>
+
+<p>
+
+Join Patnala Furniture luxury experience
+
+</p>
+
+
+
+<div class="input-box">
+
+<label>
+
+Username
+
+</label>
+
+<i class="fa-solid fa-user"></i>
+
+<input
+type="text"
+id="username"
+placeholder="Enter your username"
+>
+
+</div>
+
+
+
+<div class="input-box">
+
+<label>
+
+Email Address
+
+</label>
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+>
+
+</div>
+
+
+
+<div class="input-box">
+
+<label>
+
+Password
+
+</label>
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="password"
+placeholder="Create strong password"
+>
+
+</div>
+
+
+
+<button
+class="register-btn"
+onclick="register()">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Create Account
+
+</button>
+
+
+
+<div class="extra-links">
+
+<a href="index.html">
+
+Back Home
+
+</a>
+
+<a href="login.html">
+
+Login
+
+</a>
+
+</div>
+
+
+
+<div class="bottom-text">
+
+Already have an account?
+
+<a href="login.html">
+
+Login Here
+
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<script>
+
+const API =
+"https://furniturebackend-j767.onrender.com/api/auth/register";
+
+
+// =========================
+// REGISTER
+// =========================
+
+async function register(){
+
+try{
+
+const username =
+document.getElementById(
+"username"
+).value;
+
+const email =
+document.getElementById(
+"email"
+).value;
+
+const password =
+document.getElementById(
+"password"
+).value;
+
+
+// VALIDATION
+
+if(!username || !email || !password){
+
+alert(
+"Please fill all fields"
+);
+
+return;
+
+}
+
+
+// API CALL
+
+const response =
+await fetch(API,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+username,
+email,
+password
+
+})
+
+});
+
+
+const data =
+await response.json();
+
+
+// SUCCESS
+
+if(data.success){
+
+localStorage.setItem(
+"token",
+data.token
+);
+
+localStorage.setItem(
+"username",
+username
+);
+
+localStorage.setItem(
+"userEmail",
+email
+);
+
+
+alert(
+"Registration Successful"
+);
+
+window.location.href =
+"index.html";
+
+}
+else{
+
+alert(
+data.message
+);
+
+}
+
+}
+catch(error){
+
+console.log(error);
+
+alert(
+"Something Went Wrong"
+);
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
