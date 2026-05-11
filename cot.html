@@ -219,7 +219,7 @@ index % 2 !== 0
 
 <p class="product-category-small">
 
-${product.category || "Luxury Collection"}
+${product.brand || "Luxury Collection"}
 
 </p>
 
@@ -229,12 +229,12 @@ ${product.name}
 
 </h3>
 
-<p class="description">
+<div class="description">
 
-${product.shortDescription
+${product.description
 || "Premium handcrafted furniture product."}
 
-</p>
+</div>
 
 <p class="price-tag">
 
@@ -255,6 +255,14 @@ target="_blank">
 <i class="fab fa-whatsapp"></i>
 
 Buy Now
+
+</a>
+<a href="#"
+class="whatsapp-btn btn-filled add-cart-btn">
+
+<i class="fas fa-cart-plus"></i>
+
+Add To Cart
 
 </a>
 
