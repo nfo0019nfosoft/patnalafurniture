@@ -60,7 +60,11 @@
 
         <i class="fa-regular fa-user"></i>
 
-        <i class="fa-solid fa-cart-shopping"></i>
+       <a href="cart.html">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+</a>
 
       </div>
 
@@ -244,27 +248,25 @@ ${product.sellingPrice || 0}
 </p>
 
 <a href="
-https://wa.me/918555911417?text=
-I'm interested in:
-${product.name}
+product-details.html?id=${product._id}
 "
 
-class="whatsapp-btn btn-filled"
-target="_blank">
+class="whatsapp-btn btn-filled">
 
-<i class="fab fa-whatsapp"></i>
+<i class="fas fa-bolt"></i>
 
 Buy Now
 
 </a>
-<a href="#"
-class="whatsapp-btn btn-filled add-cart-btn">
+<button
+class="whatsapp-btn btn-filled add-cart-btn"
+onclick="addToCart('${product._id}')">
 
 <i class="fas fa-cart-plus"></i>
 
 Add To Cart
 
-</a>
+</button>
 
 </div>
 
@@ -284,5 +286,55 @@ console.log(error);
 }
 
 loadProducts();
+
+function addToCart(id){
+
+const token =
+localStorage.getItem("token");
+
+if(!token){
+
+window.location.href =
+"login.html";
+
+return;
+
+}
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+const existing =
+cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.qty += 1;
+
+}
+else{
+
+cart.push({
+
+id:id,
+
+qty:1
+
+});
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert("Added To Cart");
+
+}
+
+
 
 </script>

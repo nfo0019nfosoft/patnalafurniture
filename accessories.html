@@ -159,7 +159,7 @@ href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
 <script>
 
 const API =
-"https://furniturebackend-j767.onrender.com/api/products/category/accessories";
+"https://furniturebackend-j767.onrender.com/api/products/category/Accessories";
 
 async function loadProducts(){
 
@@ -211,7 +211,7 @@ index % 2 !== 0
 
 <p class="product-category-small">
 
-${product.category || "Luxury Collection"}
+${product.brand || "Luxury Collection"}
 
 </p>
 
@@ -221,12 +221,12 @@ ${product.name}
 
 </h3>
 
-<p class="description">
+<div class="description">
 
-${product.shortDescription
+${product.description
 || "Premium handcrafted furniture product."}
 
-</p>
+</div>
 
 <p class="price-tag">
 
@@ -236,19 +236,25 @@ ${product.sellingPrice || 0}
 </p>
 
 <a href="
-https://wa.me/918555911417?text=
-I'm interested in:
-${product.name}
+product-details.html?id=${product._id}
 "
 
-class="whatsapp-btn btn-filled"
-target="_blank">
+class="whatsapp-btn btn-filled">
 
-<i class="fab fa-whatsapp"></i>
+<i class="fas fa-bolt"></i>
 
 Buy Now
 
 </a>
+<button
+class="whatsapp-btn btn-filled add-cart-btn"
+onclick="addToCart('${product._id}')">
+
+<i class="fas fa-cart-plus"></i>
+
+Add To Cart
+
+</button>
 
 </div>
 
@@ -268,5 +274,55 @@ console.log(error);
 }
 
 loadProducts();
+
+function addToCart(id){
+
+const token =
+localStorage.getItem("token");
+
+if(!token){
+
+window.location.href =
+"login.html";
+
+return;
+
+}
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+const existing =
+cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.qty += 1;
+
+}
+else{
+
+cart.push({
+
+id:id,
+
+qty:1
+
+});
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert("Added To Cart");
+
+}
+
+
 
 </script>
