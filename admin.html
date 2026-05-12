@@ -3,138 +3,248 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title> Admin Login - Patnala Furniture</title>
-<link rel="icon" type="image/png" href="images/fav.png">
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/admin.css" />
+<meta charset="UTF-8" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0" />
+
+<title>
+Admin Login - Patnala Furniture
+</title>
+
+<link rel="icon"
+type="image/png"
+href="images/fav.png">
+
+<!-- CSS -->
+<link rel="stylesheet"
+href="css/admin.css" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
 </head>
 
 <body>
 
-  <div class="login-container">
+<div class="login-container">
 
-    <div class="glass-card">
+<div class="glass-card">
 
-      <!-- LOGO -->
-      <div class="logo">
-        <h1>PATNALA</h1>
-        <span>FURNITURE ADMIN</span>
-      </div>
+<!-- LOGO -->
 
-      <!-- ICON -->
-      <div class="icon-box">
-        <i class="fas fa-shield-halved"></i>
-      </div>
+<div class="logo">
 
-      <!-- TITLE -->
-      <h2>Welcome Back</h2>
+<h1>
+PATNALA
+</h1>
 
-      <p class="subtitle">
-        Login to manage your showroom dashboard
-      </p>
+<span>
+FURNITURE ADMIN
+</span>
 
-      <!-- USERNAME -->
-      <div class="input-group">
-        <i class="fas fa-user"></i>
+</div>
 
-        <input
-          type="text"
-          id="username"
-          placeholder="Enter Username"
-          autocomplete="off"
-        />
-      </div>
 
-      <!-- PASSWORD -->
-      <div class="input-group">
-        <i class="fas fa-lock"></i>
+<!-- ICON -->
 
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter Password"
-          onkeypress="handleEnter(event)"
-        />
-      </div>
+<div class="icon-box">
 
-      <!-- BUTTON -->
-      <button onclick="login()">
-        LOGIN NOW
-        <i class="fas fa-arrow-right"></i>
-      </button>
+<i class="fas fa-shield-halved"></i>
 
-    </div>
+</div>
 
-  </div>
+
+<!-- TITLE -->
+
+<h2>
+Welcome Back
+</h2>
+
+<p class="subtitle">
+
+Login to manage your showroom dashboard
+
+</p>
+
+
+<!-- USERNAME -->
+
+<div class="input-group">
+
+<i class="fas fa-user"></i>
+
+<input
+type="text"
+id="username"
+placeholder="Enter Username"
+autocomplete="off"
+/>
+
+</div>
+
+
+<!-- PASSWORD -->
+
+<div class="input-group">
+
+<i class="fas fa-lock"></i>
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password"
+onkeypress="handleEnter(event)"
+/>
+
+</div>
+
+
+<!-- BUTTON -->
+
+<button onclick="login()">
+
+LOGIN NOW
+
+<i class="fas fa-arrow-right"></i>
+
+</button>
+
+</div>
+
+</div>
+
+
 <script>
 
-const API = "https://furniturebackend-j767.onrender.com";
+const API =
+"https://furniturebackend-j767.onrender.com/api";
+
+
+// =========================
+// ENTER KEY LOGIN
+// =========================
+
+function handleEnter(event){
+
+if(event.key === "Enter"){
+
+login();
+
+}
+
+}
+
+
+// =========================
+// LOGIN FUNCTION
+// =========================
+
 async function login(){
 
-  const username =
-  document.getElementById("username").value.trim();
+const username =
+document.getElementById(
+"username"
+).value.trim();
 
-  const password =
-  document.getElementById("password").value.trim();
+const password =
+document.getElementById(
+"password"
+).value.trim();
 
-  if(!username || !password){
 
-    alert("Please enter username and password");
+// VALIDATION
 
-    return;
-  }
+if(!username || !password){
 
-  try{
+alert(
+"Please enter username and password"
+);
 
-    const response = await fetch(`${API}/auth/login`,{
+return;
 
-      method:"POST",
+}
 
-      headers:{
-        "Content-Type":"application/json"
-      },
 
-      body:JSON.stringify({
-        username,
-        password
-      })
+try{
 
-    });
+const response =
+await fetch(
+`${API}/auth/login`,
+{
 
-    const data = await response.json();
+method:"POST",
 
-    console.log(data);
+headers:{
+"Content-Type":"application/json"
+},
 
-    if(response.ok){
+body:JSON.stringify({
 
-      localStorage.setItem("adminLoggedIn","true");
+username,
+password
 
-      localStorage.setItem("token",data.token);
+})
 
-      localStorage.setItem("adminUser",username);
+}
+);
 
-      window.location.href = "dashboard.html";
 
-    }else{
+// CHECK RESPONSE
 
-      alert(data.message || "Login Failed");
+const data =
+await response.json();
 
-    }
+console.log(data);
 
-  }catch(error){
 
-    console.log(error);
+// SUCCESS
 
-    alert("Server Error");
+if(response.ok){
 
-  }
+localStorage.setItem(
+"adminLoggedIn",
+"true"
+);
+
+localStorage.setItem(
+"token",
+data.token
+);
+
+localStorage.setItem(
+"adminUser",
+username
+);
+
+
+// REDIRECT
+
+window.location.href =
+"dashboard.html";
+
+}
+else{
+
+alert(
+data.message
+|| "Login Failed"
+);
+
+}
+
+}
+catch(error){
+
+console.log(error);
+
+alert(
+"Server Error"
+);
+
+}
 
 }
 

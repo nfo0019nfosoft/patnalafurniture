@@ -925,3 +925,28 @@ textarea{
   }
 
 }
+.description p,
+.description ul,
+.description ol,
+.description li,
+.description span{
+
+background:transparent !important;
+
+}
+.buy-now-btn{
+
+border:none !important;
+
+outline:none !important;
+
+box-shadow:none !important;
+
+}
+.description *{
+
+background:none !important;
+
+color:#fff !important;
+
+}

@@ -458,12 +458,13 @@ const API =
 // USER WISE CART
 // =========================
 
-const username =
+
+const userEmail =
 localStorage.getItem(
-"username"
+"email"
 );
 
-if(!username){
+if(!userEmail){
 
 window.location.href =
 "login.html";
@@ -471,7 +472,11 @@ window.location.href =
 }
 
 const cartKey =
-`cart_${username}`;
+`cart_${userEmail}`;
+
+
+
+
 
 let cart =
 JSON.parse(
