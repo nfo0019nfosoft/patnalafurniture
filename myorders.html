@@ -331,9 +331,9 @@ id="ordersContainer">
 const API =
 "https://furniturebackend-j767.onrender.com/api/orders";
 
-const username =
+const email =
 localStorage.getItem(
-"username"
+"email"
 );
 
 const token =
@@ -366,11 +366,10 @@ await response.json();
 
 
 // FILTER USER ORDERS
-
 const myOrders =
 orders.filter(order =>
 
-order.userName === username
+order.email === email
 
 );
 

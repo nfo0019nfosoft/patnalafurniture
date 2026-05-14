@@ -358,32 +358,7 @@ placeholder="Enter short description"></textarea>
 <div class="form-group">
 <label>Category</label>
 <select id="productCategory">
-<option>Select Category</option>
-
-                            <option>
-                                Cot
-                            </option>
-
-                            <option>
-                                Sofa Sets
-                            </option>
-
-                            <option>
-                                Diwan Cot
-                            </option>
-
-                            <option>
-                                Chair
-                            </option>
-
-                            <option>
-                                Accessories
-                            </option>
-
-                            <option>
-                                Marriage Kit
-                            </option>
-
+<option value="">Select Category</option>
 </select>
 </div>
 
@@ -664,68 +639,55 @@ arrow.classList.toggle(
 }
 
 
+
+
+// STATIC 6 CATEGORIES
 // =========================
 // LOAD CATEGORIES
 // =========================
+
 async function loadCategories(){
 
 try{
+
+const response =
+await fetch(CATEGORY_API);
+
+const categories =
+await response.json();
 
 const select =
 document.getElementById(
 "productCategory"
 );
 
-
-// STATIC 6 CATEGORIES
-
 select.innerHTML = `
-
 <option value="">
 Select Category
 </option>
-
-<option value="Cot">
-Cot
-</option>
-
-<option value="Sofa Sets">
-Sofa Sets
-</option>
-
-<option value="Diwan Cot">
-Diwan Cot
-</option>
-
-<option value="Chair">
-Chair
-</option>
-
-<option value="Accessories">
-Accessories
-</option>
-
-<option value="Marriage Kit">
-Marriage Kit
-</option>
-
 `;
 
+categories.forEach(cat => {
 
-// LOAD EDIT PRODUCT
+select.innerHTML += `
+<option value="${cat.name}">
+${cat.name}
+</option>
+`;
 
+});
+
+// EDIT PRODUCT LOAD
 await loadEditProduct();
 
 }
 catch(error){
 
-console.log(error);
+console.log("Category Load Error:", error);
 
 }
 
 }
-
-
 
 // =========================
 // IMAGE PREVIEW
@@ -958,8 +920,14 @@ console.log(error);
 
 async function addProduct(){
 
-try{
+const saveBtn =
+document.querySelector(".save-btn");
 
+saveBtn.disabled = true;
+
+saveBtn.innerText = "Saving...";
+
+try{
 const token =
 localStorage.getItem(
 "token"
@@ -1131,6 +1099,18 @@ JSON.stringify(productData)
 
 if(response.ok){
 
+saveBtn.disabled = false;
+
+saveBtn.innerText = "Save Product";
+
+alert(
+
+productId
+? "Product Updated Successfully"
+: "Product Added Successfully"
+
+);
+
 alert(
 
 productId
@@ -1153,6 +1133,10 @@ alert(
 
 }
 catch(error){
+
+saveBtn.disabled = false;
+
+saveBtn.innerText = "Save Product";
 
 console.log(error);
 

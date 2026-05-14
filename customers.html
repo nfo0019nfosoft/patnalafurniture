@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Customers - Patnala Admin</title>
+
+<link rel="stylesheet" href="css/customers.css" >
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <!-- SMALL IMAGE -->
+
+        <img
+          src="images/fav.png"
+          alt="logo"
+          class="logo-img" />
+
+        <div>
+
+          <h2>PATNALA</h2>
+
+          <span>FURNITURE</span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="menu">
+
+        <!-- DASHBOARD -->
+
+        <li class="active">
+
+          <a href="dashboard.html">
+
+            <i class="fas fa-house"></i>
+
+            <span>Dashboard</span>
+
+          </a>
+
+        </li>
+
+        <!-- ORDERS -->
+
+        <li>
+
+          <a href="orders.html">
+
+            <i class="fas fa-calendar-check"></i>
+
+            <span>Orders</span>
+
+          
+
+          </a>
+
+        </li>
+
+        <!-- PRODUCTS -->
+
+        <li class="dropdown-menu">
+
+          <div class="dropdown-btn"
+            onclick="toggleProducts()">
+
+            <div class="left-side">
+
+              <i class="fas fa-cube"></i>
+
+              <span>Products</span>
+
+            </div>
+
+            <i class="fas fa-chevron-down arrow"
+              id="productArrow"></i>
+
+          </div>
+
+          <!-- SUB MENU -->
+
+          <ul class="submenu"
+            id="productSubmenu">
+
+            <li>
+
+              <a href="allproducts.html">
+
+                <i class="fas fa-box-open"></i>
+
+                <span>All Products</span>
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a href="addproduct.html">
+
+                <i class="fas fa-plus"></i>
+
+                <span>Add Product</span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!-- CATEGORIES -->
+
+        <li>
+
+          <a href="categories.html">
+
+            <i class="fas fa-table-cells-large"></i>
+
+            <span>Categories</span>
+
+          </a>
+
+        </li>
+
+        <!-- CUSTOMERS -->
+
+        <li>
+
+          <a href="customers.html">
+
+            <i class="fas fa-users"></i>
+
+            <span>Customers</span>
+
+          </a>
+
+        </li>
+
+        <!-- COUPONS -->
+
+        <li>
+
+          <a href="coupons.html">
+
+            <i class="fas fa-tag"></i>
+
+            <span>Coupons</span>
+
+          </a>
+
+        </li>
+
+        <!-- REVIEWS -->
+
+        <li>
+
+          <a href="reviews.html">
+
+            <i class="far fa-star"></i>
+
+            <span>Reviews</span>
+
+          </a>
+
+        </li>
+
+        <!-- CMS -->
+
+        <li>
+
+          <a href="cms.html">
+
+            <i class="far fa-file-lines"></i>
+
+            <span>CMS Management</span>
+
+          </a>
+
+        </li>
+
+        <!-- BANNERS -->
+
+        <li>
+
+          <a href="banners.html">
+
+            <i class="far fa-image"></i>
+
+            <span>Banners</span>
+
+          </a>
+
+        </li>
+
+        <!-- REPORTS -->
+
+        <li>
+
+          <a href="reports.html">
+
+            <i class="fas fa-chart-simple"></i>
+
+            <span>Reports</span>
+
+          </a>
+
+        </li>
+
+        <!-- MARKETING -->
+
+        <li>
+
+          <a href="marketing.html">
+
+            <i class="fas fa-bullhorn"></i>
+
+            <span>Marketing</span>
+
+          </a>
+
+        </li>
+
+        <!-- SETTINGS -->
+
+        <li>
+
+          <a href="settings.html">
+
+            <i class="fas fa-gear"></i>
+
+            <span>Settings</span>
+
+          </a>
+
+        </li>
+
+        <!-- USERS -->
+
+        <li>
+
+          <a href="users.html">
+
+            <i class="far fa-user"></i>
+
+            <span>Users & Roles</span>
+
+          </a>
+
+        </li>
+
+      </ul>
+
+      <!-- HELP BOX -->
+
+      <div class="help-box">
+
+        <div class="help-icon">
+
+          <i class="fas fa-headphones"></i>
+
+        </div>
+
+        <div>
+
+          <h4>Need Help?</h4>
+
+          <p>Contact Support</p>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+
+<!-- MAIN -->
+<!-- ========================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================= -->
+<!-- =========================
+MAIN CONTENT
+========================= -->
+
+<div class="main-content">
+
+<!-- TOPBAR -->
+
+
+<!-- HEADER -->
+
+<div class="customers-header">
+
+<div>
+
+<h2 class="customers-title">
+Customers
+</h2>
+
+<p class="customers-subtitle">
+Manage and view all your store customers.
+</p>
+
+</div>
+
+<button class="add-customer-btn">
+
+<i class="fa fa-plus"></i>
+
+Add Customer
+
+</button>
+
+</div>
+
+<!-- STATS -->
+
+<div class="customers-stats">
+
+<div class="customer-stat-card">
+
+<div class="stat-icon purple-bg">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<div>
+
+<p>Total Customers</p>
+
+<h3 id="totalCustomers">
+0
+</h3>
+
+<small>All Time</small>
+
+</div>
+
+</div>
+
+<div class="customer-stat-card">
+
+<div class="stat-icon green-bg">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+<div>
+
+<p>Active Customers</p>
+
+<h3 id="activeCustomers">
+0
+</h3>
+
+<small>Last 3 Months</small>
+
+</div>
+
+</div>
+
+<div class="customer-stat-card">
+
+<div class="stat-icon orange-bg">
+
+<i class="fa-solid fa-user-plus"></i>
+
+</div>
+
+<div>
+
+<p>New Customers</p>
+
+<h3 id="newCustomers">
+0
+</h3>
+
+<small>Recently Joined</small>
+
+</div>
+
+</div>
+
+<div class="customer-stat-card">
+
+<div class="stat-icon blue-bg">
+
+<i class="fa-solid fa-repeat"></i>
+
+</div>
+
+<div>
+
+<p>Returning Customers</p>
+
+<h3 id="returnCustomers">
+0
+</h3>
+
+<small>Repeat Orders</small>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FILTERS -->
+<div class="customers-filters">
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<i class="fa fa-search"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search customers..."
+>
+
+</div>
+
+<!-- STATUS -->
+
+<select id="statusFilter">
+
+<option value="all">
+Select Status
+</option>
+
+<option value="Active">
+Active
+</option>
+
+<option value="Inactive">
+Inactive
+</option>
+
+</select>
+
+<!-- GROUP -->
+
+<select id="groupFilter">
+
+<option value="all">
+Select Group
+</option>
+
+<option value="New">
+New Customers
+</option>
+
+<option value="Returning">
+Returning Customers
+</option>
+
+</select>
+
+<!-- DATE RANGE -->
+
+<div class="date-range-box">
+
+
+<input
+type="date"
+id="fromDate"
+>
+
+<span class="date-separator">
+-
+</span>
+
+<input
+type="date"
+id="toDate"
+>
+
+</div>
+
+<!-- EXPORT -->
+
+<button class="export-btn">
+
+<i class="fa fa-download"></i>
+
+Export
+
+</button>
+
+<!-- MORE FILTER -->
+
+
+</div>
+<!-- MORE FILTER -->
+
+
+<!-- TABLE -->
+
+<div class="table-wrapper">
+
+<table class="customers-table">
+
+<thead>
+
+<tr>
+
+<th>Customer</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Orders</th>
+<th>Total Spent</th>
+<th>Status</th>
+<th>Joined On</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="customersTableBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- =========================
+SCRIPT
+========================= -->
+
+<script>
+
+const API =
+"https://furniturebackend-j767.onrender.com/api/orders";
+
+let allCustomers = [];
+
+/* LOAD CUSTOMERS */
+
+async function loadCustomers(){
+
+try{
+
+const response =
+await fetch(API);
+
+const orders =
+await response.json();
+
+const customerMap = {};
+
+orders.forEach(order=>{
+
+const email =
+order.email || "unknown";
+
+if(!customerMap[email]){
+
+customerMap[email] = {
+
+name:
+order.customerName || "Unknown",
+
+email:
+order.email || "-",
+
+phone:
+order.phone || "-",
+
+orders:0,
+
+spent:0,
+
+joined:
+order.createdAt,
+
+lastOrder:
+order.createdAt
+
+};
+
+}
+
+customerMap[email].orders += 1;
+
+customerMap[email].spent +=
+Number(order.totalPrice || 0);
+
+if(
+new Date(order.createdAt)
+>
+new Date(customerMap[email].lastOrder)
+){
+
+customerMap[email].lastOrder =
+order.createdAt;
+
+}
+
+});
+
+/* ACTIVE / INACTIVE */
+
+allCustomers =
+Object.values(customerMap)
+.map(customer=>{
+
+const days =
+(Math.abs(
+new Date() -
+new Date(customer.lastOrder)
+)) / (1000*60*60*24);
+
+return {
+
+...customer,
+
+status:
+days <= 90
+? "Active"
+: "Inactive"
+
+};
+
+});
+
+renderCustomers(allCustomers);
+
+updateStats(allCustomers);
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+/* STATS */
+
+function updateStats(customers){
+
+document.getElementById(
+"totalCustomers"
+).innerText =
+customers.length;
+
+document.getElementById(
+"activeCustomers"
+).innerText =
+customers.filter(
+c=>c.status==="Active"
+).length;
+
+document.getElementById(
+"newCustomers"
+).innerText =
+customers.filter(
+c=>c.orders===1
+).length;
+
+document.getElementById(
+"returnCustomers"
+).innerText =
+customers.filter(
+c=>c.orders>1
+).length;
+
+}
+
+/* TABLE */
+
+function renderCustomers(customers){
+
+const tableBody =
+document.getElementById(
+"customersTableBody"
+);
+
+tableBody.innerHTML = "";
+
+customers.forEach(customer=>{
+
+const statusClass =
+customer.status.toLowerCase();
+
+tableBody.innerHTML += `
+
+<tr>
+
+<td>
+
+<div class="customer-box">
+
+<div class="profile-letter">
+
+${customer.name
+.charAt(0)
+.toUpperCase()}
+
+</div>
+
+<div>
+
+<h4>${customer.name}</h4>
+
+</div>
+
+</div>
+
+</td>
+
+<td>${customer.email}</td>
+
+<td>${customer.phone}</td>
+
+<td>${customer.orders}</td>
+
+<td>₹${customer.spent.toLocaleString()}</td>
+
+<td>
+
+<span class="status ${statusClass}">
+
+${customer.status}
+
+</span>
+
+</td>
+
+<td>
+
+${new Date(customer.joined)
+.toLocaleDateString()}
+
+</td>
+
+<td>
+
+<div class="action-btns">
+
+<button>
+<i class="fa fa-eye"></i>
+</button>
+
+<button>
+<i class="fa fa-ellipsis-v"></i>
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+/* FILTERS */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"input",
+applyFilters
+);
+
+document
+.getElementById("statusFilter")
+.addEventListener(
+"change",
+applyFilters
+);
+
+document
+.getElementById("groupFilter")
+.addEventListener(
+"change",
+applyFilters
+);
+
+document
+.getElementById("fromDate")
+.addEventListener(
+"change",
+applyFilters
+);
+
+document
+.getElementById("toDate")
+.addEventListener(
+"change",
+applyFilters
+);
+
+/* APPLY FILTER */
+
+function applyFilters(){
+
+const searchValue =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const statusValue =
+document
+.getElementById("statusFilter")
+.value;
+
+const groupValue =
+document
+.getElementById("groupFilter")
+.value;
+
+const fromDate =
+document
+.getElementById("fromDate")
+.value;
+
+const toDate =
+document
+.getElementById("toDate")
+.value;
+
+let filtered =
+[...allCustomers];
+
+/* SEARCH */
+
+filtered =
+filtered.filter(customer=>
+
+customer.name
+.toLowerCase()
+.includes(searchValue)
+
+||
+
+customer.email
+.toLowerCase()
+.includes(searchValue)
+
+||
+
+customer.phone
+.includes(searchValue)
+
+);
+
+/* STATUS */
+
+if(statusValue !== "all"){
+
+filtered =
+filtered.filter(customer=>
+
+customer.status === statusValue
+
+);
+
+}
+
+/* GROUP */
+
+if(groupValue === "New"){
+
+filtered =
+filtered.filter(customer=>
+
+customer.orders === 1
+
+);
+
+}
+
+if(groupValue === "Returning"){
+
+filtered =
+filtered.filter(customer=>
+
+customer.orders > 1
+
+);
+
+}
+
+/* DATE */
+
+if(fromDate && toDate){
+
+filtered =
+filtered.filter(customer=>{
+
+const joined =
+new Date(customer.joined);
+
+return (
+
+joined >= new Date(fromDate)
+
+&&
+
+joined <= new Date(toDate)
+
+);
+
+});
+
+}
+
+renderCustomers(filtered);
+
+}
+
+/* EXPORT CSV */
+
+document
+.querySelector(".export-btn")
+.addEventListener(
+"click",
+()=>{
+
+let csv =
+"Name,Email,Phone,Orders,Spent,Status,Joined Date\n";
+
+allCustomers.forEach(customer=>{
+
+csv +=
+`${customer.name},
+${customer.email},
+${customer.phone},
+${customer.orders},
+${customer.spent},
+${customer.status},
+${customer.joined}\n`;
+
+});
+
+const blob =
+new Blob([csv],{
+type:'text/csv'
+});
+
+const url =
+window.URL
+.createObjectURL(blob);
+
+const a =
+document.createElement("a");
+
+a.href = url;
+
+a.download =
+"customers.csv";
+
+a.click();
+
+}
+);
+
+/* INITIAL LOAD */
+
+loadCustomers();
+
+</script>
+<script>
+
+/* SEARCH */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"keyup",
+applyFilters
+);
+
+/* STATUS */
+
+document
+.getElementById("statusFilter")
+.addEventListener(
+"change",
+applyFilters
+);
+
+/* GROUP */
+
+document
+.getElementById("groupFilter")
+.addEventListener(
+"change",
+applyFilters
+);
+
+/* DATES */
+
+document
+.getElementById("fromDate")
+.addEventListener(
+"change",
+applyFilters
+);
+
+document
+.getElementById("toDate")
+.addEventListener(
+"change",
+applyFilters
+);
+
+/* APPLY FILTERS */
+
+function applyFilters(){
+
+const searchValue =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
+const statusValue =
+document
+.getElementById("statusFilter")
+.value;
+
+const groupValue =
+document
+.getElementById("groupFilter")
+.value;
+
+const fromDate =
+document
+.getElementById("fromDate")
+.value;
+
+const toDate =
+document
+.getElementById("toDate")
+.value;
+
+let filtered =
+[...allCustomers];
+
+/* SEARCH FILTER */
+
+if(searchValue){
+
+filtered =
+filtered.filter(customer =>
+
+(customer.name || "")
+.toLowerCase()
+.includes(searchValue)
+
+||
+
+(customer.email || "")
+.toLowerCase()
+.includes(searchValue)
+
+||
+
+(customer.phone || "")
+.toString()
+.includes(searchValue)
+
+);
+
+}
+
+/* STATUS FILTER */
+
+if(statusValue !== "all"){
+
+filtered =
+filtered.filter(customer =>
+
+customer.status === statusValue
+
+);
+
+}
+
+/* GROUP FILTER */
+
+if(groupValue === "New"){
+
+filtered =
+filtered.filter(customer =>
+
+customer.orders === 1
+
+);
+
+}
+
+if(groupValue === "Returning"){
+
+filtered =
+filtered.filter(customer =>
+
+customer.orders > 1
+
+);
+
+}
+
+/* DATE FILTER */
+
+if(fromDate && toDate){
+
+filtered =
+filtered.filter(customer=>{
+
+const joined =
+new Date(customer.joined);
+
+return (
+
+joined >= new Date(fromDate)
+
+&&
+
+joined <= new Date(toDate)
+
+);
+
+});
+
+}
+
+/* RENDER */
+
+renderCustomers(filtered);
+
+}
+
+</script>

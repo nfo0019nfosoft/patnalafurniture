@@ -52,17 +52,24 @@
         <a href="contact.html">CONTACT US</a>
 
       </nav>
+<!-- ICONS -->
+<div class="nav-icons">
 
-      <!-- ICONS -->
-      <div class="nav-icons">
+<i class="fa-solid fa-magnifying-glass"></i>
 
-        <i class="fa-solid fa-magnifying-glass"></i>
 
-        <i class="fa-regular fa-user"></i>
+<!-- USER -->
 
-        <i class="fa-solid fa-cart-shopping"></i>
+<i class="fa-regular fa-user"
+onclick="openProfile()"></i>
 
-      </div>
+
+<!-- CART -->
+
+<i class="fa-solid fa-cart-shopping"
+onclick="openCart()"></i>
+
+</div>
 
       <!-- MOBILE MENU -->
       <div class="menu-btn" id="menuBtn">
@@ -89,6 +96,57 @@
 
   </script>
 
+
+
+<script>
+
+function openProfile(){
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+if(token){
+
+window.location.href =
+"profile.html";
+
+}
+else{
+
+window.location.href =
+"login.html";
+
+}
+
+}
+
+
+
+function openCart(){
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+if(token){
+
+window.location.href =
+"cart.html";
+
+}
+else{
+
+window.location.href =
+"login.html";
+
+}
+
+}
+
+</script>
 
 
 
@@ -118,11 +176,9 @@
 
      
        
-   
-       
-Artisanal Teak Wood<br>
+The Majestic Pure <br>
 
-  <span>Chairs & Seating</span>
+  <span>Teak Wood Luxury Cot</span>
 
 </h1>
 
@@ -164,11 +220,32 @@ href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
 
 
 
-
 <script>
 
 const API =
-"https://furniturebackend-j767.onrender.com/api/products/category/Chair";
+"https://furniturebackend-j767.onrender.com/api/products/category/chair";
+
+
+// =========================
+// USER CHECK
+// =========================
+const email =
+localStorage.getItem(
+"email"
+);
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+const cartKey =
+`cart_${email}`;
+
+
+// =========================
+// LOAD PRODUCTS
+// =========================
 
 async function loadProducts(){
 
@@ -188,6 +265,9 @@ document.getElementById(
 container.innerHTML = "";
 
 products.forEach((product,index)=>{
+
+console.log(product);
+
 
 container.innerHTML += `
 
@@ -244,17 +324,20 @@ ${product.sellingPrice || 0}
 
 </p>
 
-<a href="
-product-details.html?id=${product._id}
-"
 
-class="whatsapp-btn btn-filled">
+<div class="product-buttons">
+
+<button
+class="whatsapp-btn btn-filled"
+onclick="buyNow('${product._id}')">
 
 <i class="fas fa-bolt"></i>
 
 Buy Now
 
-</a>
+</button>
+
+
 <button
 class="whatsapp-btn btn-filled add-cart-btn"
 onclick="addToCart('${product._id}')">
@@ -264,6 +347,8 @@ onclick="addToCart('${product._id}')">
 Add To Cart
 
 </button>
+
+</div>
 
 </div>
 
@@ -282,12 +367,12 @@ console.log(error);
 
 }
 
-loadProducts();
+
+// =========================
+// ADD TO CART
+// =========================
 
 function addToCart(id){
-
-const token =
-localStorage.getItem("token");
 
 if(!token){
 
@@ -300,11 +385,14 @@ return;
 
 let cart =
 JSON.parse(
-localStorage.getItem("cart")
+localStorage.getItem(cartKey)
 ) || [];
 
+
 const existing =
-cart.find(item=>item.id===id);
+cart.find(
+item=>item.id===id
+);
 
 if(existing){
 
@@ -323,15 +411,48 @@ qty:1
 
 }
 
+
 localStorage.setItem(
-"cart",
+
+cartKey,
+
 JSON.stringify(cart)
+
 );
 
 alert("Added To Cart");
 
+window.location.href =
+"cart.html";
+
 }
 
 
+// =========================
+// BUY NOW
+// =========================
+
+function buyNow(id){
+
+if(!token){
+
+window.location.href =
+"login.html";
+
+return;
+
+}
+
+window.location.href =
+`checkout.html?id=${id}`;
+
+}
+
+
+// =========================
+// INITIAL LOAD
+// =========================
+
+loadProducts();
 
 </script>

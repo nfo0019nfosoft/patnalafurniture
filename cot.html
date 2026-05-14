@@ -223,16 +223,15 @@ href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
 <script>
 
 const API =
-"https://furniturebackend-j767.onrender.com/api/products/category/Cot";
+"https://furniturebackend-j767.onrender.com/api/products/category/cot";
 
 
 // =========================
 // USER CHECK
 // =========================
-
-const username =
+const email =
 localStorage.getItem(
-"username"
+"email"
 );
 
 const token =
@@ -241,8 +240,7 @@ localStorage.getItem(
 );
 
 const cartKey =
-`cart_${username}`;
-
+`cart_${email}`;
 
 
 // =========================
@@ -267,6 +265,9 @@ document.getElementById(
 container.innerHTML = "";
 
 products.forEach((product,index)=>{
+
+console.log(product);
+
 
 container.innerHTML += `
 
@@ -420,6 +421,9 @@ JSON.stringify(cart)
 );
 
 alert("Added To Cart");
+
+window.location.href =
+"cart.html";
 
 }
 

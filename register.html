@@ -524,7 +524,6 @@ Login Here
 
 
 
-
 <script>
 
 const API =
@@ -542,17 +541,17 @@ try{
 const username =
 document.getElementById(
 "username"
-).value;
+).value.trim();
 
 const email =
 document.getElementById(
 "email"
-).value;
+).value.trim();
 
 const password =
 document.getElementById(
 "password"
-).value;
+).value.trim();
 
 
 // VALIDATION
@@ -598,34 +597,19 @@ await response.json();
 
 if(data.success){
 
-localStorage.setItem(
-"token",
-data.token
-);
-
-localStorage.setItem(
-"username",
-username
-);
-
-localStorage.setItem(
-"userEmail",
-email
-);
-
-
 alert(
 "Registration Successful"
 );
 
 window.location.href =
-"index.html";
+"login.html";
 
 }
 else{
 
 alert(
 data.message
+|| "User Already Exists"
 );
 
 }

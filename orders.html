@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Categories - Patnala Admin</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/orders.css" />
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+
+<body>
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        <!-- SMALL IMAGE -->
+
+        <img
+          src="images/fav.png"
+          alt="logo"
+          class="logo-img" />
+
+        <div>
+
+          <h2>PATNALA</h2>
+
+          <span>FURNITURE</span>
+
+        </div>
+
+      </div>
+
+      <!-- MENU -->
+
+      <ul class="menu">
+
+        <!-- DASHBOARD -->
+
+        <li class="active">
+
+          <a href="dashboard.html">
+
+            <i class="fas fa-house"></i>
+
+            <span>Dashboard</span>
+
+          </a>
+
+        </li>
+
+        <!-- ORDERS -->
+
+        <li>
+
+          <a href="orders.html">
+
+            <i class="fas fa-calendar-check"></i>
+
+            <span>Orders</span>
+
+          
+
+          </a>
+
+        </li>
+
+        <!-- PRODUCTS -->
+
+        <li class="dropdown-menu">
+
+          <div class="dropdown-btn"
+            onclick="toggleProducts()">
+
+            <div class="left-side">
+
+              <i class="fas fa-cube"></i>
+
+              <span>Products</span>
+
+            </div>
+
+            <i class="fas fa-chevron-down arrow"
+              id="productArrow"></i>
+
+          </div>
+
+          <!-- SUB MENU -->
+
+          <ul class="submenu"
+            id="productSubmenu">
+
+            <li>
+
+              <a href="allproducts.html">
+
+                <i class="fas fa-box-open"></i>
+
+                <span>All Products</span>
+
+              </a>
+
+            </li>
+
+            <li>
+
+              <a href="addproduct.html">
+
+                <i class="fas fa-plus"></i>
+
+                <span>Add Product</span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!-- CATEGORIES -->
+
+        <li>
+
+          <a href="categories.html">
+
+            <i class="fas fa-table-cells-large"></i>
+
+            <span>Categories</span>
+
+          </a>
+
+        </li>
+
+        <!-- CUSTOMERS -->
+
+        <li>
+
+          <a href="customers.html">
+
+            <i class="fas fa-users"></i>
+
+            <span>Customers</span>
+
+          </a>
+
+        </li>
+
+        <!-- COUPONS -->
+
+        <li>
+
+          <a href="coupons.html">
+
+            <i class="fas fa-tag"></i>
+
+            <span>Coupons</span>
+
+          </a>
+
+        </li>
+
+        <!-- REVIEWS -->
+
+        <li>
+
+          <a href="reviews.html">
+
+            <i class="far fa-star"></i>
+
+            <span>Reviews</span>
+
+          </a>
+
+        </li>
+
+        <!-- CMS -->
+
+        <li>
+
+          <a href="cms.html">
+
+            <i class="far fa-file-lines"></i>
+
+            <span>CMS Management</span>
+
+          </a>
+
+        </li>
+
+        <!-- BANNERS -->
+
+        <li>
+
+          <a href="banners.html">
+
+            <i class="far fa-image"></i>
+
+            <span>Banners</span>
+
+          </a>
+
+        </li>
+
+        <!-- REPORTS -->
+
+        <li>
+
+          <a href="reports.html">
+
+            <i class="fas fa-chart-simple"></i>
+
+            <span>Reports</span>
+
+          </a>
+
+        </li>
+
+        <!-- MARKETING -->
+
+        <li>
+
+          <a href="marketing.html">
+
+            <i class="fas fa-bullhorn"></i>
+
+            <span>Marketing</span>
+
+          </a>
+
+        </li>
+
+        <!-- SETTINGS -->
+
+        <li>
+
+          <a href="settings.html">
+
+            <i class="fas fa-gear"></i>
+
+            <span>Settings</span>
+
+          </a>
+
+        </li>
+
+        <!-- USERS -->
+
+        <li>
+
+          <a href="users.html">
+
+            <i class="far fa-user"></i>
+
+            <span>Users & Roles</span>
+
+          </a>
+
+        </li>
+
+      </ul>
+
+      <!-- HELP BOX -->
+
+      <div class="help-box">
+
+        <div class="help-icon">
+
+          <i class="fas fa-headphones"></i>
+
+        </div>
+
+        <div>
+
+          <h4>Need Help?</h4>
+
+          <p>Contact Support</p>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+
+<!-- ========================= -->
+<!-- ORDERS TOP SECTION -->
+<!-- ========================= -->
+
+
+<div class="main-content">
+<div class="orders-header">
+
+    <h2 class="orders-title">
+        Orders
+    </h2>
+
+    <!-- STATS -->
+
+    <div class="orders-stats">
+
+        <!-- ALL ORDERS -->
+
+        <div class="order-stat-card">
+
+            <div class="stat-icon blue-bg">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+            </div>
+
+            <div>
+
+                <p>All Orders</p>
+
+                <h3 id="totalOrders">0</h3>
+
+            </div>
+
+        </div>
+
+        <!-- PENDING -->
+
+        <div class="order-stat-card">
+
+            <div class="stat-icon orange-bg">
+
+                <i class="fa-regular fa-clock"></i>
+
+            </div>
+
+            <div>
+
+                <p>Pending</p>
+
+                <h3 id="pendingOrders">0</h3>
+
+            </div>
+
+        </div>
+
+        <!-- PROCESSING -->
+
+        <div class="order-stat-card">
+
+            <div class="stat-icon lightblue-bg">
+
+                <i class="fa-solid fa-truck-fast"></i>
+
+            </div>
+
+            <div>
+
+                <p>Processing</p>
+
+                <h3 id="processingOrders">0</h3>
+
+            </div>
+
+        </div>
+
+        <!-- SHIPPED -->
+
+        <div class="order-stat-card">
+
+            <div class="stat-icon purple-bg">
+
+                <i class="fa-solid fa-box"></i>
+
+            </div>
+
+            <div>
+
+                <p>Shipped</p>
+
+                <h3 id="shippedOrders">0</h3>
+
+            </div>
+
+        </div>
+
+        <!-- DELIVERED -->
+
+        <div class="order-stat-card">
+
+            <div class="stat-icon green-bg">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <p>Delivered</p>
+
+                <h3 id="deliveredOrders">0</h3>
+
+            </div>
+
+        </div>
+
+        <!-- CANCELLED -->
+
+        <div class="order-stat-card">
+
+            <div class="stat-icon red-bg">
+
+                <i class="fa-solid fa-circle-xmark"></i>
+
+            </div>
+
+            <div>
+
+                <p>Cancelled</p>
+
+                <h3 id="cancelledOrders">0</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- FILTERS -->
+<!-- ========================= -->
+
+<div class="orders-filters">
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <i class="fa fa-search"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by Order ID, Customer, Email..."
+        >
+
+    </div>
+
+    <!-- STATUS -->
+
+    <select id="statusFilter">
+
+        <option value="all">
+            All Status
+        </option>
+
+        <option value="Pending">
+            Pending
+        </option>
+
+        <option value="Processing">
+            Processing
+        </option>
+
+        <option value="Shipped">
+            Shipped
+        </option>
+
+        <option value="Delivered">
+            Delivered
+        </option>
+
+        <option value="Cancelled">
+            Cancelled
+        </option>
+
+    </select>
+
+    <!-- DATE -->
+
+    <input
+        type="date"
+        id="dateFilter"
+    >
+
+    <!-- FILTER BUTTON -->
+
+    <button class="more-filter-btn">
+
+        <i class="fa-solid fa-filter"></i>
+
+        More Filters
+
+    </button>
+
+    <!-- EXPORT -->
+
+    <button class="export-btn">
+
+        <i class="fa-solid fa-download"></i>
+
+        Export
+
+    </button>
+
+    <!-- ADD ORDER -->
+
+    <button class="add-order-btn">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Add Order
+
+    </button>
+
+</div>
+
+
+
+<!-- TABLE -->
+
+<div class="table-wrapper">
+
+<table class="orders-table">
+
+<thead>
+
+<tr>
+
+<th>Order ID</th>
+
+<th>Customer</th>
+
+<th>Date</th>
+
+<th>Amount</th>
+
+<th>Payment</th>
+
+<th>Status</th>
+
+
+<th>Payment Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTableBody">
+
+</tbody>
+
+</table>
+
+</div>
+<script>
+
+const API =
+"https://furniturebackend-j767.onrender.com/api/orders";
+
+let allOrders = [];
+
+/* ========================= */
+/* LOAD ORDERS */
+/* ========================= */
+
+async function loadOrders(){
+
+try{
+
+const response =
+await fetch(API);
+
+const orders =
+await response.json();
+
+allOrders = orders;
+
+renderOrders(orders);
+
+updateStats(orders);
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+/* ========================= */
+/* STATS */
+/* ========================= */
+
+function updateStats(orders){
+
+document.getElementById(
+"totalOrders"
+).innerText =
+orders.length;
+
+document.getElementById(
+"pendingOrders"
+).innerText =
+orders.filter(
+o=>o.status==="Pending"
+).length;
+
+document.getElementById(
+"processingOrders"
+).innerText =
+orders.filter(
+o=>o.status==="Processing"
+).length;
+
+document.getElementById(
+"shippedOrders"
+).innerText =
+orders.filter(
+o=>o.status==="Shipped"
+).length;
+
+document.getElementById(
+"deliveredOrders"
+).innerText =
+orders.filter(
+o=>o.status==="Delivered"
+).length;
+
+document.getElementById(
+"cancelledOrders"
+).innerText =
+orders.filter(
+o=>o.status==="Cancelled"
+).length;
+
+}
+
+/* ========================= */
+/* RENDER TABLE */
+/* ========================= */
+
+function renderOrders(data){
+
+const tableBody =
+document.getElementById(
+"ordersTableBody"
+);
+
+tableBody.innerHTML = "";
+
+if(data.length === 0){
+
+tableBody.innerHTML = `
+
+<tr>
+
+<td colspan="8"
+style="
+text-align:center;
+padding:30px;
+">
+
+No Orders Found
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+data.forEach(order=>{
+
+let statusClass =
+(order.status || "")
+.toLowerCase();
+
+tableBody.innerHTML += `
+
+<tr>
+
+<td>
+
+#PF${order._id?.slice(-4)}
+
+</td>
+
+<td>
+
+<div class="customer-box">
+<div class="profile-letter">
+
+${(order.customerName || "U")
+.charAt(0)
+.toUpperCase()}
+
+</div>
+
+<div>
+
+<h4>
+${order.customerName || ''}
+</h4>
+
+<p style="
+font-size:12px;
+color:#888;
+">
+
+${order.email || ''}
+
+</p>
+
+</div>
+
+</div>
+
+</td>
+
+<td>
+
+${
+new Date(
+order.createdAt
+).toLocaleDateString()
+}
+
+</td>
+
+<td>
+
+₹${order.totalPrice || 0}
+
+</td>
+
+<td>
+
+${order.paymentMethod || ''}
+
+</td>
+
+<td>
+
+<span class="status ${statusClass}">
+
+${order.status || ''}
+
+</span>
+
+</td>
+
+<td>
+
+<span class="status delivered">
+
+Paid
+
+</span>
+
+</td>
+
+<td>
+
+<div class="action-btns">
+
+<button
+onclick="viewOrder('${order._id}')">
+
+<i class="fa fa-eye"></i>
+
+</button>
+
+<button
+onclick="editOrder('${order._id}')">
+
+<i class="fa fa-pen"></i>
+
+</button>
+
+<button
+onclick="deleteOrder('${order._id}')">
+
+<i class="fa fa-trash"></i>
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+/* ========================= */
+/* SEARCH */
+/* ========================= */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"input",
+function(){
+
+const value =
+this.value.toLowerCase();
+
+const filtered =
+allOrders.filter(order =>
+
+(order.customerName || '')
+.toLowerCase()
+.includes(value)
+
+||
+
+(order.email || '')
+.toLowerCase()
+.includes(value)
+
+||
+
+(order.phone || '')
+.includes(value)
+
+||
+
+(order._id || '')
+.toLowerCase()
+.includes(value)
+
+);
+
+renderOrders(filtered);
+
+}
+);
+
+/* ========================= */
+/* STATUS FILTER */
+/* ========================= */
+
+document
+.getElementById("statusFilter")
+.addEventListener(
+"change",
+function(){
+
+applyFilters();
+
+}
+);
+
+/* ========================= */
+/* DATE FILTER */
+/* ========================= */
+
+document
+.getElementById("dateFilter")
+.addEventListener(
+"change",
+function(){
+
+applyFilters();
+
+}
+);
+
+/* ========================= */
+/* APPLY FILTERS */
+/* ========================= */
+
+function applyFilters(){
+
+const statusValue =
+document.getElementById(
+"statusFilter"
+).value;
+
+const dateValue =
+document.getElementById(
+"dateFilter"
+).value;
+
+let filtered =
+[...allOrders];
+
+/* STATUS */
+
+if(statusValue !== "all"){
+
+filtered =
+filtered.filter(order =>
+
+order.status === statusValue
+
+);
+
+}
+
+/* DATE */
+
+if(dateValue){
+
+filtered =
+filtered.filter(order => {
+
+const orderDate =
+new Date(order.createdAt)
+.toISOString()
+.split("T")[0];
+
+return orderDate === dateValue;
+
+});
+
+}
+
+renderOrders(filtered);
+
+}
+
+/* ========================= */
+/* EXPORT CSV */
+/* ========================= */
+
+document
+.querySelector(".export-btn")
+.addEventListener(
+"click",
+()=>{
+
+let csv =
+"Customer,Email,Phone,Amount,Status\n";
+
+allOrders.forEach(order=>{
+
+csv +=
+`${order.customerName},
+${order.email},
+${order.phone},
+${order.totalPrice},
+${order.status}\n`;
+
+});
+
+const blob =
+new Blob([csv],{
+type:'text/csv'
+});
+
+const url =
+window.URL
+.createObjectURL(blob);
+
+const a =
+document.createElement("a");
+
+a.href = url;
+
+a.download = "orders.csv";
+
+a.click();
+
+}
+);
+
+/* ========================= */
+/* VIEW */
+/* ========================= */
+
+function viewOrder(id){
+
+const order =
+allOrders.find(
+o => o._id === id
+);
+
+alert(
+
+`Customer: ${order.customerName}
+
+Phone: ${order.phone}
+
+Amount: ₹${order.totalPrice}
+
+Status: ${order.status}`
+
+);
+
+}
+
+/* ========================= */
+/* EDIT */
+/* ========================= */
+
+async function editOrder(id){
+
+const newStatus =
+prompt(
+"Enter New Status\n\nPending / Processing / Shipped / Delivered / Cancelled"
+);
+
+if(!newStatus) return;
+
+try{
+
+await fetch(
+
+`${API}/${id}`,
+
+{
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+status:newStatus
+})
+
+}
+
+);
+
+alert("Order Updated");
+
+loadOrders();
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+/* ========================= */
+/* DELETE */
+/* ========================= */
+
+async function deleteOrder(id){
+
+const confirmDelete =
+confirm(
+"Delete this order?"
+);
+
+if(!confirmDelete) return;
+
+try{
+
+await fetch(
+
+`${API}/${id}`,
+
+{
+method:"DELETE"
+}
+
+);
+
+alert("Order Deleted");
+
+loadOrders();
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+loadOrders();
+
+</script>
+
+</div>
+
+
