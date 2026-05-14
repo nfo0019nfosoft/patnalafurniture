@@ -492,13 +492,16 @@
 
     <div class="table-actions">
 
-        <button class="action-btn">
+       <button
+class="action-btn"
+onclick="exportCategories()"
+>
 
-            <i class="fas fa-download"></i>
+<i class="fas fa-download"></i>
 
-            Export
+Export
 
-        </button>
+</button>
 
         <button class="action-btn">
 
@@ -1307,7 +1310,75 @@ loadCategories();
 
 
 
+// =========================
+// EXPORT CSV
+// =========================
 
+async function exportCategories(){
+
+try{
+
+const response =
+await fetch(API);
+
+const categories =
+await response.json();
+
+let csv =
+"Category Name,Parent Category,Products,Sort Order,Status,Updated At\n";
+
+categories.forEach(cat=>{
+
+csv +=
+`${cat.name},
+${cat.parentCategory},
+${cat.products || 0},
+${cat.sortOrder || 1},
+${cat.status},
+${new Date(cat.updatedAt).toLocaleDateString()}\n`;
+
+});
+
+/* CREATE FILE */
+
+const blob =
+new Blob(
+[csv],
+{
+type:"text/csv"
+}
+);
+
+const url =
+window.URL
+.createObjectURL(blob);
+
+const a =
+document.createElement("a");
+
+a.href = url;
+
+a.download =
+"categories.csv";
+
+document.body.appendChild(a);
+
+a.click();
+
+document.body.removeChild(a);
+
+window.URL.revokeObjectURL(url);
+
+}
+catch(error){
+
+console.log(error);
+
+alert("Export Failed");
+
+}
+
+}
 
 
 

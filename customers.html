@@ -559,6 +559,20 @@ SCRIPT
 
 <script>
 
+const adminUser =
+localStorage.getItem(
+"adminUser"
+);
+
+if(adminUser !== "admin"){
+
+window.location.href =
+"admin.html";
+
+}
+</script>
+<script>
+
 const API =
 "https://furniturebackend-j767.onrender.com/api/orders";
 
@@ -1167,6 +1181,35 @@ joined <= new Date(toDate)
 /* RENDER */
 
 renderCustomers(filtered);
+
+}
+
+</script>
+<script>
+
+/* =========================
+PRODUCTS DROPDOWN
+========================= */
+
+function toggleProducts(){
+
+const submenu =
+document.getElementById(
+"productSubmenu"
+);
+
+const arrow =
+document.getElementById(
+"productArrow"
+);
+
+submenu.classList.toggle(
+"show"
+);
+
+arrow.classList.toggle(
+"rotate"
+);
 
 }
 

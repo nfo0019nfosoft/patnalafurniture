@@ -558,8 +558,10 @@ More Filters
 
 </button>
 
-
-<button class="export-btn">
+<button
+class="export-btn"
+onclick="exportProducts()"
+>
 
 <i class="fas fa-download"></i>
 
@@ -1092,6 +1094,59 @@ arrow.classList.toggle("rotate");
 
 }
 
+// =========================
+// EXPORT PRODUCTS CSV
+// =========================
+
+function exportProducts(){
+
+let csv =
+"Product Name,SKU,Category,Price,Stock,Status,Created Date\n";
+
+allProducts.forEach(product=>{
+
+csv +=
+`"${product.name || ""}",
+"${product.sku || "-"}",
+"${product.category || "-"}",
+"${product.sellingPrice || 0}",
+"${product.stockQuantity || 0}",
+"${product.status || "Active"}",
+"${new Date(product.createdAt).toLocaleDateString()}"\n`;
+
+});
+
+/* CREATE FILE */
+
+const blob =
+new Blob(
+[csv],
+{
+type:"text/csv"
+}
+);
+
+const url =
+window.URL
+.createObjectURL(blob);
+
+const a =
+document.createElement("a");
+
+a.href = url;
+
+a.download =
+"products.csv";
+
+document.body.appendChild(a);
+
+a.click();
+
+document.body.removeChild(a);
+
+window.URL.revokeObjectURL(url);
+
+}
 </script>
 
 </body>

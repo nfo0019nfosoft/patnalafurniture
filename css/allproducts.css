@@ -708,7 +708,9 @@ font-size:13px;
 
 width:100%;
 
-padding:12px 12px 12px 38px;
+height:40px;
+
+padding:0 12px 0 34px;
 
 border:1px solid #ddd;
 
@@ -716,8 +718,7 @@ border-radius:10px;
 
 outline:none;
 
-font-size:13px;
-
+font-size:12px;
 }
 
 .filter-bar select{
