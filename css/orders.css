@@ -16,7 +16,7 @@
 
 body{
   background:#f6f7fb;
-  overflow:hidden;
+ 
 }
 
 /* =========================
@@ -463,41 +463,157 @@ body{
 
 @media(max-width:768px){
 
+  body{
+    overflow-x:hidden;
+  }
+
+  /* =========================
+     SIDEBAR
+  ========================= */
+
   .sidebar{
 
-    width:80px;
+    width:75px;
 
-    padding:16px 8px;
+    height:100vh;
+
+    padding:14px 6px;
+
+    overflow-y:auto;
+
+    align-items:center;
+  }
+
+  /* LOGO */
+
+  .logo{
+    justify-content:center;
+    margin-bottom:20px;
+  }
+
+  .logo-img{
+    width:42px;
+    height:42px;
   }
 
   .logo h2,
-  .logo span,
-  .menu li a span,
-  .menu li a small,
-  .help-box,
-  .arrow{
+  .logo span{
     display:none;
+  }
+
+  /* =========================
+     MENU
+  ========================= */
+
+  .menu{
+    width:100%;
+  }
+
+  .menu li{
+    margin-bottom:8px;
   }
 
   .menu li a,
   .dropdown-btn{
+
+    width:100%;
+
     justify-content:center;
+
+    padding:13px 0;
+
+    border-radius:14px;
   }
+
+  /* ICON */
+
+  .menu li a i,
+  .left-side i{
+    font-size:18px;
+  }
+
+  /* HIDE TEXT */
+
+  .menu li a span,
+  .menu li a small,
+  .left-side span,
+  .arrow,
+  .help-box{
+    display:none;
+  }
+
+  /* ACTIVE */
+
+  .menu li.active a{
+
+    background:linear-gradient(
+    135deg,
+    #5b3716,
+    #3d2410
+    );
+
+    color:#fff;
+
+    box-shadow:0 5px 16px rgba(91,55,22,0.25);
+  }
+
+  /* =========================
+     SUBMENU
+  ========================= */
+/* SUBMENU */
+
+.submenu{
+
+  max-height:0;
+
+  overflow:hidden;
+
+  transition:0.4s ease;
+}
+
+/* SHOW */
+
+.submenu.show{
+  max-height:300px;
+}
+
+  /* =========================
+     MAIN
+  ========================= */
 
   .main{
 
-    margin-left:80px;
+    margin-left:75px;
 
-    width:calc(100% - 80px);
+    width:calc(100% - 75px);
+
+    padding:20px;
+  }
+
+  /* =========================
+     WELCOME
+  ========================= */
+
+  .welcome-box{
+    text-align:center;
   }
 
   .welcome-box h1{
-    font-size:30px;
+
+    font-size:32px;
+
+    line-height:1.3;
+
+    margin-bottom:10px;
   }
 
   .welcome-box p{
-    font-size:13px;
+
+    font-size:14px;
+
+    line-height:1.7;
   }
+
 }
 /* =========================
    MAIN
@@ -548,44 +664,7 @@ body{
    RESPONSIVE
 ========================= */
 
-@media(max-width:768px){
 
-  .sidebar{
-
-    width:80px;
-
-    padding:16px 8px;
-  }
-
-  .logo h2,
-  .logo span,
-  .menu li a span,
-  .menu li a small,
-  .help-box,
-  .arrow{
-    display:none;
-  }
-
-  .menu li a,
-  .dropdown-btn{
-    justify-content:center;
-  }
-
-  .main{
-
-    margin-left:80px;
-
-    width:calc(100% - 80px);
-  }
-
-  .welcome-box h1{
-    font-size:30px;
-  }
-
-  .welcome-box p{
-    font-size:13px;
-  }
-}
 /* ========================= */
 /* ORDERS HEADER */
 /* ========================= */
@@ -1239,5 +1318,159 @@ overflow-x:auto;
 
 min-width:850px;
 }
+
+}
+
+
+
+/* =========================
+   DROPDOWN BUTTON
+========================= */
+
+.dropdown-btn{
+
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:12px 14px;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  color:#333;
+
+  background:#fff;
+}
+
+/* HOVER */
+
+.dropdown-btn:hover{
+  background:#f5f5f5;
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.left-side{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+/* ICON */
+
+.left-side i{
+  font-size:16px;
+}
+
+/* TEXT */
+
+.left-side span{
+
+  font-size:13px;
+
+  font-weight:500;
+}
+
+/* =========================
+   ARROW
+========================= */
+
+.arrow{
+
+  font-size:11px;
+
+  transition:0.3s ease;
+}
+
+/* ROTATE */
+
+.arrow.rotate{
+  transform:rotate(180deg);
+}
+
+/* =========================
+   SUBMENU
+========================= */
+
+.submenu{
+
+  list-style:none;
+
+  max-height:0;
+
+  overflow:hidden;
+
+  transition:max-height 0.4s ease;
+}
+
+/* SHOW */
+
+.submenu.show{
+  max-height:300px;
+}
+
+/* SUBMENU LINKS */
+
+.submenu li a{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding:10px 14px 10px 40px;
+
+  border-radius:10px;
+
+  text-decoration:none;
+
+  color:#555;
+
+  font-size:12px;
+
+  transition:0.3s;
+}
+
+/* HOVER */
+
+.submenu li a:hover{
+  background:#f5f5f5;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .dropdown-btn{
+
+    justify-content:space-between;
+
+    padding:13px 14px;
+  }
+
+  .left-side span,
+  .arrow{
+    display:block;
+  }
+
+  .submenu.show{
+    max-height:400px;
+  }
 
 }

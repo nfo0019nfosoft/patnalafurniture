@@ -7,8 +7,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Categories - Patnala Admin</title>
-
+    <title>Orders - Patnala Admin</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
     <!-- CSS -->
     <link rel="stylesheet" href="css/orders.css" />
 
@@ -1119,7 +1119,30 @@ console.log(error);
 loadOrders();
 
 </script>
+<script>
 
+const dropdownBtns =
+document.querySelectorAll(".dropdown-btn");
+
+dropdownBtns.forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+
+    const submenu =
+    btn.nextElementSibling;
+
+    const arrow =
+    btn.querySelector(".arrow");
+
+    submenu.classList.toggle("show");
+
+    arrow.classList.toggle("rotate");
+
+  });
+
+});
+
+</script>
 </div>
 
 

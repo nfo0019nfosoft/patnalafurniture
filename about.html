@@ -19,7 +19,11 @@
 
 <body>
 
+  
   <!-- =========================
+      NAVBAR
+  ==========================-->
+<!-- =========================
       NAVBAR
   ==========================-->
 
@@ -52,17 +56,24 @@
         <a href="contact.html">CONTACT US</a>
 
       </nav>
+<!-- ICONS -->
+<div class="nav-icons">
 
-      <!-- ICONS -->
-      <div class="nav-icons">
+<i class="fa-solid fa-magnifying-glass"></i>
 
-        <i class="fa-solid fa-magnifying-glass"></i>
 
-        <i class="fa-regular fa-user"></i>
+<!-- USER -->
 
-        <i class="fa-solid fa-cart-shopping"></i>
+<i class="fa-regular fa-user"
+onclick="openProfile()"></i>
 
-      </div>
+
+<!-- CART -->
+
+<i class="fa-solid fa-cart-shopping"
+onclick="openCart()"></i>
+
+</div>
 
       <!-- MOBILE MENU -->
       <div class="menu-btn" id="menuBtn">
@@ -88,6 +99,60 @@
     });
 
   </script>
+
+
+
+<script>
+
+function openProfile(){
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+if(token){
+
+window.location.href =
+"profile.html";
+
+}
+else{
+
+window.location.href =
+"login.html";
+
+}
+
+}
+
+
+
+function openCart(){
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+if(token){
+
+window.location.href =
+"cart.html";
+
+}
+else{
+
+window.location.href =
+"login.html";
+
+}
+
+}
+
+</script>
+
+
 
 
 
