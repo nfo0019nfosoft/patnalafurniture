@@ -1104,6 +1104,45 @@ background:#f5f5f5;
 cursor:pointer;
 }
 
+.dropdown-action{
+position:relative;
+}
+
+.dots-btn{
+border:none;
+background:none;
+cursor:pointer;
+font-size:18px;
+}
+
+.dropdown-menu-box{
+position:absolute;
+top:40px;
+right:0;
+background:#fff;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+padding:10px;
+display:none;
+z-index:999;
+min-width:140px;
+}
+
+.dropdown-menu-box button{
+width:100%;
+padding:10px;
+border:none;
+background:none;
+cursor:pointer;
+text-align:left;
+font-size:14px;
+border-radius:8px;
+}
+
+.dropdown-menu-box button:hover{
+background:#f5f5f5;
+}
+
 /* =========================
 RESPONSIVE
 ========================= */
@@ -1164,6 +1203,7 @@ grid-template-columns:1fr;
 
 @media(max-width:768px){
 
+  
   /* MAIN CONTENT */
 
   .main-content{

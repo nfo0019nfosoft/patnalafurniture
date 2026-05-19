@@ -511,10 +511,15 @@ const API =
 const ORDER_API =
 "https://furniturebackend-j767.onrender.com/api/orders";
 
+
+// =========================
 // LOGIN CHECK
+// =========================
 
 const email =
-localStorage.getItem("email");
+localStorage.getItem(
+"userEmail"
+);
 
 if(!email){
 
@@ -523,13 +528,13 @@ window.location.href =
 
 }
 
+
+// =========================
+// USER CART
+// =========================
+
 const cartKey =
 `cart_${email}`;
-
-
-// USER CART
-
-
 
 let cart =
 JSON.parse(
@@ -537,8 +542,9 @@ localStorage.getItem(cartKey)
 ) || [];
 
 
+// =========================
 // BUY NOW SUPPORT
-
+// =========================
 const params =
 new URLSearchParams(
 window.location.search
@@ -549,18 +555,45 @@ params.get("id");
 
 if(buyNowId){
 
-cart = [
-{
+const existing =
+cart.find(
+item => item.id === buyNowId
+);
+
+if(existing){
+
+existing.qty += 1;
+
+}
+else{
+
+cart.push({
+
 id:buyNowId,
 qty:1
-}
-];
+
+});
 
 }
 
 
+// SAVE CART
+
+localStorage.setItem(
+
+cartKey,
+
+JSON.stringify(cart)
+
+);
+
+}
+
+
+
+// =========================
 // LOAD ORDER SUMMARY
-
+// =========================
 async function loadOrder(){
 
 const container =
@@ -574,6 +607,8 @@ let totalPrice = 0;
 
 let totalItems = 0;
 
+
+// EMPTY CART
 
 if(cart.length === 0){
 
@@ -604,9 +639,12 @@ return;
 }
 
 
+// LOAD PRODUCTS
 for(const item of cart){
 
 try{
+
+console.log(item);
 
 const response =
 await fetch(
@@ -616,19 +654,30 @@ await fetch(
 const product =
 await response.json();
 
+
+// PRODUCT NOT FOUND
+
 if(!product || !product._id){
 
 continue;
 
 }
 
+
+// SUBTOTAL
+
 const subtotal =
 product.sellingPrice * item.qty;
+
+
+// TOTALS
 
 totalPrice += subtotal;
 
 totalItems += item.qty;
 
+
+// HTML
 
 container.innerHTML += `
 
@@ -644,15 +693,22 @@ product.images?.[0]
 <div class="product-details">
 
 <h3>
+
 ${product.name}
+
 </h3>
 
 <p>
-Quantity : ${item.qty}
+
+Quantity :
+${item.qty}
+
 </p>
 
 <div class="price">
+
 ₹${subtotal}
+
 </div>
 
 </div>
@@ -674,6 +730,8 @@ error
 }
 
 
+// SHOW TOTALS
+
 document.getElementById(
 "totalItems"
 ).innerText =
@@ -683,138 +741,230 @@ document.getElementById(
 "totalPrice"
 ).innerText =
 `₹${totalPrice}`;
-
 }
 
-
-
+// =========================
 // PLACE ORDER
+// =========================
 
 async function placeOrder(){
 
 const name =
-document.getElementById("name").value.trim();
+document.getElementById(
+"name"
+).value.trim();
 
 const phone =
-document.getElementById("phone").value.trim();
+document.getElementById(
+"phone"
+).value.trim();
 
 const address =
-document.getElementById("address").value.trim();
+document.getElementById(
+"address"
+).value.trim();
 
 const city =
-document.getElementById("city").value.trim();
+document.getElementById(
+"city"
+).value.trim();
 
 const pincode =
-document.getElementById("pincode").value.trim();
+document.getElementById(
+"pincode"
+).value.trim();
 
 const payment =
-document.getElementById("payment").value;
+document.getElementById(
+"payment"
+).value;
 
 
 // VALIDATION
 
 if(name === ""){
-alert("Enter Full Name");
+
+alert(
+"Enter Full Name"
+);
+
 return;
+
 }
 
 if(phone === ""){
-alert("Enter Phone Number");
+
+alert(
+"Enter Phone Number"
+);
+
 return;
+
 }
 
 if(phone.length !== 10){
-alert("Phone Number Must Be 10 Digits");
+
+alert(
+"Phone Number Must Be 10 Digits"
+);
+
 return;
+
 }
 
 if(isNaN(phone)){
-alert("Invalid Phone Number");
+
+alert(
+"Invalid Phone Number"
+);
+
 return;
+
 }
 
 if(address === ""){
-alert("Enter Shipping Address");
+
+alert(
+"Enter Shipping Address"
+);
+
 return;
+
 }
 
 if(city === ""){
-alert("Enter City");
+
+alert(
+"Enter City"
+);
+
 return;
+
 }
 
 if(pincode === ""){
-alert("Enter Pincode");
+
+alert(
+"Enter Pincode"
+);
+
 return;
+
 }
 
 if(pincode.length !== 6){
-alert("Pincode Must Be 6 Digits");
+
+alert(
+"Pincode Must Be 6 Digits"
+);
+
 return;
+
 }
 
 if(isNaN(pincode)){
-alert("Invalid Pincode");
+
+alert(
+"Invalid Pincode"
+);
+
 return;
+
 }
 
 if(cart.length === 0){
-alert("Cart Is Empty");
+
+alert(
+"Cart Is Empty"
+);
+
 return;
+
 }
 
 
-// GET PRODUCT DETAILS
+
+// =========================
+// GET ALL PRODUCTS
+// =========================
 
 try{
 
+let products = [];
+
+let totalPrice = 0;
+
+
+// LOOP PRODUCTS
+
+for(const item of cart){
+
 const productResponse =
 await fetch(
-`${API}/${cart[0].id}`
+`${API}/${item.id}`
 );
 
 const product =
 await productResponse.json();
 
-const totalPrice =
-product.sellingPrice * cart[0].qty;
 
+// PRODUCT ARRAY
 
-// ORDER DATA
+products.push({
 
-const orderData = {
+id:product._id,
 
-email,
+name:product.name,
 
-customerName:name,
-
-phone,
-
-address,
-
-city,
-
-pincode,
-
-paymentMethod:payment,
-
-quantity:cart[0].qty,
-
-productName:product.name,
-
-productImage:
+image:
 product.images?.[0]
 || "images/noimage.png",
 
-totalPrice,
+price:product.sellingPrice,
 
-status:"Pending"
+quantity:item.qty
+
+});
+
+
+// TOTAL PRICE
+
+totalPrice +=
+product.sellingPrice * item.qty;
+
+}
+
+
+
+// =========================
+// ORDER DATA
+// =========================
+
+const orderData = {
+
+userName:name,
+
+userEmail:email,
+
+phone:phone,
+
+products:products,
+
+totalAmount:totalPrice,
+
+address:
+`${address}, ${city}, ${pincode}`,
+
+paymentMethod:payment
 
 };
 
+console.log(orderData);
 
 
+// =========================
 // SAVE ORDER
+// =========================
 
 const response =
 await fetch(ORDER_API,{
@@ -833,18 +983,38 @@ const data =
 await response.json();
 
 
+// FAILED
+
+if(!data.success){
+
+alert(
+data.message ||
+"Failed To Place Order"
+);
+
+return;
+
+}
+
+
 // SUCCESS
+
 alert(
 "Order Placed Successfully"
 );
+
+
+// CLEAR CART
 
 localStorage.removeItem(
 cartKey
 );
 
+
+// REDIRECT
+
 window.location.href =
 "myorders.html";
-
 
 
 
@@ -862,12 +1032,15 @@ alert(
 }
 
 
+
+
+// =========================
 // INITIAL LOAD
+// =========================
 
 loadOrder();
 
 </script>
-
 </body>
 
 </html>

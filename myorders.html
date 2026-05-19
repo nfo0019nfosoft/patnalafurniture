@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+My Orders
+</title>
+
+<link rel="icon"
+type="image/png"
+href="images/fav.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #2b1408,
+        #874526,
+        #c99330
+    );
+    min-height:100vh;
+    color:#fff;
+}
+
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+    width:100%;
+    background:#fff;
+    padding:18px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    position:sticky;
+    top:0;
+    z-index:999;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.logo img{
+    width:170px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#111;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#c99330;
+}
+
+.nav-icons{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.nav-icons a{
+    color:#111;
+    font-size:1.2rem;
+    transition:0.3s;
+}
+
+.nav-icons a:hover{
+    color:#c99330;
+}
+
+
+/* =========================
+PAGE
+========================= */
+
+.page-wrapper{
+    padding:40px 20px;
+}
+
+
+/* TITLE */
+
+.page-title{
+    text-align:center;
+    font-size:2.4rem;
+    margin-bottom:40px;
+    font-weight:700;
+}
+
+
+/* ORDERS */
+
+.orders-container{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    gap:25px;
+}
+
+
+/* ORDER CARD */
+
+.order-card{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:30px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+/* TOP */
+
+.order-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.order-id{
+    font-size:1rem;
+    font-weight:600;
+    color:#ffd27a;
+}
+
+.order-date{
+    font-size:0.9rem;
+    color:#eee;
+}
+
+
+/* PRODUCT */
+
+.product{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:18px;
+    padding-bottom:18px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.product img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:16px;
+}
+
+.product-info{
+    flex:1;
+}
+
+.product-info h3{
+    font-size:1.1rem;
+    margin-bottom:8px;
+}
+
+.product-info p{
+    font-size:0.95rem;
+    color:#eee;
+    line-height:1.5;
+}
+
+
+/* TOTAL */
+
+.order-total{
+    text-align:right;
+    margin-top:15px;
+    font-size:1.1rem;
+    font-weight:600;
+    color:#ffd27a;
+}
+
+
+/* EMPTY */
+
+.empty-orders{
+    text-align:center;
+    margin-top:100px;
+}
+
+.empty-orders i{
+    font-size:5rem;
+    margin-bottom:20px;
+    color:#ffd27a;
+}
+
+.empty-orders h2{
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.empty-orders p{
+    color:#eee;
+}
+
+
+/* BUTTON */
+
+.home-btn{
+    margin-top:30px;
+    padding:14px 30px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(
+        90deg,
+        #874526,
+        #c99330
+    );
+    color:#fff;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.home-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:900px){
+
+    .navbar{
+        padding:15px 5%;
+    }
+
+    .nav-links{
+        gap:18px;
+    }
+
+    .page-title{
+        font-size:2rem;
+    }
+
+    .order-card{
+        padding:25px;
+    }
+}
+
+
+/* =========================
+MOBILE VIEW
+========================= */
+
+@media(max-width:700px){
+
+    body{
+        padding:0;
+    }
+
+    .navbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .logo img{
+        width:140px;
+    }
+
+    .nav-links{
+        width:100%;
+        flex-wrap:wrap;
+        gap:14px;
+    }
+
+    .nav-icons{
+        width:100%;
+        justify-content:flex-start;
+    }
+
+    .page-wrapper{
+        padding:30px 15px;
+    }
+
+    .page-title{
+        font-size:1.8rem;
+        margin-bottom:30px;
+    }
+
+    .order-card{
+        padding:20px;
+        border-radius:24px;
+    }
+
+    .product{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .product img{
+        width:100%;
+        height:220px;
+        border-radius:18px;
+    }
+
+    .product-info h3{
+        font-size:1rem;
+    }
+
+    .product-info p{
+        font-size:0.9rem;
+    }
+
+    .order-total{
+        text-align:left;
+        font-size:1rem;
+    }
+
+    .home-btn{
+        width:100%;
+        padding:15px;
+    }
+
+    .empty-orders h2{
+        font-size:1.5rem;
+    }
+
+    .empty-orders p{
+        font-size:0.95rem;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo">
+
+<a href="index.html">
+
+<img src="images/logo.png">
+
+</a>
+
+</div>
+
+<nav class="nav-links">
+
+<a href="cot.html">COT</a>
+
+<a href="sofa-sets.html">SOFA SETS</a>
+
+<a href="diwan-cot.html">DIWAN COT</a>
+
+<a href="chair.html">CHAIR</a>
+
+<a href="accessories.html">ACCESSORIES</a>
+
+<a href="marriage-kit.html">MARRIAGE KIT</a>
+
+</nav>
+
+<div class="nav-icons">
+
+<a href="index.html">
+<i class="fas fa-house"></i>
+</a>
+
+<a href="cart.html">
+<i class="fas fa-cart-shopping"></i>
+</a>
+
+</div>
+
+</header>
+
+
+<!-- TITLE -->
+
+<h1 class="page-title">
+
+My Orders
+
+</h1>
+
+
+
+<!-- ORDERS -->
+
+<div class="orders-container"
+id="ordersContainer">
+
+</div>
+
+
+
+
+
+<script>
+
+// =========================
+// LOGIN CHECK
+// =========================
+
+const token =
+localStorage.getItem(
+"token"
+);
+
+if(!token){
+
+window.location.href =
+"login.html";
+
+}
+
+
+// =========================
+// USER EMAIL
+// =========================
+
+const email =
+localStorage.getItem(
+"userEmail"
+);
+
+
+// =========================
+// API URL
+// =========================
+
+const API =
+`https://furniturebackend-j767.onrender.com/api/orders/user-orders/${email}`;
+
+
+// =========================
+// LOAD ORDERS
+// =========================
+
+async function loadOrders(){
+
+try{
+
+const response =
+await fetch(API);
+
+const data =
+await response.json();
+
+const container =
+document.getElementById(
+"ordersContainer"
+);
+
+
+// EMPTY ORDERS
+
+if(!data.success || data.orders.length === 0){
+
+container.innerHTML = `
+
+<div class="empty-orders">
+
+<i class="fa-solid fa-box-open"></i>
+
+<h2>
+No Orders Found
+</h2>
+
+<p>
+You have not placed any orders yet
+</p>
+
+<button
+class="home-btn"
+onclick="goHome()">
+
+Shop Now
+
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+// SHOW ORDERS
+
+container.innerHTML =
+data.orders.map(order => `
+
+<div class="order-card">
+
+<div class="order-top">
+
+<div class="order-id">
+
+Order ID :
+${order._id}
+
+</div>
+
+<div class="order-date">
+
+${new Date(order.createdAt)
+.toLocaleDateString()}
+
+</div>
+
+</div>
+
+
+${order.products.map(product => `
+
+<div class="product">
+
+<img src="${product.image}">
+
+<div class="product-info">
+
+<h3>
+${product.name}
+</h3>
+
+<p>
+Qty :
+${product.quantity}
+</p>
+
+<p>
+₹${product.price}
+</p>
+
+</div>
+
+</div>
+
+`).join("")}
+
+
+<div class="order-total">
+
+Total :
+₹${order.totalAmount}
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+
+// =========================
+// HOME
+// =========================
+
+function goHome(){
+
+window.location.href =
+"index.html";
+
+}
+
+
+// =========================
+// LOAD
+// =========================
+
+loadOrders();
+
+</script>
+
+</body>
+
+</html>

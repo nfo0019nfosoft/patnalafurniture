@@ -208,30 +208,42 @@ href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
 
 
 
-
-
 <section class="cot-products-listing">
 
-<div id="products"></div>
+<div id="products">
+
+<!-- LOADER -->
+
+<div class="products-loader">
+
+<div class="loader-card"></div>
+
+<div class="loader-card"></div>
+
+<div class="loader-card"></div>
+
+</div>
+
+</div>
 
 </section>
 
-
-
-
+<!-- =========================
+SCRIPT
+========================= -->
 
 <script>
 
 const API =
 "https://furniturebackend-j767.onrender.com/api/products/category/sofa-sets";
 
-
 // =========================
 // USER CHECK
 // =========================
+
 const email =
 localStorage.getItem(
-"email"
+"userEmail"
 );
 
 const token =
@@ -249,6 +261,27 @@ const cartKey =
 
 async function loadProducts(){
 
+const container =
+document.getElementById(
+"products"
+);
+
+/* LOADER */
+
+container.innerHTML = `
+
+<div class="products-loader">
+
+<div class="loader-card"></div>
+
+<div class="loader-card"></div>
+
+<div class="loader-card"></div>
+
+</div>
+
+`;
+
 try{
 
 const response =
@@ -257,22 +290,44 @@ await fetch(API);
 const products =
 await response.json();
 
-const container =
-document.getElementById(
-"products"
-);
+/* CLEAR */
 
 container.innerHTML = "";
 
+/* NO PRODUCTS */
+
+if(!products.length){
+
+container.innerHTML = `
+
+<div class="no-products">
+
+<h2>
+No Products Found
+</h2>
+
+<p>
+Products will be added soon.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+/* PRODUCTS */
+
 products.forEach((product,index)=>{
-
-console.log(product);
-
 
 container.innerHTML += `
 
 <div class="product-item
 ${index % 2 !== 0 ? "reverse" : ""}">
+
+<!-- IMAGE -->
 
 <div class="product-image-box"
 data-aos="${
@@ -290,6 +345,7 @@ alt="${product.name}">
 
 </div>
 
+<!-- DETAILS -->
 
 <div class="product-details"
 data-aos="${
@@ -324,10 +380,12 @@ ${product.sellingPrice || 0}
 
 </p>
 
+<!-- BUTTONS -->
 
 <div class="product-buttons">
 
 <button
+type="button"
 class="whatsapp-btn btn-filled"
 onclick="buyNow('${product._id}')">
 
@@ -337,8 +395,8 @@ Buy Now
 
 </button>
 
-
 <button
+type="button"
 class="whatsapp-btn btn-filled add-cart-btn"
 onclick="addToCart('${product._id}')">
 
@@ -363,6 +421,24 @@ catch(error){
 
 console.log(error);
 
+/* ERROR */
+
+container.innerHTML = `
+
+<div class="no-products">
+
+<h2>
+Failed To Load Products
+</h2>
+
+<p>
+Please try again later.
+</p>
+
+</div>
+
+`;
+
 }
 
 }
@@ -371,7 +447,6 @@ console.log(error);
 // =========================
 // ADD TO CART
 // =========================
-
 function addToCart(id){
 
 if(!token){
@@ -388,10 +463,9 @@ JSON.parse(
 localStorage.getItem(cartKey)
 ) || [];
 
-
 const existing =
 cart.find(
-item=>item.id===id
+item => item.id === id
 );
 
 if(existing){
@@ -411,7 +485,6 @@ qty:1
 
 }
 
-
 localStorage.setItem(
 
 cartKey,
@@ -420,12 +493,12 @@ JSON.stringify(cart)
 
 );
 
-alert("Added To Cart");
-
-window.location.href =
-"cart.html";
+alert(
+"Added To Cart"
+);
 
 }
+
 
 
 // =========================

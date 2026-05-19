@@ -304,13 +304,75 @@
 <!-- ORDERS TOP SECTION -->
 <!-- ========================= -->
 
-
 <div class="main-content">
+
 <div class="orders-header">
 
     <h2 class="orders-title">
         Orders
     </h2>
+
+    <!-- BULK ACTIONS -->
+
+    <div class="bulk-actions">
+
+        <!-- SELECT ALL -->
+
+        <label class="select-all-box">
+
+            <input
+                type="checkbox"
+                id="selectAll"
+            >
+
+            Select All
+
+        </label>
+
+        <!-- BULK STATUS -->
+
+        <select id="bulkStatus">
+
+            <option value="">
+                Update Status
+            </option>
+
+            <option value="Pending">
+                Pending
+            </option>
+
+            <option value="Processing">
+                Processing
+            </option>
+
+            <option value="Shipped">
+                Shipped
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+            <option value="Cancelled">
+                Cancelled
+            </option>
+
+        </select>
+
+        <!-- UPDATE BUTTON -->
+
+        <button
+            class="export-btn"
+            onclick="bulkUpdateStatus()"
+        >
+
+            <i class="fa-solid fa-check"></i>
+
+            Update Selected
+
+        </button>
+
+    </div>
 
     <!-- STATS -->
 
@@ -439,7 +501,6 @@
     </div>
 
 </div>
-
 <!-- ========================= -->
 <!-- FILTERS -->
 <!-- ========================= -->
@@ -460,7 +521,7 @@
 
     </div>
 
-    <!-- STATUS -->
+    <!-- STATUS FILTER -->
 
     <select id="statusFilter">
 
@@ -490,49 +551,82 @@
 
     </select>
 
-    <!-- DATE -->
+    <!-- DATE RANGE -->
 
-    <input
-        type="date"
-        id="dateFilter"
+    <div class="date-range-box">
+
+        <input
+            type="date"
+            id="fromDate"
+        >
+
+        <span class="date-separator">
+            -
+        </span>
+
+        <input
+            type="date"
+            id="toDate"
+        >
+
+    </div>
+
+    <!-- BULK STATUS -->
+
+    <!-- <select id="bulkStatus">
+
+        <option value="">
+            Bulk Update Status
+        </option>
+
+        <option value="Pending">
+            Pending
+        </option>
+
+        <option value="Processing">
+            Processing
+        </option>
+
+        <option value="Shipped">
+            Shipped
+        </option>
+
+        <option value="Delivered">
+            Delivered
+        </option>
+
+        <option value="Cancelled">
+            Cancelled
+        </option>
+
+    </select> -->
+
+    <!-- UPDATE BUTTON -->
+<!-- 
+    <button
+        class="export-btn"
+        onclick="bulkUpdateStatus()"
     >
 
-    <!-- FILTER BUTTON -->
+        <i class="fa-solid fa-check"></i>
 
-    <button class="more-filter-btn">
+        Update Selected
 
-        <i class="fa-solid fa-filter"></i>
-
-        More Filters
-
-    </button>
+    </button> -->
 
     <!-- EXPORT -->
+<button class="export-btn export-csv-btn">
 
-    <button class="export-btn">
-
-        <i class="fa-solid fa-download"></i>
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
 
         Export
-
-    </button>
-
-    <!-- ADD ORDER -->
-
-    <button class="add-order-btn">
-
-        <i class="fa-solid fa-plus"></i>
-
-        Add Order
 
     </button>
 
 </div>
 
 
-
 <!-- TABLE -->
-
 <div class="table-wrapper">
 
 <table class="orders-table">
@@ -541,20 +635,46 @@
 
 <tr>
 
+<!-- SELECT ALL -->
+
+<th>
+
+<input
+type="checkbox"
+id="selectAll"
+>
+
+</th>
+
+<!-- ORDER ID -->
+
 <th>Order ID</th>
+
+<!-- CUSTOMER -->
 
 <th>Customer</th>
 
+<!-- DATE -->
+
 <th>Date</th>
+
+<!-- AMOUNT -->
 
 <th>Amount</th>
 
+<!-- PAYMENT -->
+
 <th>Payment</th>
+
+<!-- STATUS -->
 
 <th>Status</th>
 
+<!-- PAYMENT STATUS -->
 
 <th>Payment Status</th>
+
+<!-- ACTION -->
 
 <th>Action</th>
 
@@ -603,8 +723,11 @@ try{
 const response =
 await fetch(API);
 
-const orders =
+const data =
 await response.json();
+
+const orders =
+data.orders || data;
 
 allOrders = orders;
 
@@ -621,6 +744,84 @@ console.log(error);
 
 }
 
+
+// BULK UPDATE STATUS
+
+
+async function bulkUpdateStatus(){
+
+const selected =
+document.querySelectorAll(
+".orderCheckbox:checked"
+);
+
+if(selected.length === 0){
+
+alert(
+"Select Orders"
+);
+
+return;
+
+}
+
+const status =
+document.getElementById(
+"bulkStatus"
+).value;
+
+if(status === ""){
+
+alert(
+"Select Status"
+);
+
+return;
+
+}
+
+try{
+
+for(const checkbox of selected){
+
+const id =
+checkbox.value;
+
+await fetch(
+
+`${API}/${id}`,
+
+{
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+status:status
+})
+
+}
+
+);
+
+}
+
+alert(
+"Orders Updated Successfully"
+);
+
+loadOrders();
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
 /* ========================= */
 /* STATS */
 /* ========================= */
@@ -672,7 +873,6 @@ o=>o.status==="Cancelled"
 /* ========================= */
 /* RENDER TABLE */
 /* ========================= */
-
 function renderOrders(data){
 
 const tableBody =
@@ -688,7 +888,7 @@ tableBody.innerHTML = `
 
 <tr>
 
-<td colspan="8"
+<td colspan="9"
 style="
 text-align:center;
 padding:30px;
@@ -718,6 +918,16 @@ tableBody.innerHTML += `
 
 <td>
 
+<input
+type="checkbox"
+class="orderCheckbox"
+value="${order._id}"
+>
+
+</td>
+
+<td>
+
 #PF${order._id?.slice(-4)}
 
 </td>
@@ -725,9 +935,10 @@ tableBody.innerHTML += `
 <td>
 
 <div class="customer-box">
+
 <div class="profile-letter">
 
-${(order.customerName || "U")
+${(order.userName || "U")
 .charAt(0)
 .toUpperCase()}
 
@@ -736,7 +947,9 @@ ${(order.customerName || "U")
 <div>
 
 <h4>
-${order.customerName || ''}
+
+${order.userName || "Unknown"}
+
 </h4>
 
 <p style="
@@ -744,7 +957,7 @@ font-size:12px;
 color:#888;
 ">
 
-${order.email || ''}
+${order.userEmail || ""}
 
 </p>
 
@@ -766,7 +979,7 @@ order.createdAt
 
 <td>
 
-₹${order.totalPrice || 0}
+₹${order.totalAmount || 0}
 
 </td>
 
@@ -832,7 +1045,6 @@ onclick="deleteOrder('${order._id}')">
 });
 
 }
-
 /* ========================= */
 /* SEARCH */
 /* ========================= */
@@ -841,40 +1053,7 @@ document
 .getElementById("searchInput")
 .addEventListener(
 "input",
-function(){
-
-const value =
-this.value.toLowerCase();
-
-const filtered =
-allOrders.filter(order =>
-
-(order.customerName || '')
-.toLowerCase()
-.includes(value)
-
-||
-
-(order.email || '')
-.toLowerCase()
-.includes(value)
-
-||
-
-(order.phone || '')
-.includes(value)
-
-||
-
-(order._id || '')
-.toLowerCase()
-.includes(value)
-
-);
-
-renderOrders(filtered);
-
-}
+applyFilters
 );
 
 /* ========================= */
@@ -885,11 +1064,7 @@ document
 .getElementById("statusFilter")
 .addEventListener(
 "change",
-function(){
-
-applyFilters();
-
-}
+applyFilters
 );
 
 /* ========================= */
@@ -897,14 +1072,17 @@ applyFilters();
 /* ========================= */
 
 document
-.getElementById("dateFilter")
+.getElementById("fromDate")
 .addEventListener(
 "change",
-function(){
+applyFilters
+);
 
-applyFilters();
-
-}
+document
+.getElementById("toDate")
+.addEventListener(
+"change",
+applyFilters
 );
 
 /* ========================= */
@@ -913,18 +1091,62 @@ applyFilters();
 
 function applyFilters(){
 
-const statusValue =
-document.getElementById(
-"statusFilter"
-).value;
+const searchValue =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
 
-const dateValue =
-document.getElementById(
-"dateFilter"
-).value;
+const statusValue =
+document
+.getElementById("statusFilter")
+.value;
+
+const fromDate =
+document
+.getElementById("fromDate")
+.value;
+
+const toDate =
+document
+.getElementById("toDate")
+.value;
 
 let filtered =
 [...allOrders];
+
+/* SEARCH */
+
+if(searchValue){
+
+filtered =
+filtered.filter(order =>
+
+(order.userName || '')
+.toLowerCase()
+.includes(searchValue)
+
+||
+
+(order.userEmail || '')
+.toLowerCase()
+.includes(searchValue)
+
+||
+
+(order.phone || '')
+.includes(searchValue)
+
+||
+
+(order._id || '')
+.toLowerCase()
+.includes(searchValue)
+
+);
+
+}
 
 /* STATUS */
 
@@ -939,19 +1161,25 @@ order.status === statusValue
 
 }
 
-/* DATE */
+/* DATE RANGE */
 
-if(dateValue){
+if(fromDate && toDate){
 
 filtered =
-filtered.filter(order => {
+filtered.filter(order=>{
 
 const orderDate =
-new Date(order.createdAt)
-.toISOString()
-.split("T")[0];
+new Date(order.createdAt);
 
-return orderDate === dateValue;
+return (
+
+orderDate >= new Date(fromDate)
+
+&&
+
+orderDate <= new Date(toDate)
+
+);
 
 });
 
@@ -965,8 +1193,9 @@ renderOrders(filtered);
 /* EXPORT CSV */
 /* ========================= */
 
+
 document
-.querySelector(".export-btn")
+.querySelector(".export-csv-btn")
 .addEventListener(
 "click",
 ()=>{
@@ -977,10 +1206,10 @@ let csv =
 allOrders.forEach(order=>{
 
 csv +=
-`${order.customerName},
-${order.email},
+`${order.userName},
+${order.userEmail},
 ${order.phone},
-${order.totalPrice},
+${order.totalAmount},
 ${order.status}\n`;
 
 });
@@ -1019,11 +1248,11 @@ o => o._id === id
 
 alert(
 
-`Customer: ${order.customerName}
+`Customer: ${order.userName}
 
 Phone: ${order.phone}
 
-Amount: ₹${order.totalPrice}
+Amount: ₹${order.totalAmount}
 
 Status: ${order.status}`
 
@@ -1035,14 +1264,162 @@ Status: ${order.status}`
 /* EDIT */
 /* ========================= */
 
+/* ========================= */
+/* EDIT */
+/* ========================= */
+
 async function editOrder(id){
 
-const newStatus =
-prompt(
-"Enter New Status\n\nPending / Processing / Shipped / Delivered / Cancelled"
+const order =
+allOrders.find(
+o => o._id === id
 );
 
-if(!newStatus) return;
+const currentStatus =
+order.status || "Pending";
+
+const popup = `
+
+<div
+id="statusPopup"
+style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+"
+>
+
+<div
+style="
+background:#fff;
+padding:25px;
+border-radius:20px;
+width:320px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+"
+>
+
+<h3 style="
+margin-bottom:20px;
+color:#111;
+font-size:22px;
+">
+Update Order Status
+</h3>
+
+<select
+id="editStatusSelect"
+style="
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #ddd;
+margin-bottom:20px;
+font-size:15px;
+outline:none;
+"
+>
+
+<option value="Pending"
+${currentStatus==="Pending"?"selected":""}>
+Pending
+</option>
+
+<option value="Processing"
+${currentStatus==="Processing"?"selected":""}>
+Processing
+</option>
+
+<option value="Shipped"
+${currentStatus==="Shipped"?"selected":""}>
+Shipped
+</option>
+
+<option value="Delivered"
+${currentStatus==="Delivered"?"selected":""}>
+Delivered
+</option>
+
+<option value="Cancelled"
+${currentStatus==="Cancelled"?"selected":""}>
+Cancelled
+</option>
+
+</select>
+
+<div style="
+display:flex;
+gap:10px;
+justify-content:center;
+">
+
+<button
+onclick="saveStatus('${id}')"
+style="
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#5b3716;
+color:#fff;
+cursor:pointer;
+font-weight:600;
+"
+>
+
+Save
+
+</button>
+
+<button
+onclick="closePopup()"
+style="
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#ddd;
+color:#111;
+cursor:pointer;
+font-weight:600;
+"
+>
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+document.body.insertAdjacentHTML(
+"beforeend",
+popup
+);
+
+}
+
+/* ========================= */
+/* SAVE STATUS */
+/* ========================= */
+
+async function saveStatus(id){
+
+const newStatus =
+document.getElementById(
+"editStatusSelect"
+).value;
 
 try{
 
@@ -1065,7 +1442,11 @@ status:newStatus
 
 );
 
-alert("Order Updated");
+alert(
+"Order Updated Successfully"
+);
+
+closePopup();
 
 loadOrders();
 
@@ -1073,6 +1454,25 @@ loadOrders();
 catch(error){
 
 console.log(error);
+
+}
+
+}
+
+/* ========================= */
+/* CLOSE POPUP */
+/* ========================= */
+
+function closePopup(){
+
+const popup =
+document.getElementById(
+"statusPopup"
+);
+
+if(popup){
+
+popup.remove();
 
 }
 
@@ -1115,6 +1515,33 @@ console.log(error);
 }
 
 }
+
+
+
+
+
+
+
+document
+.getElementById("selectAll")
+.addEventListener(
+"change",
+function(){
+
+const checkboxes =
+document.querySelectorAll(
+".orderCheckbox"
+);
+
+checkboxes.forEach(box=>{
+
+box.checked =
+this.checked;
+
+});
+
+}
+);
 
 loadOrders();
 

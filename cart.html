@@ -448,6 +448,9 @@ Proceed To Checkout
 </div>
 
 </section>
+
+
+
 <script>
 
 const API =
@@ -458,11 +461,13 @@ const API =
 // USER WISE CART
 // =========================
 
-
 const userEmail =
 localStorage.getItem(
-"email"
+"userEmail"
 );
+
+
+// LOGIN CHECK
 
 if(!userEmail){
 
@@ -471,17 +476,66 @@ window.location.href =
 
 }
 
+
+// USER CART KEY
+
 const cartKey =
 `cart_${userEmail}`;
 
 
-
-
+// GET CART
 
 let cart =
 JSON.parse(
 localStorage.getItem(cartKey)
 ) || [];
+
+
+
+// =========================
+// REMOVE DUPLICATE PRODUCTS
+// =========================
+
+cart = cart.reduce((acc,item)=>{
+
+const existing =
+acc.find(
+x => String(x.id) === String(item.id)
+);
+
+if(existing){
+
+existing.qty += item.qty || 1;
+
+}
+else{
+
+acc.push({
+
+id:String(item.id),
+
+qty:item.qty || 1
+
+});
+
+}
+
+return acc;
+
+},[]);
+
+
+// SAVE CLEAN CART
+
+localStorage.setItem(
+
+cartKey,
+
+JSON.stringify(cart)
+
+);
+
+
 
 
 // =========================
@@ -494,6 +548,9 @@ const container =
 document.getElementById(
 "cartItems"
 );
+
+
+// EMPTY CART
 
 if(cart.length === 0){
 
@@ -525,13 +582,21 @@ return;
 
 }
 
+
+// CLEAR CONTAINER
+
 container.innerHTML = "";
 
 let totalPrice = 0;
 
 let totalItems = 0;
 
+
+// LOOP CART ITEMS
+
 for(let item of cart){
+
+try{
 
 const response =
 await fetch(
@@ -541,12 +606,30 @@ await fetch(
 const product =
 await response.json();
 
+
+// PRODUCT NOT FOUND
+
+if(!product || !product._id){
+
+continue;
+
+}
+
+
+// SUBTOTAL
+
 const subtotal =
 product.sellingPrice * item.qty;
+
+
+// TOTALS
 
 totalPrice += subtotal;
 
 totalItems += item.qty;
+
+
+// HTML
 
 container.innerHTML += `
 
@@ -557,6 +640,7 @@ src="${
 product.images?.[0]
 || "images/noimage.png"
 }"
+alt="${product.name}"
 >
 
 <div class="item-details">
@@ -569,7 +653,7 @@ ${product.name}
 
 <p>
 
-${product.brand || ""}
+${product.brand || "Luxury Furniture"}
 
 </p>
 
@@ -579,9 +663,13 @@ ${product.brand || ""}
 
 </div>
 
+
+<!-- QUANTITY -->
+
 <div class="qty-box">
 
 <button
+type="button"
 class="qty-btn"
 onclick="changeQty('${item.id}',-1)">
 
@@ -596,6 +684,7 @@ ${item.qty}
 </span>
 
 <button
+type="button"
 class="qty-btn"
 onclick="changeQty('${item.id}',1)">
 
@@ -605,7 +694,11 @@ onclick="changeQty('${item.id}',1)">
 
 </div>
 
+
+<!-- REMOVE -->
+
 <button
+type="button"
 class="remove-btn"
 onclick="removeItem('${item.id}')">
 
@@ -620,6 +713,19 @@ Remove
 `;
 
 }
+catch(error){
+
+console.log(
+"Product Load Error",
+error
+);
+
+}
+
+}
+
+
+// SHOW TOTALS
 
 document.getElementById(
 "totalPrice"
@@ -634,6 +740,8 @@ totalItems;
 }
 
 
+
+
 // =========================
 // CHANGE QUANTITY
 // =========================
@@ -642,9 +750,12 @@ function changeQty(id,value){
 
 cart = cart.map(item=>{
 
-if(item.id === id){
+if(String(item.id) === String(id)){
 
 item.qty += value;
+
+
+// MINIMUM 1
 
 if(item.qty < 1){
 
@@ -659,7 +770,7 @@ return item;
 });
 
 
-// SAVE USER CART
+// SAVE UPDATED CART
 
 localStorage.setItem(
 
@@ -669,9 +780,46 @@ JSON.stringify(cart)
 
 );
 
+
+// RELOAD CART
+
 loadCart();
 
 }
+
+
+
+
+// =========================
+// REMOVE ITEM
+// =========================
+
+function removeItem(id){
+
+cart =
+cart.filter(
+item => String(item.id) !== String(id)
+);
+
+
+// SAVE UPDATED CART
+
+localStorage.setItem(
+
+cartKey,
+
+JSON.stringify(cart)
+
+);
+
+
+// RELOAD
+
+loadCart();
+
+}
+
+
 
 
 // =========================
@@ -682,7 +830,9 @@ function goToCheckout(){
 
 if(cart.length === 0){
 
-alert("Cart Is Empty");
+alert(
+"Cart Is Empty"
+);
 
 return;
 
@@ -694,31 +844,6 @@ window.location.href =
 }
 
 
-// =========================
-// REMOVE ITEM
-// =========================
-
-function removeItem(id){
-
-cart =
-cart.filter(
-item=>item.id !== id
-);
-
-
-// SAVE USER CART
-
-localStorage.setItem(
-
-cartKey,
-
-JSON.stringify(cart)
-
-);
-
-loadCart();
-
-}
 
 
 // =========================
@@ -728,7 +853,6 @@ loadCart();
 loadCart();
 
 </script>
-
 </body>
 
 </html>

@@ -325,13 +325,6 @@ Manage and view all your store customers.
 
 </div>
 
-<button class="add-customer-btn">
-
-<i class="fa fa-plus"></i>
-
-Add Customer
-
-</button>
 
 </div>
 
@@ -507,7 +500,7 @@ id="toDate"
 
 <button class="export-btn">
 
-<i class="fa fa-download"></i>
+<i class="fa fa-arrow-up-from-bracket"></i>
 
 Export
 
@@ -587,28 +580,37 @@ try{
 const response =
 await fetch(API);
 
-const orders =
+const data =
 await response.json();
+
+console.log(data);
+
+const orders =
+data.orders || data;
 
 const customerMap = {};
 
 orders.forEach(order=>{
 
 const email =
-order.email || "unknown";
+order.userEmail ||
+"unknown";
 
 if(!customerMap[email]){
 
 customerMap[email] = {
 
 name:
-order.customerName || "Unknown",
+order.userName ||
+"Unknown",
 
 email:
-order.email || "-",
+order.userEmail ||
+"-",
 
 phone:
-order.phone || "-",
+order.phone ||
+"-",
 
 orders:0,
 
@@ -627,7 +629,7 @@ order.createdAt
 customerMap[email].orders += 1;
 
 customerMap[email].spent +=
-Number(order.totalPrice || 0);
+Number(order.totalAmount || 0);
 
 if(
 new Date(order.createdAt)
@@ -641,8 +643,6 @@ order.createdAt;
 }
 
 });
-
-/* ACTIVE / INACTIVE */
 
 allCustomers =
 Object.values(customerMap)
@@ -778,18 +778,48 @@ ${new Date(customer.joined)
 .toLocaleDateString()}
 
 </td>
-
 <td>
 
 <div class="action-btns">
 
-<button>
+<!-- VIEW -->
+
+<button
+onclick="viewCustomer('${customer.email}')"
+>
+
 <i class="fa fa-eye"></i>
+
 </button>
 
-<button>
+<!-- MENU -->
+
+<div class="dropdown-action">
+
+<button
+class="dots-btn"
+onclick="toggleMenu(this)"
+>
+
 <i class="fa fa-ellipsis-v"></i>
+
 </button>
+
+<div class="dropdown-menu-box">
+
+<button
+onclick="deleteCustomer('${customer.email}')"
+>
+
+<i class="fa fa-trash"></i>
+
+Delete
+
+</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1213,4 +1243,142 @@ arrow.classList.toggle(
 
 }
 
+
+
+
+
+/* ========================= */
+/* TOGGLE MENU */
+/* ========================= */
+
+function toggleMenu(button){
+
+document
+.querySelectorAll(
+".dropdown-menu-box"
+)
+.forEach(menu=>{
+
+if(menu !==
+button.nextElementSibling){
+
+menu.style.display = "none";
+
+}
+
+});
+
+const menu =
+button.nextElementSibling;
+
+menu.style.display =
+
+menu.style.display === "block"
+? "none"
+: "block";
+
+}
+
+/* ========================= */
+/* VIEW CUSTOMER */
+/* ========================= */
+function viewCustomer(email){
+
+const customer =
+allCustomers.find(
+c => c.email === email
+);
+
+if(!customer) return;
+
+alert(
+
+`Customer: ${customer.name}
+
+Phone: ${customer.phone}
+
+Orders: ${customer.orders}
+
+Amount: ₹${customer.spent}
+
+Status: ${customer.status}
+
+Joined:
+${new Date(customer.joined)
+.toLocaleDateString()}
+
+Email:
+${customer.email}`
+
+);
+
+}
+/* ========================= */
+/* DELETE CUSTOMER */
+/* ========================= */
+
+async function deleteCustomer(email){
+
+const confirmDelete =
+confirm(
+"Delete this customer?"
+);
+
+if(!confirmDelete) return;
+
+try{
+
+const response =
+await fetch(API);
+
+const data =
+await response.json();
+
+const orders =
+data.orders || [];
+
+/* CUSTOMER ORDERS */
+
+const customerOrders =
+orders.filter(order=>
+
+order.userEmail === email
+
+);
+
+/* DELETE ALL */
+
+for(const order of customerOrders){
+
+await fetch(
+
+`${API}/${order._id}`,
+
+{
+method:"DELETE"
+}
+
+);
+
+}
+
+alert(
+"Customer Deleted"
+);
+
+loadCustomers();
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
 </script>
+
+
+
+
