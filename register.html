@@ -587,47 +587,26 @@ await response.json();
 
 
 // SUCCESS
-
 if(data.success){
-
-// SAVE TOKEN
-
-localStorage.setItem(
-"token",
-data.token
-);
-
-
-// SAVE USERNAME
 
 localStorage.setItem(
 "username",
 data.user?.username || "User"
 );
 
-
-// SAVE EMAIL
-
 localStorage.setItem(
 "userEmail",
 data.user?.email || ""
 );
-
-
-// SAVE PHONE
 
 localStorage.setItem(
 "userPhone",
 data.user?.phone || ""
 );
 
-
 alert(
 "Registration Successful"
 );
-
-
-// REDIRECT
 
 window.location.href =
 "login.html";
