@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Phone OTP Login</title>
+
+<link rel="icon"
+type="image/png"
+href="images/fav.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:linear-gradient(
+135deg,
+#2b1408,
+#874526,
+#c99330
+);
+
+padding:20px;
+
+position:relative;
+
+}
+
+/* BACKGROUND */
+
+body::before,
+body::after{
+
+content:"";
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(80px);
+
+opacity:0.4;
+
+}
+
+body::before{
+
+width:350px;
+
+height:350px;
+
+background:#c99330;
+
+top:-100px;
+
+left:-100px;
+
+}
+
+body::after{
+
+width:300px;
+
+height:300px;
+
+background:#fff;
+
+bottom:-100px;
+
+right:-100px;
+
+}
+
+/* CONTAINER */
+
+.auth-container{
+
+width:100%;
+
+max-width:460px;
+
+position:relative;
+
+z-index:10;
+
+}
+
+.auth-box{
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.15);
+
+padding:45px;
+
+border-radius:35px;
+
+box-shadow:0 15px 50px rgba(0,0,0,0.25);
+
+color:#fff;
+
+animation:fadeIn 1s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* LOGO */
+
+.logo{
+
+display:flex;
+
+justify-content:center;
+
+margin-bottom:25px;
+
+}
+
+.logo img{
+
+width:90px;
+
+}
+
+/* TITLE */
+
+.auth-box h1{
+
+font-size:2.5rem;
+
+font-weight:700;
+
+text-align:center;
+
+margin-bottom:10px;
+
+}
+
+.auth-box p{
+
+text-align:center;
+
+font-size:0.95rem;
+
+color:rgba(255,255,255,0.8);
+
+margin-bottom:35px;
+
+}
+
+/* INPUT */
+
+.input-box{
+
+margin-bottom:22px;
+
+position:relative;
+
+}
+
+.input-box label{
+
+display:block;
+
+margin-bottom:10px;
+
+font-weight:500;
+
+font-size:0.95rem;
+
+}
+
+.input-box i{
+
+position:absolute;
+
+top:48px;
+
+left:16px;
+
+color:#c99330;
+
+font-size:1rem;
+
+}
+
+.input-box input{
+
+width:100%;
+
+padding:15px 15px 15px 48px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:rgba(255,255,255,0.12);
+
+color:#fff;
+
+font-size:1rem;
+
+border:1px solid rgba(255,255,255,0.15);
+
+transition:0.3s;
+
+}
+
+.input-box input::placeholder{
+
+color:#ddd;
+
+}
+
+.input-box input:focus{
+
+border-color:#c99330;
+
+background:rgba(255,255,255,0.18);
+
+}
+
+/* BUTTON */
+
+.login-btn{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:14px;
+
+background:linear-gradient(
+90deg,
+#874526,
+#c99330
+);
+
+color:#fff;
+
+font-size:1rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+
+margin-top:10px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+}
+
+.login-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+}
+
+/* LINKS */
+
+.extra-links{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:18px;
+
+font-size:0.9rem;
+
+}
+
+.extra-links a{
+
+color:#fff;
+
+text-decoration:none;
+
+}
+
+.extra-links a:hover{
+
+color:#ffd27a;
+
+}
+
+/* FOOTER */
+
+.bottom-text{
+
+text-align:center;
+
+margin-top:30px;
+
+font-size:0.95rem;
+
+color:#eee;
+
+}
+
+@media(max-width:500px){
+
+.auth-box{
+
+padding:35px 25px;
+
+border-radius:25px;
+
+}
+
+.auth-box h1{
+
+font-size:2rem;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="auth-container">
+
+<div class="auth-box">
+
+<!-- LOGO -->
+
+<div class="logo">
+
+<img
+src="images/logo.png"
+alt="Logo">
+
+</div>
+
+<!-- TITLE -->
+
+<h1>Login</h1>
+
+<p>
+Login securely using Phone OTP
+</p>
+
+<!-- EMAIL -->
+
+<div class="input-box">
+
+<label>Email Address</label>
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email"
+required>
+
+</div>
+
+<!-- PHONE -->
+
+<div class="input-box">
+
+<label>Phone Number</label>
+
+<i class="fa-solid fa-phone"></i>
+
+<input
+type="text"
+id="phone"
+placeholder="+919876543210"
+required>
+
+</div>
+
+<!-- OTP -->
+
+<div class="input-box">
+
+<label>OTP</label>
+
+<i class="fa-solid fa-key"></i>
+
+<input
+type="text"
+id="otp"
+placeholder="Enter OTP"
+required>
+
+</div>
+
+<!-- SEND OTP -->
+
+<button
+class="login-btn"
+onclick="sendOTP()">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+Send OTP
+
+</button>
+
+<!-- VERIFY OTP -->
+
+<button
+class="login-btn"
+onclick="verifyOTP()">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+Login With OTP
+
+</button>
+
+<!-- RECAPTCHA -->
+
+<div
+id="recaptcha-container"
+style="margin-top:20px;">
+</div>
+
+<!-- LINKS -->
+
+<div class="extra-links">
+
+<a href="index.html">
+Back Home
+</a>
+
+<a href="register.html">
+Create Account
+</a>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="bottom-text">
+
+Luxury Furniture Experience
+
+</div>
+
+</div>
+
+</div>
+<script type="module">
+
+// =========================
+// FIREBASE IMPORTS
+// =========================
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+
+import {
+
+getAuth,
+RecaptchaVerifier,
+signInWithPhoneNumber
+
+}
+from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
+
+// =========================
+// FIREBASE CONFIG
+// =========================
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyDkgIWjEtbevCZWUK1rpfqRwY0yUwiATx0",
+
+authDomain:
+"myotpapp-2a25b.firebaseapp.com",
+
+projectId:
+"myotpapp-2a25b",
+
+storageBucket:
+"myotpapp-2a25b.firebasestorage.app",
+
+messagingSenderId:
+"106561591395",
+
+appId:
+"1:106561591395:web:6338599d2c5061a326c056"
+
+};
+
+
+// =========================
+// INITIALIZE FIREBASE
+// =========================
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+
+// =========================
+// API URLS
+// =========================
+
+const CHECK_USER_API =
+"http://localhost:5000/api/auth/check-user";
+
+const FIREBASE_LOGIN_API =
+"http://localhost:5000/api/auth/firebase-login";
+
+
+// =========================
+// CHECK LOGIN
+// =========================
+
+const token =
+localStorage.getItem("token");
+
+if(token){
+
+window.location.href =
+"profile.html";
+
+}
+
+
+// =========================
+// SEND OTP
+// =========================
+
+window.sendOTP =
+async function(){
+
+try{
+
+const email =
+document.getElementById(
+"email"
+).value.trim();
+
+const phone =
+document.getElementById(
+"phone"
+).value.trim();
+
+
+// VALIDATION
+
+if(!email || !phone){
+
+alert(
+"Enter Email And Phone Number"
+);
+
+return;
+
+}
+
+
+// CHECK USER EXISTS
+
+const checkResponse =
+await fetch(
+
+CHECK_USER_API,
+
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify({
+
+email
+
+})
+
+}
+
+);
+
+
+const checkData =
+await checkResponse.json();
+
+
+// USER NOT FOUND
+
+if(!checkData.success){
+
+alert(
+"Please Register First"
+);
+
+window.location.href =
+"register.html";
+
+return;
+
+}
+
+
+// CLEAR OLD RECAPTCHA
+
+document.getElementById(
+"recaptcha-container"
+).innerHTML = "";
+
+
+// CREATE RECAPTCHA
+
+window.recaptchaVerifier =
+new RecaptchaVerifier(
+
+"recaptcha-container",
+
+{
+size:"normal"
+},
+
+auth
+
+);
+
+
+// RENDER RECAPTCHA
+
+await window
+.recaptchaVerifier
+.render();
+
+
+// SEND OTP
+
+const confirmationResult =
+await signInWithPhoneNumber(
+
+auth,
+
+phone,
+
+window.recaptchaVerifier
+
+);
+
+
+// SAVE CONFIRMATION
+
+window.confirmationResult =
+confirmationResult;
+
+
+alert(
+"OTP Sent Successfully"
+);
+
+}
+catch(error){
+
+console.log(error);
+
+alert(
+error.message
+);
+
+}
+
+};
+
+
+// =========================
+// VERIFY OTP
+// =========================
+
+window.verifyOTP =
+async function(){
+
+try{
+
+const otp =
+document.getElementById(
+"otp"
+).value.trim();
+
+
+// VALIDATION
+
+if(!otp){
+
+alert(
+"Enter OTP"
+);
+
+return;
+
+}
+
+
+// VERIFY OTP
+
+const result =
+await window
+.confirmationResult
+.confirm(otp);
+
+
+// GET FIREBASE TOKEN
+
+const firebaseToken =
+await result.user
+.getIdToken();
+
+
+// SEND TOKEN TO BACKEND
+
+const response =
+await fetch(
+
+FIREBASE_LOGIN_API,
+
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify({
+
+token:firebaseToken
+
+})
+
+}
+
+);
+
+
+const data =
+await response.json();
+
+
+// SUCCESS LOGIN
+
+if(data.success){
+
+localStorage.setItem(
+
+"token",
+
+data.token
+
+);
+
+alert(
+"Login Success"
+);
+
+window.location.href =
+"profile.html";
+
+}
+else{
+
+alert(
+
+data.message ||
+"Login Failed"
+
+);
+
+}
+
+}
+catch(error){
+
+console.log(error);
+
+alert(
+"Invalid OTP"
+);
+
+}
+
+};
+
+
+// =========================
+// LOGOUT
+// =========================
+
+window.logout =
+function(){
+
+localStorage.removeItem(
+"token"
+);
+
+window.location.href =
+"login.html";
+
+};
+
+</script>
+
+</body>
+
+</html>
